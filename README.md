@@ -1,38 +1,34 @@
-# NUTRIFY LAB — Proposta Estratégica · 75 LAB × Nutrify
+# NUTRIFY LAB — 75 LAB × Nutrify
 
-Apresentação HTML (36 telas) da **75 LAB — Aceleradora de Trade Marketing** para a **Nutrify**.
+Apresentação comercial em HTML, **23 telas**, uma ideia por tela.
 
-**Uma plataforma. Dois formatos.**
-- **Routine Lab** (lojas menores) — descoberta guiada em 90 segundos · **R$ 600,00 por loja/dia**
-- **Move Lab** (lojas maiores) — desafio físico de 60 segundos · **R$ 1.100,00 por loja/dia**
+**Duas experiências de loja que transformam interesse em compra.**
+- **Routine Lab** — lojas menores · 90 segundos · **R$ 600,00 por loja/dia**
+- **Move Lab** — lojas maiores · 60 segundos · **R$ 1.100,00 por loja/dia**
 
-## Como navegar
+## Direção visual
+A linguagem *clean label* da Nutrify vira o sistema do deck: cada tela abre com a régua de
+uma tabela nutricional (fio fino + barra pesada) e uma única declaração em tipografia
+expandida. Verde-floresta, osso e terracota alternando em sangria total; o lime da 75 LAB
+aparece só onde há ação.
+
+- **Tipos** — Archivo Expanded 900 (chamadas) · Space Grotesk (texto) · Space Mono (dados)
+- **Cores** — `#00402F` `#006C52` `#05B590` `#F4F2EC` `#8C342B` · ação `#C0EE4E`
+
+## Navegação
 | Ação | Atalho |
 |---|---|
-| Avançar | `→` · `Espaço` · `PageDown` · botão `›` · swipe |
-| Voltar | `←` · `PageUp` · botão `‹` · swipe |
-| Índice | tecla `M` ou o botão **ÍNDICE** |
-| Início / Fim | `Home` / `End` |
-| Exportar PDF | `Ctrl/Cmd + P` → Salvar como PDF (paisagem) |
+| Avançar / voltar | `→` `←` · `Espaço` · botões · swipe |
+| Índice | tecla `M` |
+| Início / fim | `Home` / `End` |
+| Exportar PDF | `Ctrl/Cmd + P` (paisagem) |
 
-## Estrutura
-1. Capa
-2–3. Quem é a 75 LAB e o Método 75
-4–9. Plataforma, desafio, contexto de shopper, território e arquitetura de rede
-10–18. **Solução 01 · Routine Lab** (jornada, conteúdo, 3 renders, operação, escala)
-19–27. **Solução 02 · Move Lab** (jornada, ranking, 3 renders, operação, riscos)
-28–34. Conversão, mensuração, logística, equipe, escala e cronograma
-35. **Investimento**
-36. Recomendação final
+Os botões de chamada navegam direto para a seção correspondente.
 
 ## Renders
-- `assets/render-routine-lab.jpg` e `assets/render-move-lab.jpg` — ambientação em loja
-- Renders vetoriais construídos em SVG dentro do deck: elevação + planta baixa do Routine Lab, interface do tablet (3 telas), equipamento + zona de segurança do Move Lab e a arena completa
-
-## Identidade
-- **Nutrify** — verde `#006C52`, verde vibrante `#05B590`, sage `#CAE1D6`, terracota `#8C342B`, `#211915`
-- **75 LAB** — lime `#C0EE4E`, ink `#050505`, paper `#F2F1E9`
-- Tipografia: Archivo · Figtree · Sacramento · Space Mono
+- `assets/render-routine-lab.jpg` · `assets/render-move-lab.jpg` — ambientação em loja
+- Vetoriais no próprio HTML: interface do tablet (3 telas), elevação + planta do Routine Lab,
+  placar ao vivo e arena do Move Lab
 
 ---
 © 75 LAB — *Ideia boa é a que acontece.*
