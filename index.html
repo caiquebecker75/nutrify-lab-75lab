@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUTRIFY LAB — Proposta Estratégica | 75 LAB × Nutrify</title>
+<meta name="description" content="NUTRIFY LAB: uma plataforma, dois formatos. Routine Lab e Move Lab — experiências proprietárias de trade marketing que transformam interesse em escolha e escolha em sell-out. Proposta 75 LAB para a Nutrify.">
+<meta name="author" content="75 LAB — Aceleradora de Trade Marketing">
+<meta name="theme-color" content="#006C52">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NUTRIFY LAB — Proposta Estratégica | 75 LAB">
+<meta property="og:description" content="Uma plataforma. Dois formatos. Uma mesma lógica de conversão. Routine Lab e Move Lab para a rede Nutrify.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Figtree:wght@300;400;500;600;700&family=Sacramento&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ——— Paleta Nutrify (extraída da marca) ——— */
+  --green:#006C52; --green-d:#004E3B; --green-x:#003528;
+  --mint:#05B590;  --mint-s:#D6F4EC;
+  --sage:#CAE1D6;  --sage-l:#E8F2EC; --sage-g:#F3F8F5;
+  --clay:#8C342B;  --clay-l:#BA7D63; --clay-s:#F6E9E4;
+  --sand:#947053;  --sand-s:#F2EBE3;
+  --ink:#211915;   --ink2:#5A4F47;   --ink3:#9A9089;
+  --paper:#FFFFFF; --cream:#F7F5F0;  --rule:#E4E0D7;
+  /* ——— Assinatura 75 LAB ——— */
+  --lime:#C0EE4E;  --lime-d:#A6D934; --lab-ink:#050505; --lab-paper:#F2F1E9;
+  --warn:#C0503E;  --warn-s:#FBEDE9;
+  --display:'Archivo',Impact,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+  --script:'Sacramento',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--green);color:var(--ink);font-family:var(--body);
+  overflow:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  cursor:none;
+}
+.arch{font-family:var(--display);font-weight:800;letter-spacing:-.02em}
+.scr{font-family:var(--script);font-weight:400}
+.mn{font-family:var(--mono)}
+
+/* ═══════════ TEXTURA DE FUNDO ═══════════ */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background:
+    radial-gradient(1100px 620px at 12% -8%, rgba(5,181,144,.30), transparent 62%),
+    radial-gradient(900px 560px at 105% 108%, rgba(140,52,43,.24), transparent 60%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;
+  background-image:radial-gradient(rgba(255,255,255,.9) 1px, transparent 1px);
+  background-size:22px 22px;
+}
+
+/* ═══════════ CURSOR CUSTOMIZADO ═══════════ */
+#cur,#curDot{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;will-change:transform}
+#cur{
+  width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;
+  border:1.6px solid var(--mint);
+  transition:width .22s cubic-bezier(.2,1.1,.3,1),height .22s cubic-bezier(.2,1.1,.3,1),
+             margin .22s cubic-bezier(.2,1.1,.3,1),background .22s,border-color .22s,opacity .2s;
+  mix-blend-mode:normal;
+}
+#curDot{width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--mint);transition:opacity .2s,transform .18s}
+body.hot #cur{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(5,181,144,.16);border-color:var(--mint)}
+body.hot #curDot{transform:scale(.4)}
+body.dk #cur{border-color:var(--lime)} body.dk #curDot{background:var(--lime)}
+body.dk.hot #cur{background:rgba(192,238,78,.18)}
+#cur.hide,#curDot.hide{opacity:0}
+@media (hover:none),(pointer:coarse){body{cursor:auto}#cur,#curDot{display:none}}
+
+/* ═══════════ ESTRUTURA ═══════════ */
+.deck{position:fixed;inset:0;padding:clamp(8px,1.25vw,20px);perspective:1700px;z-index:1}
+.slide{
+  position:absolute;inset:clamp(8px,1.25vw,20px);background:var(--paper);
+  border-radius:clamp(6px,.85vw,14px);
+  display:flex;flex-direction:column;
+  padding:clamp(14px,1.9vw,28px) clamp(16px,2.9vw,48px) clamp(10px,1.25vw,16px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translate3d(0,28px,-95px) scale(.968);filter:blur(8px);
+  transition:opacity .45s ease,transform .7s cubic-bezier(.16,.86,.26,1),filter .45s ease,visibility .45s;
+  overflow:hidden auto;scrollbar-width:none;
+}
+.slide::-webkit-scrollbar{width:0;height:0}
+.deck.rev .slide{transform:translate3d(0,-28px,-95px) scale(.968)}
+.slide.on{opacity:1;visibility:visible;pointer-events:auto;transform:none;filter:none;z-index:2}
+.content{flex:1;display:flex;flex-direction:column;justify-content:safe center;min-height:0;width:100%;max-width:1460px;margin:0 auto}
+
+/* ——— REVELAÇÕES ——— */
+.slide.on .rv{animation:rise .62s cubic-bezier(.2,.85,.3,1) backwards}
+.slide.on .rv:nth-child(1){animation-delay:.08s}.slide.on .rv:nth-child(2){animation-delay:.15s}
+.slide.on .rv:nth-child(3){animation-delay:.22s}.slide.on .rv:nth-child(4){animation-delay:.29s}
+.slide.on .rv:nth-child(5){animation-delay:.36s}.slide.on .rv:nth-child(6){animation-delay:.43s}
+.slide.on .rv:nth-child(7){animation-delay:.50s}.slide.on .rv:nth-child(8){animation-delay:.57s}
+.slide.on .rv:nth-child(9){animation-delay:.64s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.slide.on .pop>*{animation:pop .58s cubic-bezier(.2,1.18,.35,1) backwards}
+.slide.on .pop>*:nth-child(1){animation-delay:.20s}.slide.on .pop>*:nth-child(2){animation-delay:.27s}
+.slide.on .pop>*:nth-child(3){animation-delay:.34s}.slide.on .pop>*:nth-child(4){animation-delay:.41s}
+.slide.on .pop>*:nth-child(5){animation-delay:.48s}.slide.on .pop>*:nth-child(6){animation-delay:.55s}
+.slide.on .pop>*:nth-child(7){animation-delay:.62s}.slide.on .pop>*:nth-child(8){animation-delay:.69s}
+.slide.on .pop>*:nth-child(9){animation-delay:.76s}.slide.on .pop>*:nth-child(10){animation-delay:.83s}
+.slide.on .pop>*:nth-child(11){animation-delay:.90s}.slide.on .pop>*:nth-child(12){animation-delay:.97s}
+@keyframes pop{from{opacity:0;transform:translateY(15px) scale(.96)}to{opacity:1;transform:none}}
+.slide.on .zin{animation:zin .7s cubic-bezier(.2,1.1,.3,1) .18s backwards}
+@keyframes zin{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.draw{stroke-dasharray:1600;stroke-dashoffset:1600}
+.slide.on .draw{animation:dash 1.6s cubic-bezier(.3,.7,.3,1) .3s forwards}
+@keyframes dash{to{stroke-dashoffset:0}}
+.slide.on .grw{animation:grw .95s cubic-bezier(.2,.85,.3,1) .3s backwards;transform-origin:left center}
+@keyframes grw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.slide.on .grwY{animation:grwY .95s cubic-bezier(.2,.85,.3,1) .35s backwards;transform-origin:bottom center}
+@keyframes grwY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* ——— ANIMAÇÕES EM LOOP (ícones) ——— */
+@keyframes flow{to{stroke-dashoffset:-40}}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(.86)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes throb{0%,100%{transform:scale(.94)}50%{transform:scale(1.04)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes ring{0%{transform:scale(.7);opacity:.85}100%{transform:scale(1.55);opacity:0}}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.an-flow{stroke-dasharray:7 6;animation:flow 1.3s linear infinite}
+.an-pulse{animation:pulse 2.1s ease-in-out infinite;transform-origin:center}
+.an-throb{animation:throb 2.6s ease-in-out infinite;transform-origin:center}
+.an-spin{animation:spin 9s linear infinite;transform-origin:center}
+.an-bob{animation:bob 2.4s ease-in-out infinite}
+.an-blink{animation:blink 1.8s ease-in-out infinite}
+.an-ring{animation:ring 2.2s ease-out infinite;transform-origin:center}
+.an-sway{animation:sway 3.4s ease-in-out infinite;transform-origin:center bottom}
+.an-d1{animation-delay:.25s}.an-d2{animation-delay:.5s}.an-d3{animation-delay:.75s}.an-d4{animation-delay:1s}
+
+/* ═══════════ CHROME / PROGRESSO ═══════════ */
+.prog{position:fixed;top:0;left:0;height:3px;z-index:200;width:0;
+  background:linear-gradient(90deg,var(--mint),var(--lime));
+  transition:width .55s cubic-bezier(.2,.85,.3,1);box-shadow:0 0 12px rgba(5,181,144,.55)}
+.chrome{display:flex;justify-content:space-between;align-items:center;flex:none;gap:10px;margin-bottom:clamp(7px,.95vw,13px)}
+.lbl{font-family:var(--display);font-weight:700;font-size:clamp(8px,.7vw,10px);letter-spacing:1.7px;text-transform:uppercase;
+  background:var(--green);color:#fff;padding:5px 13px;border-radius:20px;border:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+button.lbl{cursor:pointer;transition:.18s}
+button.lbl:hover{background:var(--ink);color:var(--lime);transform:translateY(-1px)}
+.lbl.ghost{background:transparent;border:1px solid var(--rule);color:var(--ink3)}
+.lbl.mint{background:var(--mint);color:#04352B}
+.lbl.clay{background:var(--clay);color:#fff}
+.lbl.lime{background:var(--lime);color:var(--lab-ink)}
+.lbl .dt{width:5px;height:5px;border-radius:50%;background:currentColor;animation:blink 1.8s ease-in-out infinite}
+
+.foot{flex:none;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule);
+  padding-top:clamp(7px,.8vw,11px);margin-top:clamp(9px,1.15vw,16px);gap:12px}
+.brand{display:flex;align-items:center;gap:clamp(8px,.9vw,14px);white-space:nowrap}
+.brand img{height:clamp(11px,1.05vw,15px);width:auto;display:block;opacity:.92}
+.brand .x{font-family:var(--display);font-weight:600;font-size:clamp(9px,.8vw,11px);color:var(--ink3)}
+.brand .tag{font-family:var(--mono);font-size:clamp(7.5px,.66vw,9.4px);letter-spacing:1.1px;color:var(--ink3);text-transform:uppercase}
+.nav{display:flex;align-items:center;gap:7px}
+.nb{width:28px;height:28px;border-radius:50%;border:1px solid var(--rule);background:#fff;color:var(--ink);cursor:pointer;
+  display:grid;place-items:center;font-size:13px;line-height:1;transition:.18s}
+.nb:hover{background:var(--green);border-color:var(--green);color:#fff;transform:scale(1.12)}
+.nb:active{transform:scale(.94)}
+.count{font-family:var(--mono);font-weight:700;font-size:clamp(9px,.78vw,11.4px);letter-spacing:1.1px;color:var(--ink3);min-width:52px;text-align:center}
+.count b{color:var(--green)}
+
+/* ═══════════ TIPOGRAFIA ═══════════ */
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.022em;line-height:1.04}
+h2.t{font-size:clamp(19px,2.85vw,42px);max-width:25ch;font-weight:700}
+h2.t b{font-weight:900}
+h2.t u{text-decoration:none;background:linear-gradient(180deg,transparent 62%,var(--mint-s) 62%);padding:0 3px;border-radius:2px}
+h2.t em{font-style:normal;color:var(--green)}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:clamp(8.6px,.74vw,11px);letter-spacing:2.3px;text-transform:uppercase;color:var(--green);
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:clamp(6px,.85vw,12px)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--mint);flex:none}
+.lead{font-size:clamp(11px,1.02vw,15.2px);color:var(--ink2);font-weight:400;line-height:1.56;max-width:74ch}
+.lead b{font-weight:600;color:var(--ink)}
+.kick{font-size:clamp(13px,1.42vw,21px);font-weight:500;line-height:1.34;color:var(--ink);max-width:32ch}
+.kick u{text-decoration:none;background:linear-gradient(180deg,transparent 60%,var(--mint-s) 60%);padding:0 2px}
+.mini{font-size:clamp(9.2px,.78vw,11.2px);color:var(--ink3);font-weight:400;line-height:1.5}
+.mini b{color:var(--ink2);font-weight:600}
+.rule{height:1px;background:var(--rule);margin:clamp(7px,.9vw,13px) 0}
+
+/* ═══════════ GRIDS ═══════════ */
+.grid{display:grid;gap:clamp(7px,.88vw,14px)}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+.g6{grid-template-columns:repeat(6,1fr)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.1vw,36px);align-items:center}
+.split-a{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(14px,2.1vw,36px);align-items:center}
+.split-b{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(14px,2.1vw,36px);align-items:center}
+
+/* ═══════════ TILES ═══════════ */
+.tile{border:1px solid var(--rule);border-radius:clamp(4px,.55vw,9px);padding:clamp(9px,1vw,15px);
+  display:flex;flex-direction:column;gap:6px;transition:.24s;background:#fff;position:relative;overflow:hidden}
+.tile:hover{border-color:var(--mint);transform:translateY(-3px);box-shadow:0 12px 28px -18px rgba(33,25,21,.5)}
+.tile .n{font-family:var(--mono);font-weight:700;font-size:clamp(8.6px,.7vw,10.4px);letter-spacing:1.5px;color:var(--ink3)}
+.tile h4{font-family:var(--display);font-weight:700;font-size:clamp(11px,1vw,14.4px);line-height:1.2;letter-spacing:-.012em}
+.tile p{font-size:clamp(9.6px,.82vw,12.2px);color:var(--ink2);font-weight:400;line-height:1.46}
+.tile.hl{background:var(--green);border-color:var(--green)}
+.tile.hl h4,.tile.hl .n{color:#fff}.tile.hl p{color:#C8E3DA}.tile.hl .n{color:var(--mint)}
+.tile.mint{background:var(--mint-s);border-color:#AEEADD}
+.tile.soft{background:var(--sage-g);border-color:var(--sage)}
+.tile.sage{background:var(--sage);border-color:#B3D3C4}
+.tile.dark{background:var(--ink);border-color:var(--ink)}
+.tile.dark h4{color:#fff}.tile.dark p{color:#B6ADA6}.tile.dark .n{color:var(--mint)}
+.tile.clay{background:var(--clay-s);border-color:#EBD4CB}.tile.clay .n{color:var(--clay)}
+.tile.lime{background:var(--lime);border-color:var(--lime)}
+.tile.lime h4{color:var(--lab-ink)}.tile.lime p{color:#38431E}.tile.lime .n{color:#4A5921}
+.tile.warn{background:var(--warn-s);border-color:#F1D6CF}.tile.warn .n{color:var(--warn)}
+.tile .ic{width:clamp(22px,2vw,30px);height:clamp(22px,2vw,30px);color:var(--green);flex:none}
+.tile.hl .ic,.tile.dark .ic{color:var(--mint)}
+.tile.lime .ic{color:var(--lab-ink)}
+.tile .ic svg{width:100%;height:100%;display:block}
+.tile.click{cursor:pointer}
+.tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.tile:hover::after{transform:scaleX(1)}
+
+/* ═══════════ BIG NUMBERS ═══════════ */
+.big{font-family:var(--display);font-weight:900;line-height:.86;letter-spacing:-.045em;color:var(--green);font-size:clamp(30px,4.6vw,74px)}
+.big.sm{font-size:clamp(22px,3.1vw,48px)}
+.big.xs{font-size:clamp(17px,2.15vw,32px)}
+.big i{font-style:normal;font-size:.42em;letter-spacing:.02em;font-weight:700;margin-left:.1em;vertical-align:.42em}
+.big.on-d{color:var(--lime)}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat .cap{font-family:var(--mono);font-size:clamp(8.4px,.71vw,10.4px);letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3)}
+
+/* ═══════════ FLUXO / SETAS ═══════════ */
+.flow{display:flex;align-items:stretch;gap:clamp(4px,.5vw,9px);flex-wrap:nowrap}
+.fstep{flex:1 1 0;min-width:0;border:1px solid var(--rule);border-radius:clamp(4px,.5vw,8px);padding:clamp(8px,.9vw,14px) clamp(6px,.8vw,12px);
+  background:#fff;display:flex;flex-direction:column;gap:5px;transition:.24s;position:relative}
+.fstep:hover{border-color:var(--mint);background:var(--sage-g);transform:translateY(-3px)}
+.fstep .n{font-family:var(--mono);font-weight:700;font-size:clamp(8.4px,.68vw,10px);letter-spacing:1.3px;color:var(--mint)}
+.fstep h5{font-family:var(--display);font-weight:800;font-size:clamp(9.6px,.88vw,12.8px);text-transform:uppercase;letter-spacing:.02em;line-height:1.12}
+.fstep p{font-size:clamp(8.8px,.74vw,11px);color:var(--ink2);line-height:1.38}
+.fstep.acc{background:var(--green);border-color:var(--green)}
+.fstep.acc h5{color:#fff}.fstep.acc p{color:#C8E3DA}.fstep.acc .n{color:var(--lime)}
+.arw{flex:none;display:grid;place-items:center;width:clamp(14px,1.5vw,26px);color:var(--mint)}
+.arw svg{width:100%;height:auto;display:block}
+
+/* ═══════════ LISTAS ═══════════ */
+.nl{display:flex;flex-direction:column;gap:clamp(6px,.75vw,11px);list-style:none}
+.nl li{display:grid;grid-template-columns:auto 1fr;gap:clamp(8px,.95vw,14px);align-items:start}
+.nl .bd{width:clamp(17px,1.6vw,23px);height:clamp(17px,1.6vw,23px);border-radius:50%;background:var(--mint-s);color:var(--green);
+  display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:clamp(8.4px,.7vw,10.4px);flex:none;margin-top:1px;transition:.22s}
+.nl li:hover .bd{background:var(--green);color:#fff;transform:scale(1.12)}
+.nl .tx{font-size:clamp(10.4px,.9vw,13.4px);color:var(--ink2);line-height:1.44}
+.nl .tx b{color:var(--ink);font-weight:600}
+.bl{display:flex;flex-direction:column;gap:clamp(5px,.62vw,9px);list-style:none}
+.bl li{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;font-size:clamp(9.8px,.85vw,12.6px);color:var(--ink2);line-height:1.44}
+.bl li b{color:var(--ink);font-weight:600}
+.bl .dot{width:clamp(11px,1vw,15px);height:clamp(11px,1vw,15px);flex:none;margin-top:2px;color:var(--mint)}
+.bl .dot svg{width:100%;height:100%;display:block}
+.bl.on-d li{color:#B6ADA6}.bl.on-d li b{color:#fff}.bl.on-d .dot{color:var(--lime)}
+
+/* ═══════════ CHIPS ═══════════ */
+.chips{display:flex;flex-wrap:wrap;gap:clamp(4px,.5vw,8px)}
+.chip{font-family:var(--mono);font-size:clamp(8.4px,.71vw,10.6px);letter-spacing:.7px;text-transform:uppercase;
+  border:1px solid var(--rule);border-radius:20px;padding:4px 11px;color:var(--ink2);background:#fff;transition:.2s;white-space:nowrap}
+.chip:hover{border-color:var(--mint);color:var(--green);background:var(--sage-g)}
+.chip.f{background:var(--green);border-color:var(--green);color:#fff}
+.chip.m{background:var(--mint-s);border-color:#AEEADD;color:var(--green-d)}
+.chip.c{background:var(--clay-s);border-color:#EBD4CB;color:var(--clay)}
+.chip.l{background:var(--lime);border-color:var(--lime);color:var(--lab-ink)}
+.chips.on-d .chip{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22);color:#D8D2CB}
+
+/* ═══════════ TABELA ═══════════ */
+.tb{width:100%;border-collapse:collapse;font-size:clamp(9.4px,.82vw,12.4px)}
+.tb th{font-family:var(--mono);font-weight:700;font-size:clamp(8.2px,.69vw,10.2px);letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--ink3);text-align:left;padding:0 10px clamp(6px,.7vw,10px);border-bottom:1.5px solid var(--ink)}
+.tb td{padding:clamp(7px,.85vw,13px) 10px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:middle;line-height:1.36}
+.tb tr{transition:.2s}
+.tb tbody tr:hover{background:var(--sage-g)}
+.tb td b{color:var(--ink);font-weight:600}
+.tb td.k{font-family:var(--display);font-weight:700;color:var(--ink);font-size:1.05em}
+.tb .pill{display:inline-block;font-family:var(--mono);font-size:.86em;letter-spacing:.6px;padding:3px 9px;border-radius:14px;background:var(--mint-s);color:var(--green-d);white-space:nowrap}
+.tb .pill.c{background:var(--clay-s);color:var(--clay)}
+.tb .pill.n{background:var(--sand-s);color:var(--sand)}
+.tb tr.hi{background:var(--sage-g)}
+
+/* ═══════════ SLIDES ESCUROS / CAPÍTULO ═══════════ */
+.chap{background:var(--green-d);color:#fff;overflow:hidden}
+.chap::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 460px at 88% 8%,rgba(5,181,144,.34),transparent 62%),
+             radial-gradient(620px 420px at 4% 100%,rgba(140,52,43,.34),transparent 60%)}
+.chap>*{position:relative;z-index:1}
+.chap .eyebrow{color:var(--lime)}.chap .eyebrow::before{background:var(--lime)}
+.chap h2.t{color:#fff}.chap h2.t em{color:var(--lime)}
+.chap h2.t u{background:linear-gradient(180deg,transparent 62%,rgba(192,238,78,.3) 62%)}
+.chap .lead{color:#BFD6CD}.chap .lead b{color:#fff}
+.chap .mini{color:#8FA79E}.chap .mini b{color:#C8DCD4}
+.chap .rule{background:rgba(255,255,255,.16)}
+.chap .foot{border-color:rgba(255,255,255,.16)}
+.chap .brand .x,.chap .brand .tag{color:#8FA79E}
+.chap .count{color:#8FA79E}.chap .count b{color:var(--lime)}
+.chap .nb{background:transparent;border-color:rgba(255,255,255,.26);color:#fff}
+.chap .nb:hover{background:var(--lime);border-color:var(--lime);color:var(--lab-ink)}
+.chap .lbl.ghost{border-color:rgba(255,255,255,.26);color:#A9C0B7}
+.chap .stat .cap{color:#8FA79E}
+.chap .nl .tx{color:#BFD6CD}.chap .nl .tx b{color:#fff}
+.chap .nl .bd{background:rgba(192,238,78,.16);color:var(--lime)}
+.chap .nl li:hover .bd{background:var(--lime);color:var(--lab-ink)}
+.chap .chip{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22);color:#D8D2CB}
+.chap .chip.l{background:var(--lime);border-color:var(--lime);color:var(--lab-ink)}
+.chap .kv .k{color:#8FA79E}.chap .kv .v{color:#fff}
+.chap .tb th{color:#8FA79E;border-color:rgba(255,255,255,.4)}
+.chap .tb td{color:#BFD6CD;border-color:rgba(255,255,255,.13)}
+.chap .tb td b,.chap .tb td.k{color:#fff}
+.chap .tb tbody tr:hover{background:rgba(255,255,255,.05)}
+.chap .tb tr.hi{background:rgba(192,238,78,.10)}
+.chap .tb tr.hi td b,.chap .tb tr.hi td.k{color:var(--lime)}
+.ink-slide{background:var(--ink)}
+.ink-slide::before{background:radial-gradient(700px 480px at 90% 6%,rgba(192,238,78,.20),transparent 62%),
+                              radial-gradient(600px 400px at 0% 100%,rgba(5,181,144,.24),transparent 60%)}
+
+/* ═══════════ MENU / ÍNDICE ═══════════ */
+.menu{position:fixed;inset:0;background:rgba(0,78,59,.97);z-index:300;display:none;padding:clamp(20px,4vw,58px);overflow:auto}
+.menu.open{display:block;animation:mfade .3s ease}
+@keyframes mfade{from{opacity:0}to{opacity:1}}
+.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(14px,2vw,30px);gap:14px;flex-wrap:wrap}
+.mhead .mt{font-family:var(--display);font-weight:800;font-size:clamp(15px,1.7vw,26px);color:#fff;letter-spacing:-.02em}
+.mclose{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:1.6px;background:var(--lime);color:var(--lab-ink);border:none;padding:9px 18px;border-radius:20px;cursor:pointer;transition:.18s}
+.mclose:hover{background:#fff}
+.mlist{list-style:none;columns:2;column-gap:clamp(22px,3.4vw,58px)}
+@media(max-width:820px){.mlist{columns:1}}
+.mlist li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:clamp(5px,.65vw,9px) 0;
+  border-bottom:1px solid rgba(255,255,255,.14);cursor:pointer;transition:.16s;break-inside:avoid}
+.mlist li:hover{padding-left:8px;border-color:var(--lime)}
+.mlist li:hover .t{color:var(--lime)}
+.mlist .n{font-family:var(--mono);font-weight:700;font-size:clamp(8.4px,.7vw,10.4px);color:#7FA096;letter-spacing:1px}
+.mlist .t{font-size:clamp(10.4px,.9vw,13.4px);color:#DCE9E4;font-weight:400;transition:.16s}
+.mlist li.sec .t{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;font-size:clamp(10px,.86vw,12.6px)}
+.mlist li.sec .n{color:var(--lime)}
+
+/* ═══════════ IMAGENS / RENDERS ═══════════ */
+.shot{position:relative;border-radius:clamp(5px,.7vw,11px);overflow:hidden;background:var(--sage-g);border:1px solid var(--rule)}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot.contain img{object-fit:contain;background:#fff}
+.shot .tagl{position:absolute;left:0;bottom:0;right:0;padding:clamp(9px,1.1vw,18px);
+  background:linear-gradient(0deg,rgba(0,53,40,.92),rgba(0,53,40,.55) 55%,transparent);
+  color:#fff;display:flex;flex-direction:column;gap:4px}
+.shot .tagl .k{font-family:var(--display);font-weight:800;font-size:clamp(11px,1.05vw,15.4px);letter-spacing:-.01em}
+.shot .tagl .s{font-family:var(--mono);font-size:clamp(8.2px,.69vw,10.2px);letter-spacing:1.1px;text-transform:uppercase;color:#A9D8C9}
+.shot .badge{position:absolute;top:clamp(8px,.9vw,14px);left:clamp(8px,.9vw,14px);
+  font-family:var(--display);font-weight:700;font-size:clamp(8px,.68vw,10px);letter-spacing:1.6px;text-transform:uppercase;
+  background:var(--lime);color:var(--lab-ink);padding:4px 11px;border-radius:20px}
+.shot .badge.g{background:var(--green);color:#fff}
+.svgbox{border:1px solid var(--rule);border-radius:clamp(5px,.7vw,11px);background:var(--sage-g);overflow:hidden;position:relative}
+.svgbox svg{width:100%;height:auto;display:block}
+.svgbox.dk{background:var(--ink);border-color:var(--ink)}
+
+/* ═══════════ FAIXA DE DESTAQUE ═══════════ */
+.band{background:var(--green);color:#fff;border-radius:clamp(4px,.55vw,9px);padding:clamp(9px,1.05vw,16px) clamp(12px,1.35vw,22px);
+  display:flex;align-items:center;gap:clamp(9px,1.1vw,18px);flex-wrap:wrap}
+.band .ic{width:clamp(20px,1.8vw,27px);height:clamp(20px,1.8vw,27px);color:var(--lime);flex:none}
+.band .ic svg{width:100%;height:100%;display:block}
+.band .k{font-family:var(--display);font-weight:800;font-size:clamp(10.4px,.94vw,13.6px);letter-spacing:.02em;text-transform:uppercase;color:var(--lime);white-space:nowrap}
+.band p{font-size:clamp(9.8px,.85vw,12.8px);color:#D2E6DE;line-height:1.44;flex:1 1 240px}
+.band p b{color:#fff;font-weight:600}
+.band.lime{background:var(--lime);color:var(--lab-ink)}
+.band.lime .ic,.band.lime .k{color:var(--lab-ink)}
+.band.lime p{color:#38431E}.band.lime p b{color:var(--lab-ink)}
+.band.clay{background:var(--clay)}.band.clay .ic,.band.clay .k{color:#F5D9CF}.band.clay p{color:#EFD3C9}
+.band.soft{background:var(--sage-g);border:1px solid var(--sage)}
+.band.soft .ic,.band.soft .k{color:var(--green)}.band.soft p{color:var(--ink2)}.band.soft p b{color:var(--ink)}
+
+/* ═══════════ TIMELINE ═══════════ */
+.tline{display:flex;gap:clamp(3px,.42vw,7px);align-items:stretch}
+.tstep{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:6px}
+.tstep .bar{height:clamp(4px,.5vw,7px);border-radius:4px;background:var(--sage);transition:.24s}
+.tstep:hover .bar{background:var(--mint)}
+.tstep.a .bar{background:var(--green)}
+.tstep.b .bar{background:var(--mint)}
+.tstep.c .bar{background:var(--lime)}
+.tstep .w{font-family:var(--mono);font-weight:700;font-size:clamp(8.2px,.68vw,10px);letter-spacing:1px;color:var(--ink3)}
+.tstep .l{font-family:var(--display);font-weight:700;font-size:clamp(9.4px,.85vw,12.2px);line-height:1.14;letter-spacing:-.01em}
+.tstep .d{font-size:clamp(8.6px,.72vw,10.6px);color:var(--ink3);line-height:1.36}
+
+/* ═══════════ MEDIDOR / BARRAS ═══════════ */
+.fun{display:flex;flex-direction:column;gap:clamp(5px,.62vw,9px)}
+.frow{display:grid;grid-template-columns:clamp(78px,8vw,124px) 1fr auto;gap:clamp(8px,.95vw,14px);align-items:center}
+.frow .lb{font-family:var(--display);font-weight:700;font-size:clamp(8.8px,.76vw,11.2px);text-transform:uppercase;letter-spacing:.06em;color:var(--ink)}
+.frow .tr{display:block;height:clamp(16px,1.65vw,25px);background:var(--sage-g);border-radius:4px;overflow:hidden}
+.frow .fl{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--mint));transform-origin:left}
+.frow .vl{font-family:var(--mono);font-weight:700;font-size:clamp(8.8px,.75vw,11px);color:var(--green);min-width:38px;text-align:right}
+
+/* ═══════════ CAPA ═══════════ */
+.cover{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(18px,2.6vw,48px);align-items:center;height:100%}
+@media(max-width:920px){.cover{grid-template-columns:1fr}}
+.wordbig{font-family:var(--display);font-weight:900;letter-spacing:-.05em;line-height:.82;
+  font-size:clamp(40px,7.6vw,124px);color:#fff}
+.wordbig em{font-style:normal;color:var(--lime);display:block}
+.covlogos{display:flex;align-items:center;gap:clamp(12px,1.6vw,26px);flex-wrap:wrap}
+.covlogos img.l75{height:clamp(20px,2.1vw,34px);width:auto}
+.covlogos img.lnu{height:clamp(38px,4vw,64px);width:auto;border-radius:8px}
+.covlogos .sep{width:1px;height:clamp(24px,2.4vw,40px);background:rgba(255,255,255,.28)}
+
+/* ═══════════ MISC ═══════════ */
+.kv{display:flex;flex-direction:column;gap:3px}
+.kv .k{font-family:var(--mono);font-size:clamp(8.2px,.69vw,10.2px);letter-spacing:1.3px;text-transform:uppercase;color:var(--ink3)}
+.kv .v{font-family:var(--display);font-weight:800;font-size:clamp(11.6px,1.08vw,16px);color:var(--ink);letter-spacing:-.012em}
+.chap .kv .k{color:#8FA79E}.chap .kv .v{color:#fff}
+.pricecard{border:1.5px solid var(--rule);border-radius:clamp(6px,.8vw,13px);padding:clamp(12px,1.4vw,24px);background:#fff;
+  display:flex;flex-direction:column;gap:clamp(7px,.85vw,13px);transition:.26s;position:relative;overflow:hidden}
+.pricecard:hover{transform:translateY(-5px);box-shadow:0 20px 44px -26px rgba(33,25,21,.55);border-color:var(--mint)}
+.pricecard.g{background:var(--green);border-color:var(--green)}
+.pricecard.d{background:var(--ink);border-color:var(--ink)}
+.pricecard .pv{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.9;font-size:clamp(30px,4vw,62px);color:var(--green)}
+.pricecard.g .pv,.pricecard.d .pv{color:var(--lime)}
+.pricecard .pv small{font-size:.34em;font-weight:700;letter-spacing:0;vertical-align:.55em;margin-right:.12em}
+.pricecard .pu{font-family:var(--mono);font-size:clamp(8.6px,.73vw,10.8px);letter-spacing:1.3px;text-transform:uppercase;color:var(--ink3)}
+.pricecard.g .pu,.pricecard.d .pu{color:#9FC0B5}
+.pricecard h3{font-family:var(--display);font-weight:800;font-size:clamp(14px,1.35vw,21px);letter-spacing:-.02em}
+.pricecard.g h3,.pricecard.d h3{color:#fff}
+.pricecard .sub{font-size:clamp(9.6px,.82vw,12.2px);color:var(--ink2);line-height:1.46}
+.pricecard.g .sub,.pricecard.d .sub{color:#C8E3DA}
+.ribbon{position:absolute;top:clamp(10px,1.1vw,18px);right:clamp(10px,1.1vw,18px);
+  background:var(--lime);color:var(--lab-ink);font-family:var(--display);font-weight:800;font-size:clamp(7.6px,.65vw,9.6px);
+  letter-spacing:1.4px;text-transform:uppercase;padding:5px 13px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
+.ribbon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lab-ink);animation:blink 1.8s ease-in-out infinite}
+
+.note{font-size:clamp(8.8px,.75vw,10.8px);color:var(--ink3);line-height:1.5;font-style:italic}
+.chap .note{color:#8FA79E}
+.hr-lime{height:3px;width:clamp(34px,3.4vw,58px);background:var(--lime);border-radius:3px}
+.hr-mint{height:3px;width:clamp(34px,3.4vw,58px);background:var(--mint);border-radius:3px}
+
+.qbox{border-left:3px solid var(--mint);padding:clamp(7px,.85vw,13px) 0 clamp(7px,.85vw,13px) clamp(11px,1.25vw,20px);
+  background:linear-gradient(90deg,var(--sage-g),transparent)}
+.qbox .q{font-size:clamp(11.6px,1.08vw,16px);color:var(--ink);font-weight:400;line-height:1.42;font-style:italic}
+.qbox .a{font-family:var(--mono);font-size:clamp(8.2px,.69vw,10.2px);letter-spacing:1.3px;text-transform:uppercase;color:var(--ink3);margin-top:6px}
+.chap .qbox{border-color:var(--lime);background:linear-gradient(90deg,rgba(255,255,255,.06),transparent)}
+.chap .qbox .q{color:#fff}.chap .qbox .a{color:#8FA79E}
+
+/* ═══════════ RESPONSIVO ═══════════ */
+@media(max-width:1080px){
+  .split,.split-a,.split-b{grid-template-columns:1fr}
+  .g4,.g5,.g6{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(2,1fr)}
+  .flow{flex-wrap:wrap}.flow .arw{display:none}
+  .fstep{flex:1 1 42%}
+  .slide{padding:16px 18px 12px}
+  .tline{flex-wrap:wrap}.tstep{flex:1 1 30%}
+  .cover{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:620px){
+  .g2,.g3,.g4,.g5,.g6{grid-template-columns:1fr}
+  .fstep{flex:1 1 100%}
+  .frow{grid-template-columns:1fr;gap:4px}
+  .tb{font-size:10px}.tb th,.tb td{padding:6px 5px}
+}
+@media print{
+  body{overflow:visible;background:#fff;cursor:auto}
+  body::before,body::after,#cur,#curDot,.prog,.menu{display:none}
+  .deck{position:static;padding:0}
+  .slide{position:relative;inset:auto;opacity:1!important;visibility:visible!important;transform:none!important;filter:none!important;
+    page-break-after:always;height:100vh;border-radius:0;border-bottom:1px solid #ddd}
+  .slide *{animation:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div id="cur"></div><div id="curDot"></div>
+
+<!-- ══════════════ BIBLIOTECA DE ÍCONES ══════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20 4c0 9-5.5 14-13 14"/><path class="an-sway" d="M20 4C10 4 4 9 4 16c0 1.4.3 2.7.8 3.9C7 15 12 11.5 20 10"/><path class="an-flow" d="M4 20h16"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+  <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2" class="an-pulse"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-tablet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="4.5" y="2.5" width="15" height="19" rx="2.2"/><path class="an-blink" d="M8 7.5h8M8 11h8M8 14.5h5"/><circle cx="12" cy="18.6" r="1"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2.5 3.5h2.6l2.3 11.2a1.8 1.8 0 0 0 1.8 1.4h8.3a1.8 1.8 0 0 0 1.8-1.4L21 7H6"/>
+  <circle cx="9.6" cy="20" r="1.5" class="an-pulse"/><circle cx="17.6" cy="20" r="1.5" class="an-pulse an-d2"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M1.8 12S5.5 5.2 12 5.2 22.2 12 22.2 12 18.5 18.8 12 18.8 1.8 12 1.8 12Z"/><circle cx="12" cy="12" r="3.1" class="an-pulse"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M9 11V4.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M12.2 10.5V3.4a1.6 1.6 0 0 1 3.2 0V11"/>
+  <path d="M15.4 11V6.4a1.6 1.6 0 0 1 3.2 0v8.2c0 3.6-2.7 6.4-6.3 6.4-2.4 0-4-.9-5.2-2.6L4 13.6a1.7 1.7 0 0 1 2.7-2l2.3 2.6"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-blink" d="M13.4 2 4 13.6h6.4L10 22l9.4-11.6H13L13.4 2Z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 3v18h18"/><rect x="6.5" y="12" width="2.8" height="6" class="grwY" style="transform-origin:bottom"/>
+  <rect x="11.6" y="8" width="2.8" height="10" class="grwY" style="transform-origin:bottom;animation-delay:.5s"/>
+  <rect x="16.7" y="4.5" width="2.8" height="13.5" class="grwY" style="transform-origin:bottom;animation-delay:.7s"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 2.4 4 5.6v6c0 5 3.4 9.3 8 10.4 4.6-1.1 8-5.4 8-10.4v-6L12 2.4Z"/><path class="an-blink" d="m8.6 12 2.4 2.4 4.4-4.6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="9.2"/><path class="an-spin" style="transform-origin:12px 12px" d="M12 6.8V12l3.4 2"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="9" cy="7.6" r="3.4"/><path d="M2.6 20.4a6.4 6.4 0 0 1 12.8 0"/>
+  <path class="an-pulse" d="M16.4 4.6a3.4 3.4 0 0 1 0 6.6M17.6 14.4a6.4 6.4 0 0 1 3.8 6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-bob" d="M12 22s7.4-6.2 7.4-12A7.4 7.4 0 0 0 4.6 10c0 5.8 7.4 12 7.4 12Z"/><circle cx="12" cy="9.8" r="2.6" class="an-pulse"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2.4 8.6a15 15 0 0 1 19.2 0" class="an-blink"/><path d="M5.6 12.4a10.2 10.2 0 0 1 12.8 0" class="an-blink an-d2"/>
+  <path d="M8.8 16.2a5.2 5.2 0 0 1 6.4 0" class="an-blink an-d3"/><circle cx="12" cy="19.6" r="1.3" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M9 2.4v5M15 2.4v5"/><path d="M6 7.4h12v3.2a6 6 0 0 1-6 6 6 6 0 0 1-6-6V7.4Z"/><path class="an-blink" d="M12 16.6V22"/></symbol>
+<symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2.4" y="8.4" width="19.2" height="7.2" rx="1.2"/><path d="M6.4 8.4v3M10 8.4v2M13.6 8.4v3M17.2 8.4v2"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20.6 7.7 12 2.7 3.4 7.7v8.6L12 21.3l8.6-5V7.7Z"/><path d="M3.4 7.7 12 12.7l8.6-5M12 21.3v-8.6" class="an-blink"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M9.4 2.6v6L3.8 18a2.4 2.4 0 0 0 2.1 3.6h12.2a2.4 2.4 0 0 0 2.1-3.6l-5.6-9.4v-6"/>
+  <path d="M8 2.6h8"/><path class="an-pulse" d="M6.6 15.6h10.8"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-pulse" d="M12 2.6 14 9l6.4 2-6.4 2-2 6.4-2-6.4L3.6 11 10 9l2-6.4Z"/>
+  <path class="an-blink an-d2" d="M19 3.4v3M17.5 4.9h3"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M7.4 3.4h9.2v5.2a4.6 4.6 0 0 1-9.2 0V3.4Z"/><path d="M7.4 5h-3v1.6a3.4 3.4 0 0 0 3 3.4M16.6 5h3v1.6a3.4 3.4 0 0 1-3 3.4"/>
+  <path d="M12 13.2v3.6M8.6 20.6h6.8" class="an-blink"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="5.4" cy="5.4" r="2.6"/><circle cx="18.6" cy="18.6" r="2.6" class="an-pulse"/>
+  <path class="an-flow" d="M8 5.4h6.6a3.6 3.6 0 0 1 0 7.2H9.4a3.6 3.6 0 0 0 0 7.2H16"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10.3 3.6 1.9 18a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0Z"/><path class="an-blink" d="M12 9.4v4.2M12 17.6h.01"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="9.4"/><path d="m7.8 12.2 2.9 2.9 5.5-6"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-flow" d="M3 12h15"/><path d="m14.4 6.6 5.4 5.4-5.4 5.4"/></symbol>
+<symbol id="i-arrowD" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-flow" d="M12 3v15"/><path d="m6.6 14.4 5.4 5.4 5.4-5.4"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m12 2.4 9.6 5.2-9.6 5.2L2.4 7.6 12 2.4Z"/><path class="an-blink" d="m2.4 12.4 9.6 5.2 9.6-5.2"/><path class="an-blink an-d2" d="m2.4 16.8 9.6 5.2 9.6-5.2"/></symbol>
+<symbol id="i-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 8.2V5.2a2.2 2.2 0 0 1 2.2-2.2h3M15.8 3h3A2.2 2.2 0 0 1 21 5.2v3M21 15.8v3a2.2 2.2 0 0 1-2.2 2.2h-3M8.2 21h-3A2.2 2.2 0 0 1 3 18.8v-3"/>
+  <path class="an-blink" d="M3.6 12h16.8"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3" y="4.6" width="18" height="16.4" rx="2"/><path d="M3 9.6h18M8 2.6v4M16 2.6v4"/>
+  <rect x="6.6" y="13" width="3" height="3" fill="currentColor" stroke="none" class="an-pulse"/></symbol>
+<symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="9.2"/><path d="M14.8 8.6a3.4 3.4 0 0 0-2.8-1.2c-1.9 0-3 .9-3 2.2 0 3 6 1.4 6 4.4 0 1.4-1.2 2.4-3.2 2.4a3.6 3.6 0 0 1-3-1.4"/>
+  <path class="an-blink" d="M12 5.6v12.8"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3" y="3" width="7.4" height="7.4" rx="1.4"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="1.4" class="an-pulse"/>
+  <rect x="3" y="13.6" width="7.4" height="7.4" rx="1.4" class="an-pulse an-d2"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="1.4"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-pulse" d="M20.4 5.4a5.2 5.2 0 0 0-7.4 0L12 6.4l-1-1a5.2 5.2 0 1 0-7.4 7.4l8.4 8.4 8.4-8.4a5.2 5.2 0 0 0 0-7.4Z"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <g class="an-spin" style="transform-origin:12px 12px"><circle cx="12" cy="12" r="3.2"/>
+  <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1h-.2a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5v-.2a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1Z"/></g></symbol>
+<symbol id="i-lab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2.6" y="3.4" width="18.8" height="14" rx="2"/><path d="M8 21h8M12 17.4V21"/>
+  <path class="an-flow" d="M6.4 12.6 9.6 9l2.6 2.6 3-3.4 2.4 2.6"/></symbol>
+<symbol id="i-dumbbell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2.4 9.4v5.2M5.4 7v10M18.6 7v10M21.6 9.4v5.2"/><path class="an-flow" d="M5.4 12h13.2"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="4.2" class="an-pulse"/>
+  <g class="an-spin" style="transform-origin:12px 12px"><path d="M12 1.8v2.6M12 19.6v2.6M4.6 4.6l1.9 1.9M17.5 17.5l1.9 1.9M1.8 12h2.6M19.6 12h2.6M4.6 19.4l1.9-1.9M17.5 6.5l1.9-1.9"/></g></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-bob" d="M12 2.6s6.4 7 6.4 11.4A6.4 6.4 0 1 1 5.6 14C5.6 9.6 12 2.6 12 2.6Z"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2.4" y="3.4" width="19.2" height="13.2" rx="2"/><path d="M8 21h8M12 16.6V21"/>
+  <path class="an-blink" d="M6.4 9.6h4M13.6 7.4h4M13.6 12h4"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="18.4" cy="5.4" r="2.8"/><circle cx="5.6" cy="12" r="2.8"/><circle cx="18.4" cy="18.6" r="2.8" class="an-pulse"/>
+  <path class="an-flow" d="m8 10.6 8-4M8 13.4l8 4"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-spin" style="transform-origin:12px 12px" d="M20.6 11.4a8.6 8.6 0 1 0-2 6.2"/><path d="M20.6 4.4v7h-7"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <path class="an-pulse" d="m12 2.4 3 6.1 6.8 1-4.9 4.8 1.2 6.7L12 17.8l-6.1 3.2 1.2-6.7L2.2 9.5l6.8-1 3-6.1Z"/></symbol>
+</defs></svg>
+
+<main class="deck" id="deck">
+
+<!-- ═════════ 01 · CAPA ═════════ -->
+<section class="slide chap on">
+  <div class="chrome">
+    <button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button>
+    <span class="lbl ghost">PROPOSTA ESTRATÉGICA · AGOSTO 2026</span>
+  </div>
+  <div class="content">
+    <div class="cover">
+      <div>
+        <div class="covlogos rv" style="margin-bottom:clamp(14px,1.9vw,30px)">
+          <img class="l75" src="assets/75lab-wordmark-paper.png" alt="75 LAB">
+          <span class="sep"></span>
+          <img class="lnu" src="assets/nutrify-logo.png" alt="Nutrify Real Foods">
+        </div>
+        <div class="rv"><span class="eyebrow">Uma plataforma · dois formatos</span></div>
+        <h1 class="wordbig rv">NUTRIFY<em>LAB</em></h1>
+        <p class="lead rv" style="margin-top:clamp(12px,1.5vw,22px);max-width:46ch;font-size:clamp(12px,1.15vw,17px)">
+          Experiências proprietárias que transformam <b>interesse em escolha</b> — e escolha em <b>sell-out</b>.
+        </p>
+        <div class="chips on-d rv" style="margin-top:clamp(12px,1.5vw,20px)">
+          <span class="chip l">ROUTINE LAB</span><span class="chip l">MOVE LAB</span>
+          <span class="chip">CLEAN LABEL</span><span class="chip">REAL FOODS</span>
+        </div>
+      </div>
+      <div class="rv" style="display:flex;flex-direction:column;gap:clamp(10px,1.3vw,20px)">
+        <div class="shot" style="aspect-ratio:16/9">
+          <img src="assets/render-routine-lab.jpg" alt="Routine Lab em ambiente de supermercado">
+          <span class="badge g">01 · ROUTINE LAB</span>
+          <div class="tagl"><span class="s">Lojas menores · descoberta guiada</span><span class="k">90 segundos até o match</span></div>
+        </div>
+        <div class="shot" style="aspect-ratio:16/9">
+          <img src="assets/render-move-lab.jpg" alt="Move Lab em ambiente de supermercado">
+          <span class="badge">02 · MOVE LAB</span>
+          <div class="tagl"><span class="s">Lojas maiores · desafio público</span><span class="k">60 segundos e uma plateia</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY · AGOSTO 2026</span></div>
+    <div class="nav"><button class="nb js-prev" aria-label="Anterior">‹</button><span class="count"><b class="js-cur">01</b> / <span class="js-tot">36</span></span><button class="nb js-next" aria-label="Próximo">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 02 · QUEM É A 75 LAB ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl lime">QUEM FALA · 75 LAB</span></div>
+  <div class="content">
+    <div class="split-a" style="align-items:start">
+      <div>
+        <div class="rv"><span class="eyebrow">Aceleradora de trade marketing</span></div>
+        <h2 class="t rv">Não somos uma agência tradicional.<br><b>Somos uma aceleradora de <em>trade marketing</em>.</b></h2>
+        <div class="rule rv"></div>
+        <p class="lead rv">A distância entre a intenção comercial de uma marca e o que de fato acontece na gôndola tem um nome. A <b>75 LAB</b> nasceu da soma de dois lados que quase nunca se sentam à mesma mesa: <b>o varejo e a indústria</b>.</p>
+        <div class="rv" style="margin-top:clamp(11px,1.4vw,20px);display:flex;align-items:center;gap:clamp(10px,1.3vw,20px);flex-wrap:wrap">
+          <img src="assets/75lab-lockup-lime.png" alt="75 LAB — Ideia boa é a que acontece" style="height:clamp(28px,2.8vw,46px);width:auto;background:var(--ink);padding:8px 12px;border-radius:7px">
+          <p class="mini" style="max-width:26ch"><b>“Criamos o que gostaríamos de ter tido como clientes.”</b><br>Daniel Coimbra · CEO 75 LAB</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(9px,1.1vw,16px)">
+        <div class="grid g4 pop">
+          <div class="stat"><span class="big sm"><span data-count="95">0</span><i>%</i></span><span class="cap">projetos aprovados</span></div>
+          <div class="stat"><span class="big sm">15<i>mil+</i></span><span class="cap">PDVs positivados</span></div>
+          <div class="stat"><span class="big sm">−<span data-count="25">0</span><i>%</i></span><span class="cap">custo de produção</span></div>
+          <div class="stat"><span class="big sm">+<span data-count="15">0</span><i>anos</i></span><span class="cap">no trade</span></div>
+        </div>
+        <div class="rule"></div>
+        <div class="grid g2 pop">
+          <div class="tile"><span class="ic"><svg><use href="#i-users"/></svg></span><span class="n">01</span><h4>Vivemos o trade — não só aprendemos</h4><p>Dos dois lados do balcão: layout de loja, execução no ponto, P&amp;L, categoria e lançamento.</p></div>
+          <div class="tile"><span class="ic"><svg><use href="#i-lab"/></svg></span><span class="n">02</span><h4>Solução certa, nunca de prateleira</h4><p>Cada desafio recebe um desenho próprio — validado antes de virar produção.</p></div>
+          <div class="tile"><span class="ic"><svg><use href="#i-share"/></svg></span><span class="n">03</span><h4>Para cada desafio, a equipe certa</h4><p>Hub de especialistas plugáveis, com governança ponta a ponta e sem markup oculto.</p></div>
+          <div class="tile hl"><span class="ic"><svg><use href="#i-chart"/></svg></span><span class="n">04</span><h4>Prova acima de promessa</h4><p>Falamos a língua do cliente: ROI, margem, sell-out e positivação.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">02</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 03 · MÉTODO 75 ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl lime">COMO TRABALHAMOS · MÉTODO 75</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Do briefing à gôndola</span></div>
+    <h2 class="t rv">Seis passos até o ponto de venda — <b>e nenhuma etapa que evapore verba.</b></h2>
+    <p class="lead rv" style="margin-top:8px">O modelo tradicional gasta o orçamento em retrabalho e atraso. O Método 75 encurta o caminho entre <b>intenção</b> e <b>resultado</b>.</p>
+    <div class="rule rv"></div>
+    <div class="flow rv" style="margin-bottom:clamp(9px,1.15vw,16px)">
+      <div class="fstep"><span class="n">01</span><h5>Imersão</h5><p>Contexto de marca, canal, produto e shopper.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">02</span><h5>Laboratório</h5><p>Caminhos desenhados e validados antes de produzir.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">03</span><h5>Especialistas</h5><p>O time certo plugado para cada projeto.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">04</span><h5>Estratégia + Design</h5><p>Estética a serviço da conversão.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">05</span><h5>Produção</h5><p>Material e logística tratados como estratégia.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep acc"><span class="n">06</span><h5>Execução no PDV</h5><p>Venda, penetração e presença medidas no shopper.</p></div>
+    </div>
+    <div class="split rv" style="align-items:stretch;gap:clamp(10px,1.4vw,22px)">
+      <div>
+        <p class="mini" style="margin-bottom:7px"><b>HUB DE SOLUÇÕES PLUGÁVEIS</b></p>
+        <div class="chips">
+          <span class="chip f">Eventos</span><span class="chip f">Stand</span><span class="chip f">Material de PDV</span>
+          <span class="chip f">Programa de incentivo</span><span class="chip f">Promoção</span><span class="chip f">Retail media</span>
+          <span class="chip f">Promotoria</span><span class="chip">+ muito mais</span>
+        </div>
+        <p class="mini" style="margin-top:9px">O cliente não compra uma entrega. <b>Acessa uma rede.</b></p>
+      </div>
+      <div class="band lime">
+        <span class="ic"><svg><use href="#i-spark"/></svg></span>
+        <span class="k">Ideia boa é a que acontece</span>
+        <p>O <b>NUTRIFY LAB</b> nasce exatamente desse método: imersão na categoria de suplementos, laboratório de formatos, e uma execução desenhada para caber na operação real de cada loja.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">03</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 04 · A PLATAFORMA ═════════ -->
+<section class="slide chap">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">A PLATAFORMA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Nutrify Lab</span></div>
+    <h2 class="t rv">Uma plataforma. Dois formatos.<br><b>Uma mesma lógica de <em>conversão</em>.</b></h2>
+    <p class="lead rv" style="margin-top:9px">A escala muda de acordo com a loja; a experiência, os dados e o caminho até a compra <b>permanecem conectados</b>.</p>
+    <div class="rule rv"></div>
+    <div class="grid g2 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)">
+        <span class="ic" style="color:var(--mint)"><svg><use href="#i-tablet"/></svg></span>
+        <span class="n" style="color:var(--mint)">LOJAS MENORES · SOLUÇÃO 01</span>
+        <h4 style="color:#fff;font-size:clamp(15px,1.5vw,24px)">ROUTINE LAB</h4>
+        <p style="color:#BFD6CD">Descoberta guiada em <b style="color:#fff">90 segundos</b>: quatro perguntas de rotina viram uma rota de produto dentro do mix da loja.</p>
+        <div class="chips on-d" style="margin-top:4px"><span class="chip">compacto</span><span class="chip">modular</span><span class="chip">alto potencial de escala</span></div>
+      </div>
+      <div class="tile" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)">
+        <span class="ic" style="color:var(--lime)"><svg><use href="#i-bolt"/></svg></span>
+        <span class="n" style="color:var(--lime)">LOJAS MAIORES · SOLUÇÃO 02</span>
+        <h4 style="color:#fff;font-size:clamp(15px,1.5vw,24px)">MOVE LAB</h4>
+        <p style="color:#BFD6CD">Desafio físico de <b style="color:#fff">60 segundos</b> que cria visibilidade pública, fila espontânea e conteúdo — e termina em produto.</p>
+        <div class="chips on-d" style="margin-top:4px"><span class="chip">impacto</span><span class="chip">fluxo</span><span class="chip">conteúdo</span><span class="chip">conversão</span></div>
+      </div>
+    </div>
+    <div class="flow rv">
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">A</span><h5 style="color:#fff">Experiência</h5><p style="color:#A9C0B7">Um motivo real para parar.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">B</span><h5 style="color:#fff">Produto</h5><p style="color:#A9C0B7">Portfólio traduzido em interesse.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">C</span><h5 style="color:#fff">Zona de conversão</h5><p style="color:#A9C0B7">A gôndola a poucos passos.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:var(--lime);border-color:var(--lime)"><span class="n" style="color:#4A5921">D</span><h5 style="color:var(--lab-ink)">Compra identificada</h5><p style="color:#38431E">Dado que fecha o ciclo.</p></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">04</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 05 · O DESAFIO ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">O DESAFIO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Diagnóstico</span></div>
+    <h2 class="t rv">O desafio não é chamar atenção.<br><b>É tornar a categoria <u>acionável</u> no tempo do supermercado.</b></h2>
+    <div class="rule rv"></div>
+    <div class="flow rv" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="fstep"><span class="ic" style="width:26px;height:26px;color:var(--green)"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#i-hand"/></svg></span><span class="n">01</span><h5>Parar</h5><p>Dar um motivo real para interromper a jornada de compra.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="ic" style="width:26px;height:26px;color:var(--green)"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#i-eye"/></svg></span><span class="n">02</span><h5>Entender</h5><p>Traduzir o portfólio sem prescrever nem usar linguagem clínica.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="ic" style="width:26px;height:26px;color:var(--green)"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#i-route"/></svg></span><span class="n">03</span><h5>Escolher</h5><p>Conectar o interesse declarado a produtos realmente disponíveis.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep acc"><span class="ic" style="width:26px;height:26px;color:var(--lime)"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#i-cart"/></svg></span><span class="n">04</span><h5>Comprar</h5><p>Encurtar a distância física até a exposição.</p></div>
+    </div>
+    <div class="band soft rv">
+      <span class="ic"><svg><use href="#i-leaf"/></svg></span>
+      <span class="k">A leitura 75 LAB</span>
+      <p>O shopper não precisa de mais uma exposição de suplementos. Precisa de um <b>tradutor</b> que torne a escolha <b>fácil, relevante e mensurável</b> — no ritmo de quem está com o carrinho na mão.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">05</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 06 · CONTEXTO DO SHOPPER ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">CONTEXTO DE SHOPPER</span></div>
+  <div class="content">
+    <div class="split-a" style="align-items:start">
+      <div>
+        <div class="rv"><span class="eyebrow">Oportunidade</span></div>
+        <h2 class="t rv">Saudabilidade já entrou na rotina — <b>mas a decisão ainda precisa de <em>contexto</em>.</b></h2>
+        <p class="lead rv" style="margin-top:9px">Converter intenção ampla de bem-estar em uma <b>escolha simples</b> dentro da loja.</p>
+        <div class="rule rv"></div>
+        <div class="grid g2 pop">
+          <div class="stat"><span class="big"><span data-count="86">0</span><i>%</i></span><span class="cap">já incorporaram pelo menos um hábito mais saudável</span></div>
+          <div class="stat"><span class="big"><span data-count="51">0</span><i>%</i></span><span class="cap">buscam fibras e vitaminas nas compras frequentes</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(9px,1.15vw,17px)">
+        <div class="qbox rv">
+          <p class="q">“Eu quero cuidar melhor da minha rotina, mas preciso entender rapidamente o que faz sentido explorar agora.”</p>
+          <p class="a">Insight de shopper · categoria suplementos</p>
+        </div>
+        <div class="tile hl rv">
+          <span class="ic"><svg><use href="#i-flask"/></svg></span>
+          <span class="n">LEITURA ESTRATÉGICA 75 LAB</span>
+          <h4 style="font-size:clamp(12.4px,1.16vw,17px)">A Nutrify ganha quando transforma complexidade de portfólio em <span style="color:var(--lime)">descoberta orientada</span>.</h4>
+          <p>Sem linguagem clínica. Sem fricção de cadastro. Do jeito que a marca já fala: <b style="color:#fff">nutrição de verdade, consciente, sem rótulos demais.</b></p>
+        </div>
+        <div class="chips rv">
+          <span class="chip m">Clean label</span><span class="chip m">Real foods</span><span class="chip m">Densidade nutritiva</span>
+          <span class="chip m">Origem natural</span><span class="chip m">Longevidade</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">06</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 07 · TERRITÓRIO ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">TERRITÓRIO DE MARCA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Posicionamento da ativação</span></div>
+    <h2 class="t rv"><b>NUTRIFY LAB</b> ocupa o território certo:<br>ciência, descoberta e <em>experimentação</em>.</h2>
+    <p class="lead rv" style="margin-top:9px">Sem transformar a ativação em consulta. Sem reduzir a experiência a sampling ou brinde.</p>
+    <div class="rule rv"></div>
+    <div class="grid g3 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile soft"><span class="ic"><svg><use href="#i-flask"/></svg></span><span class="n">FUNDAMENTO</span><h4>Ciência</h4><p>Conteúdo aprovado, fórmulas limpas e consenso científico como base — nunca promessa individual.</p></div>
+      <div class="tile hl"><span class="ic"><svg><use href="#i-lab"/></svg></span><span class="n">O QUE A 75 LAB CRIA</span><h4>Descoberta</h4><p>Experiência proprietária que traduz o portfólio em interesse — em segundos, no corredor.</p></div>
+      <div class="tile soft"><span class="ic"><svg><use href="#i-cart"/></svg></span><span class="n">RESULTADO</span><h4>Conversão</h4><p>Produto disponível, exposição próxima e compra rastreável.</p></div>
+    </div>
+    <div class="band rv">
+      <span class="ic"><svg><use href="#i-leaf"/></svg></span>
+      <span class="k">Assinatura da ativação</span>
+      <p style="font-size:clamp(11.6px,1.06vw,16px)"><b>“Descubra como a nutrição de verdade cabe na sua rotina.”</b></p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">07</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 08 · ARQUITETURA POR LOJA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">ARQUITETURA DA REDE</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Formato por perfil de loja</span></div>
+    <h2 class="t rv">A arquitetura adapta <b>impacto e custo</b> ao potencial de cada loja.</h2>
+    <div class="rule rv"></div>
+    <div class="rv" style="overflow-x:auto">
+      <table class="tb">
+        <thead><tr><th>Perfil de loja</th><th>Formato</th><th>Papel na rede</th><th>Capacidade / dia</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Compacta / menor fluxo</td><td><span class="pill">Routine Lab</span></td><td>Conversão escalável</td><td><b>120–180</b></td></tr>
+          <tr><td class="k">Grande / alto fluxo</td><td><span class="pill c">Move Lab</span></td><td>Impacto + fila espontânea</td><td><b>150–220</b></td></tr>
+          <tr class="hi"><td class="k">Hero / calendário especial</td><td><span class="pill n">Move + zona ampliada</span></td><td>Conteúdo + pico de sell-out</td><td><b>180–260*</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note rv" style="margin-top:8px">*Faixa de planejamento a validar em piloto, conforme horário, área, equipe e fluxo real.</p>
+    <div class="band soft rv" style="margin-top:clamp(9px,1.15vw,17px)">
+      <span class="ic"><svg><use href="#i-route"/></svg></span>
+      <span class="k">Regra de roteirização</span>
+      <p>A decisão por formato acontece <b>antes</b> da roteirização: área disponível + fluxo + potencial de venda + criticidade logística.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">08</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 09 · CRITÉRIOS DE FORMATO ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">MATRIZ DE DECISÃO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Quatro critérios</span></div>
+    <h2 class="t rv">Quatro critérios definem o formato certo — <b>sem depender apenas do tamanho físico.</b></h2>
+    <div class="rule rv"></div>
+    <div class="grid g4 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile"><span class="ic"><svg><use href="#i-ruler"/></svg></span><span class="n">01 · ÁREA</span><h4>≈ 1,2 × 1,2 m</h4><p>Espaço mínimo livre sem obstruir corredor nem rota de emergência.</p></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-users"/></svg></span><span class="n">02 · FLUXO</span><h4>Pico e permanência</h4><p>Quantas pessoas passam e por quanto tempo ficam perto do ponto.</p></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-box"/></svg></span><span class="n">03 · MIX</span><h4>SKUs e estoque</h4><p>Quantos produtos elegíveis existem e com que profundidade de estoque.</p></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-scan"/></svg></span><span class="n">04 · DADOS</span><h4>Nível de rastreio</h4><p>Se há POS integrável, QR + nota ou apenas contagem de estoque.</p></div>
+    </div>
+    <p class="mini rv" style="margin-bottom:7px"><b>MATRIZ DE RECOMENDAÇÃO</b></p>
+    <div class="flow rv">
+      <div class="fstep"><span class="n">01</span><h5>Routine</h5><p>Área justa, fluxo médio, mix enxuto.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">02</span><h5>Routine+</h5><p>Área justa, fluxo alto, mix completo.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">03</span><h5>Move</h5><p>Área ampla, fluxo alto, exposição próxima.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep acc"><span class="n">04</span><h5>Hero</h5><p>Tudo acima + calendário e zona ampliada.</p></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">09</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 10 · CAPA SOLUÇÃO 01 ═════════ -->
+<section class="slide chap">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">SOLUÇÃO 01 · LOJAS MENORES</span></div>
+  <div class="content">
+    <div class="split" style="align-items:center">
+      <div>
+        <div class="rv" style="display:flex;align-items:center;gap:12px;margin-bottom:clamp(8px,1vw,16px)">
+          <span class="big on-d" style="font-size:clamp(34px,4.4vw,72px);line-height:.8">01</span>
+          <div class="hr-lime" style="height:2px;flex:1;width:auto"></div>
+        </div>
+        <div class="rv"><span class="eyebrow">Nutrify</span></div>
+        <h1 class="wordbig rv" style="font-size:clamp(30px,5.4vw,86px)">ROUTINE<em>LAB</em></h1>
+        <p class="lead rv" style="margin-top:clamp(11px,1.4vw,20px);font-size:clamp(12.4px,1.16vw,17.5px);max-width:34ch">
+          <b>Sua rotina tem um match Nutrify.</b><br>Descubra em 90 segundos.
+        </p>
+        <div class="chips on-d rv" style="margin-top:clamp(10px,1.3vw,18px)">
+          <span class="chip l">compacto</span><span class="chip l">replicável</span><span class="chip l">conversor</span>
+        </div>
+      </div>
+      <div class="rv" style="display:grid;place-items:center">
+        <svg viewBox="0 0 320 320" style="width:100%;max-width:clamp(180px,26vw,330px);height:auto">
+          <circle cx="160" cy="160" r="140" fill="none" stroke="rgba(192,238,78,.22)" stroke-width="1.5"/>
+          <circle cx="160" cy="160" r="140" fill="none" stroke="var(--lime)" stroke-width="4" stroke-linecap="round"
+                  stroke-dasharray="880" stroke-dashoffset="880" class="draw" style="stroke-dasharray:880;stroke-dashoffset:220;transform:rotate(-90deg);transform-origin:160px 160px"/>
+          <circle cx="160" cy="160" r="112" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          <circle cx="160" cy="160" r="96" fill="rgba(5,181,144,.10)" class="an-pulse"/>
+          <text x="160" y="150" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-weight="900" font-size="86" letter-spacing="-4">90</text>
+          <text x="160" y="188" text-anchor="middle" fill="var(--lime)" font-family="Space Mono,monospace" font-weight="700" font-size="20" letter-spacing="7">SEG</text>
+          <text x="160" y="222" text-anchor="middle" fill="#8FA79E" font-family="Space Mono,monospace" font-size="11" letter-spacing="3.4">DA ABORDAGEM AO MATCH</text>
+          <g class="an-spin" style="transform-origin:160px 160px">
+            <circle cx="160" cy="20" r="6" fill="var(--lime)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">10</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 11 · JORNADA ROUTINE ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · JORNADA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Como funciona</span></div>
+    <h2 class="t rv">Routine Lab transforma <b>quatro respostas</b> em uma <em>rota de produto</em>.</h2>
+    <p class="lead rv" style="margin-top:8px">Uma ferramenta de <b>descoberta do portfólio</b> — não diagnóstico nem prescrição individualizada.</p>
+    <div class="rule rv"></div>
+    <div class="flow rv" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="fstep"><span class="n">01</span><h5>Atração</h5><p>Totem, adesivo de piso e abordagem em uma frase.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">02</span><h5>4 perguntas</h5><p>Hábitos e ocasiões, no tablet, em ~40 segundos.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">03</span><h5>Match</h5><p>O momento Nutrify da pessoa aparece na tela.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">04</span><h5>Produtos</h5><p>2–3 SKUs elegíveis do mix daquela loja.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">05</span><h5>Prateleira</h5><p>Orientação física até a zona de conversão.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep acc"><span class="n">06</span><h5>Compra</h5><p>Registro do resultado no funil.</p></div>
+    </div>
+    <div class="grid g3 pop">
+      <div class="tile hl" style="grid-column:span 2"><span class="ic"><svg><use href="#i-cart"/></svg></span><span class="n">CTA DE CONVERSÃO</span>
+        <h4 style="font-size:clamp(12.4px,1.16vw,17px)">“Encontre sua seleção Nutrify na exposição ao lado.”</h4></div>
+      <div class="tile mint"><span class="ic"><svg><use href="#i-check"/></svg></span><span class="n">FRICÇÃO ZERO</span><h4>Sem cadastro obrigatório</h4><p>Tempo alvo: <b>2–3 min</b> totais, incluindo orientação até o produto.</p></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">11</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 12 · AS QUATRO PERGUNTAS ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · CONTEÚDO</span></div>
+  <div class="content">
+    <div class="split-b" style="align-items:start">
+      <div>
+        <div class="rv"><span class="eyebrow">Linguagem segura</span></div>
+        <h2 class="t rv">As perguntas partem de <b>hábitos e ocasiões</b> — nunca de sintomas ou carências.</h2>
+        <div class="rule rv"></div>
+        <ul class="nl rv">
+          <li><span class="bd">1</span><span class="tx"><b>Qual cenário mais combina com a sua rotina?</b><br><span class="mini">Casa · trabalho · treino · viagem</span></span></li>
+          <li><span class="bd">2</span><span class="tx"><b>Com que frequência você pratica atividade física?</b><br><span class="mini">De “quase nunca” a “todos os dias”</span></span></li>
+          <li><span class="bd">3</span><span class="tx"><b>Em qual momento você mais pensa em nutrição?</b><br><span class="mini">Manhã · pré-treino · pós-treino · noite</span></span></li>
+          <li><span class="bd">4</span><span class="tx"><b>O que você mais valoriza ao escolher um suplemento?</b><br><span class="mini">Fórmula limpa · origem natural · praticidade · sabor</span></span></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(9px,1.15vw,16px)">
+        <div class="tile hl rv">
+          <span class="ic"><svg><use href="#i-target"/></svg></span>
+          <span class="n">SAÍDA DA EXPERIÊNCIA</span>
+          <h4 style="font-size:clamp(14px,1.3vw,20px)">MOMENTO NUTRIFY<br><span style="color:var(--lime)">+ 2–3 SKUs do mix local</span></h4>
+          <p>O resultado organiza o portfólio dentro do que a loja realmente tem em estoque naquele dia.</p>
+        </div>
+        <div class="rv">
+          <p class="mini" style="margin-bottom:7px"><b>ANCORADO NA LINGUAGEM QUE A NUTRIFY JÁ USA</b> — “Qual o seu objetivo?”</p>
+          <div class="chips">
+            <span class="chip m">Energia</span><span class="chip m">Ganho de massa</span><span class="chip m">Imunidade</span>
+            <span class="chip m">Saúde da pele</span><span class="chip m">Saúde articular</span><span class="chip m">Sono e bem-estar</span>
+            <span class="chip m">Saúde intestinal</span><span class="chip m">Saúde mental</span>
+          </div>
+        </div>
+        <div class="band clay rv">
+          <span class="ic"><svg><use href="#i-shield"/></svg></span>
+          <span class="k">Guardrail</span>
+          <p>“Explore produtos relacionados aos seus <b>interesses</b> e à sua <b>rotina</b>.” Nenhuma pergunta investiga sintoma, condição de saúde ou deficiência nutricional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">12</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 13 · ROUTINE CARD ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · RESULTADO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Exemplo de Routine Card</span></div>
+    <h2 class="t rv">O resultado <b>organiza o portfólio</b> sem prometer benefício individual.</h2>
+    <div class="rule rv"></div>
+    <div class="split" style="align-items:center;gap:clamp(14px,2.2vw,40px)">
+      <div class="rv zin">
+        <!-- ROUTINE CARD MOCKUP -->
+        <svg viewBox="0 0 460 300" style="width:100%;height:auto;border-radius:12px;overflow:visible;filter:drop-shadow(0 18px 34px rgba(33,25,21,.24))">
+          <rect x="0" y="0" width="460" height="300" rx="16" fill="#FFFFFF" stroke="#E4E0D7"/>
+          <rect x="0" y="0" width="460" height="72" rx="16" fill="#006C52"/><rect x="0" y="56" width="460" height="16" fill="#006C52"/>
+          <path d="M0 62 C120 84 340 84 460 62 L460 72 L0 72Z" fill="#8C342B" opacity=".9"/>
+          <text x="26" y="30" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="9.5" letter-spacing="2.6">SEU MOMENTO NUTRIFY</text>
+          <text x="26" y="52" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="23" letter-spacing="-.5">ROTINA ATIVA</text>
+          <g class="an-pulse" style="transform-origin:412px 34px"><circle cx="412" cy="34" r="19" fill="rgba(255,255,255,.12)"/></g>
+          <g stroke="#C0EE4E" stroke-width="1.9" fill="none" stroke-linecap="round">
+            <path d="M420 26c0 10-6 15-14 15"/><path class="an-sway" style="transform-origin:406px 41px" d="M420 26c-11 0-17 5-17 13 0 1.5.4 3 .9 4.2 2.4-5.3 7.8-9 16.1-10.4"/>
+          </g>
+          <text x="26" y="103" fill="#9A9089" font-family="Space Mono,monospace" font-size="9" letter-spacing="2.2">MOVIMENTO · NUTRIÇÃO · CONSISTÊNCIA</text>
+          <line x1="26" y1="116" x2="434" y2="116" stroke="#E4E0D7"/>
+          <text x="26" y="140" fill="#211915" font-family="Archivo,sans-serif" font-weight="700" font-size="13">Explore na loja</text>
+          <g class="pop">
+            <g><rect x="26" y="152" width="126" height="62" rx="9" fill="#E8F2EC" stroke="#CAE1D6"/>
+               <text x="89" y="178" text-anchor="middle" fill="#006C52" font-family="Archivo,sans-serif" font-weight="800" font-size="13">CREATINAS</text>
+               <text x="89" y="196" text-anchor="middle" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="10">100% Creatine · Creapure</text></g>
+            <g><rect x="167" y="152" width="126" height="62" rx="9" fill="#E8F2EC" stroke="#CAE1D6"/>
+               <text x="230" y="178" text-anchor="middle" fill="#006C52" font-family="Archivo,sans-serif" font-weight="800" font-size="13">PROTEÍNAS</text>
+               <text x="230" y="196" text-anchor="middle" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="10">Whey · Vegan Protein</text></g>
+            <g><rect x="308" y="152" width="126" height="62" rx="9" fill="#D6F4EC" stroke="#AEEADD"/>
+               <text x="371" y="178" text-anchor="middle" fill="#006C52" font-family="Archivo,sans-serif" font-weight="800" font-size="12">COMPLEMENTARES</text>
+               <text x="371" y="196" text-anchor="middle" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="10">Mag 5 · Ômega 3</text></g>
+          </g>
+          <rect x="26" y="232" width="408" height="44" rx="10" fill="#211915"/>
+          <text x="46" y="252" fill="#C0EE4E" font-family="Space Mono,monospace" font-size="8.6" letter-spacing="2">PRÓXIMO PASSO</text>
+          <text x="46" y="267" fill="#FFFFFF" font-family="Figtree,sans-serif" font-weight="600" font-size="12">Sua seleção está na exposição ao lado →</text>
+          <g class="an-bob"><circle cx="404" cy="254" r="15" fill="#C0EE4E"/>
+            <path d="M398 254h11m-4.5-4.5 4.5 4.5-4.5 4.5" stroke="#050505" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </svg>
+      </div>
+      <div>
+        <p class="mini rv" style="margin-bottom:9px"><b>LÓGICA DE CONEXÃO</b></p>
+        <ul class="nl rv" style="margin-bottom:clamp(9px,1.15vw,16px)">
+          <li><span class="bd">→</span><span class="tx"><b>Interesse declarado</b> define o território</span></li>
+          <li><span class="bd">→</span><span class="tx"><b>Mix da loja</b> define os SKUs elegíveis</span></li>
+          <li><span class="bd">→</span><span class="tx"><b>Estoque disponível</b> define a prioridade</span></li>
+          <li><span class="bd">→</span><span class="tx"><b>Oferta aprovada</b> define o CTA</span></li>
+        </ul>
+        <div class="band soft rv">
+          <span class="ic"><svg><use href="#i-shield"/></svg></span>
+          <span class="k">Governança</span>
+          <p>Categorias e mensagens finais serão configuradas <b>por rede/loja</b> e aprovadas pela Nutrify antes de qualquer publicação em campo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">13</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 14 · RENDER 01 (AMBIENTE) ═════════ -->
+<section class="slide chap">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">ROUTINE LAB · RENDER 01 DE 03</span></div>
+  <div class="content">
+    <div class="split-b" style="align-items:center;gap:clamp(14px,2.1vw,36px)">
+      <div class="rv zin shot" style="aspect-ratio:16/9">
+        <img src="assets/render-routine-lab.jpg" alt="Routine Lab montado no corredor de um supermercado">
+        <span class="badge g">AMBIENTAÇÃO</span>
+        <div class="tagl"><span class="s">Corredor de mercearia saudável · ≈ 1,2 × 1,2 m</span><span class="k">Compacto por fora. Inteligente por dentro.</span></div>
+      </div>
+      <div>
+        <div class="rv"><span class="eyebrow">Visual conceitual</span></div>
+        <h2 class="t rv" style="font-size:clamp(17px,2.3vw,34px)"><b>ROUTINE LAB</b><br>Compacto por fora.<br><em>Inteligente por dentro.</em></h2>
+        <div class="rule rv"></div>
+        <div class="chips on-d rv" style="margin-bottom:clamp(9px,1.1vw,16px)">
+          <span class="chip l">tablet</span><span class="chip">ecobag</span><span class="chip">totem elíptico</span>
+          <span class="chip">adesivo de piso</span><span class="chip">operação offline</span>
+        </div>
+        <div class="grid g2 pop">
+          <div class="kv"><span class="k">Área ocupada</span><span class="v">≈ 1,2 × 1,2 m</span></div>
+          <div class="kv"><span class="k">Altura do totem</span><span class="v">≈ 2,0 m</span></div>
+        </div>
+        <p class="note rv" style="margin-top:clamp(9px,1.1vw,15px)">Render conceitual — sujeito a projeto técnico, normas e aprovação do varejista.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">14</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 15 · RENDER 02 · PLANTA + ELEVAÇÃO ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · RENDER 02 DE 03</span></div>
+  <div class="content">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Render técnico</span>
+        <h2 class="t" style="font-size:clamp(16px,2.2vw,32px)">Elevação e planta baixa: <b>o que ocupa 1,2 m² na loja.</b></h2>
+      </div>
+      <div class="chips"><span class="chip f">ESCALA 1:20</span><span class="chip">COTAS EM MM</span></div>
+    </div>
+    <div class="rule rv"></div>
+    <div class="svgbox rv" style="background:#F7F5F0">
+      <svg viewBox="0 0 1020 452" role="img" aria-label="Render técnico do Routine Lab: elevação frontal e planta baixa com cotas">
+        <defs>
+          <linearGradient id="gTotem" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#004E3B"/><stop offset=".42" stop-color="#00795C"/><stop offset="1" stop-color="#003528"/></linearGradient>
+          <linearGradient id="gTotemL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#F3F8F5"/><stop offset=".5" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDE9E2"/></linearGradient>
+          <linearGradient id="gFloor" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EDEAE2"/><stop offset="1" stop-color="#DFDBD1"/></linearGradient>
+          <linearGradient id="gScreen" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#05B590"/><stop offset="1" stop-color="#006C52"/></linearGradient>
+          <radialGradient id="gShadow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#211915" stop-opacity=".26"/><stop offset="1" stop-color="#211915" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1020" height="452" fill="#F7F5F0"/>
+        <g stroke="#E4E0D7" stroke-width="1">
+          <path d="M0 40h1020M0 412h1020"/><path d="M498 24v404"/>
+        </g>
+        <text x="30" y="30" fill="#9A9089" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2.6">A · ELEVAÇÃO FRONTAL</text>
+        <text x="528" y="30" fill="#9A9089" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2.6">B · PLANTA BAIXA</text>
+        <text x="920" y="30" fill="#006C52" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2">NUTRIFY LAB</text>
+
+        <!-- ══ A · ELEVAÇÃO ══ -->
+        <g>
+          <rect x="30" y="352" width="440" height="10" fill="url(#gFloor)"/>
+          <ellipse cx="330" cy="358" rx="70" ry="9" fill="url(#gShadow)"/>
+          <ellipse cx="176" cy="358" rx="52" ry="8" fill="url(#gShadow)"/>
+          <!-- adesivo de piso -->
+          <ellipse cx="252" cy="360" rx="120" ry="15" fill="none" stroke="#05B590" stroke-width="2.4" stroke-dasharray="8 6" class="an-flow"/>
+          <g><circle cx="140" cy="360" r="10" fill="#05B590"/><text x="140" y="364" text-anchor="middle" fill="#04352B" font-family="Archivo,sans-serif" font-weight="800" font-size="10">4</text></g>
+
+          <!-- TOTEM ELÍPTICO -->
+          <g class="rv">
+            <path d="M296 352V112c0-19 15-34 34-34s34 15 34 34v240Z" fill="url(#gTotem)"/>
+            <path d="M296 352V112c0-19 15-34 34-34v274Z" fill="#00654C" opacity=".55"/>
+            <!-- folha grafismo -->
+            <g stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".92">
+              <path d="M348 150c0 44-25 66-52 66"/>
+              <path class="an-sway" style="transform-origin:322px 216px" d="M348 150c-44 0-70 22-70 52 0 6 1.3 11.6 3.5 16.7C289 199 311 174 348 165"/>
+            </g>
+            <text x="330" y="118" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="15" letter-spacing="1.4">NUTRIFY</text>
+            <text x="330" y="132" text-anchor="middle" fill="#C0EE4E" font-family="Sacramento,cursive" font-size="16">Real Foods</text>
+            <path d="M296 300c22 9 46 9 68 0v52h-68Z" fill="#8C342B" opacity=".92"/>
+            <text x="330" y="332" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="800" font-size="8.6" letter-spacing=".6">ROUTINE LAB</text>
+            <g><circle cx="378" cy="196" r="10" fill="#211915"/><text x="378" y="200" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="800" font-size="10">3</text></g>
+          </g>
+
+          <!-- TABLET + PEDESTAL -->
+          <g class="rv">
+            <rect x="171" y="252" width="10" height="100" rx="4" fill="#3A3B38"/>
+            <ellipse cx="176" cy="352" rx="34" ry="7" fill="#2E2F2C"/>
+            <g transform="rotate(-8 176 220)">
+              <rect x="136" y="176" width="80" height="106" rx="8" fill="#211915"/>
+              <rect x="142" y="182" width="68" height="94" rx="4" fill="url(#gScreen)"/>
+              <g fill="#FFFFFF" opacity=".95">
+                <rect x="150" y="192" width="34" height="4" rx="2"/>
+                <rect x="150" y="202" width="52" height="7" rx="3.5"/>
+                <rect class="an-blink" x="150" y="220" width="52" height="12" rx="4" opacity=".55"/>
+                <rect class="an-blink an-d2" x="150" y="236" width="52" height="12" rx="4" opacity=".55"/>
+                <rect class="an-blink an-d3" x="150" y="252" width="52" height="12" rx="4" opacity=".55"/>
+              </g>
+              <rect x="150" y="220" width="18" height="12" rx="4" fill="#C0EE4E"/>
+            </g>
+            <g><circle cx="234" cy="188" r="10" fill="#211915"/><text x="234" y="192" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="800" font-size="10">2</text></g>
+          </g>
+
+          <!-- ECOBAG -->
+          <g class="rv">
+            <path d="M58 292h48v60H58Z" fill="#006C52"/>
+            <path d="M70 292v-9a12 12 0 0 1 24 0v9" fill="none" stroke="#006C52" stroke-width="3"/>
+            <text x="82" y="326" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="800" font-size="8.4" letter-spacing=".6">NUTRIFY</text>
+            <g><circle cx="82" cy="272" r="10" fill="#211915"/><text x="82" y="276" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="800" font-size="10">1</text></g>
+          </g>
+
+          <!-- COTA VERTICAL -->
+          <g stroke="#8C342B" stroke-width="1.2" fill="none">
+            <path class="draw" style="stroke-dasharray:300;stroke-dashoffset:300" d="M410 78v274"/>
+            <path d="M405 83l5-5 5 5M405 347l5 5 5-5"/>
+            <path d="M364 78h50M364 352h50" stroke-dasharray="4 4" opacity=".55"/>
+          </g>
+          <text x="422" y="218" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="11" letter-spacing="1">2000</text>
+          <g font-family="Space Mono,monospace" font-size="9" letter-spacing="1.2" fill="#5A4F47">
+            <text x="30" y="394">1 ECOBAG NUTRIFY</text>
+            <text x="30" y="408">2 TABLET 10.9” · ANTIFURTO</text>
+            <text x="252" y="394">3 TOTEM ELÍPTICO ILUMINADO</text>
+            <text x="252" y="408">4 ADESIVO DE PISO · Ø 1200</text>
+          </g>
+        </g>
+
+        <!-- ══ B · PLANTA ══ -->
+        <g transform="translate(528,58)">
+          <!-- área 1200x1200 -->
+          <rect x="20" y="20" width="230" height="230" fill="#EDF4F0" stroke="#05B590" stroke-width="1.6" stroke-dasharray="7 5" class="an-flow"/>
+          <text x="135" y="14" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="10.5" letter-spacing="1.4">1200</text>
+          <g stroke="#8C342B" stroke-width="1.1" fill="none">
+            <path d="M20 6h230M20 2v8M250 2v8"/>
+            <path d="M8 20v230M4 20h8M4 250h8"/>
+          </g>
+          <text x="-2" y="140" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="10.5" letter-spacing="1" transform="rotate(-90 -2 140)">1200</text>
+
+          <!-- círculo do adesivo -->
+          <circle cx="135" cy="135" r="98" fill="none" stroke="#05B590" stroke-width="1.8" opacity=".55"/>
+          <circle cx="135" cy="135" r="98" fill="#05B590" opacity=".08" class="an-throb"/>
+          <!-- totem footprint -->
+          <ellipse cx="216" cy="86" rx="26" ry="15" fill="#006C52"/>
+          <text x="216" y="118" text-anchor="middle" fill="#006C52" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1">TOTEM</text>
+          <!-- pedestal tablet -->
+          <circle cx="82" cy="118" r="15" fill="#211915"/>
+          <text x="82" y="148" text-anchor="middle" fill="#211915" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1">TABLET</text>
+          <!-- promotor -->
+          <g><circle cx="132" cy="76" r="11" fill="#8C342B"/><text x="132" y="80" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-weight="800" font-size="10">P</text>
+             <text x="132" y="58" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1">PROMOTOR</text></g>
+          <!-- shopper -->
+          <g><circle cx="118" cy="186" r="11" fill="#05B590" class="an-pulse"/><text x="118" y="190" text-anchor="middle" fill="#04352B" font-family="Archivo,sans-serif" font-weight="800" font-size="10">S</text>
+             <text x="118" y="212" text-anchor="middle" fill="#006C52" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1">SHOPPER</text></g>
+          <!-- gondola / zona de conversao -->
+          <rect x="300" y="34" width="128" height="216" rx="4" fill="#FFFFFF" stroke="#D8D3C8"/>
+          <g fill="#CAE1D6">
+            <rect x="308" y="44" width="112" height="30" rx="3"/><rect x="308" y="82" width="112" height="30" rx="3"/>
+            <rect x="308" y="120" width="112" height="30" rx="3"/><rect x="308" y="158" width="112" height="30" rx="3"/>
+            <rect x="308" y="196" width="112" height="30" rx="3"/>
+          </g>
+          <rect x="300" y="34" width="128" height="16" rx="3" fill="#006C52"/>
+          <text x="364" y="46" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="800" font-size="8.6" letter-spacing="1.4">ZONA DE CONVERSÃO</text>
+          <text x="364" y="266" text-anchor="middle" fill="#006C52" font-family="Space Mono,monospace" font-weight="700" font-size="9.4" letter-spacing="1.4">EXPOSIÇÃO NUTRIFY</text>
+          <!-- seta de conversão -->
+          <g stroke="#C0EE4E" stroke-width="3.4" fill="none" stroke-linecap="round">
+            <path class="an-flow" style="stroke-dasharray:9 7" d="M256 158h32"/>
+            <path d="m280 150 10 8-10 8"/>
+          </g>
+          <text x="272" y="146" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="9" letter-spacing="1.2">0–12 m</text>
+          <!-- corredor -->
+          <text x="135" y="272" text-anchor="middle" fill="#9A9089" font-family="Space Mono,monospace" font-size="8.6" letter-spacing="1.6">CORREDOR LIVRE · SEM OBSTRUÇÃO</text>
+        </g>
+      </svg>
+    </div>
+    <div class="grid g4 pop" style="margin-top:clamp(8px,1.05vw,15px)">
+      <div class="kv"><span class="k">Footprint</span><span class="v">1,44 m²</span></div>
+      <div class="kv"><span class="k">Altura do totem</span><span class="v">2000 mm</span></div>
+      <div class="kv"><span class="k">Montagem</span><span class="v">&lt; 20 min</span></div>
+      <div class="kv"><span class="k">Volume p/ transporte</span><span class="v">1 case rígido</span></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">15</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 16 · RENDER 03 · UI DO TABLET ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · RENDER 03 DE 03</span></div>
+  <div class="content">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Render de interface</span>
+        <h2 class="t" style="font-size:clamp(16px,2.2vw,32px)">Três telas. <b>Quarenta segundos.</b> Nenhum cadastro.</h2>
+      </div>
+      <div class="chips"><span class="chip f">TABLET 10.9”</span><span class="chip m">MODO OFFLINE</span><span class="chip c">CONTEÚDO APROVADO</span></div>
+    </div>
+    <div class="rule rv"></div>
+    <div class="svgbox rv" style="background:linear-gradient(160deg,#004E3B,#003326)">
+      <svg viewBox="0 0 1020 440" role="img" aria-label="Render das três telas do aplicativo Routine Lab no tablet">
+        <defs>
+          <linearGradient id="uiG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#006C52"/><stop offset="1" stop-color="#00543F"/></linearGradient>
+          <linearGradient id="uiM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05B590"/><stop offset="1" stop-color="#03987A"/></linearGradient>
+          <filter id="tsh" x="-30%" y="-20%" width="160%" height="150%">
+            <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#001A13" flood-opacity=".55"/></filter>
+        </defs>
+        <rect width="1020" height="440" fill="none"/>
+        <!-- conectores -->
+        <g stroke="#C0EE4E" stroke-width="2.6" fill="none" stroke-linecap="round">
+          <path class="an-flow" style="stroke-dasharray:8 7" d="M318 220h44"/><path d="m356 214 8 6-8 6"/>
+          <path class="an-flow an-d2" style="stroke-dasharray:8 7" d="M658 220h44"/><path d="m696 214 8 6-8 6"/>
+        </g>
+
+        <!-- ════ TELA 1 · ATRAÇÃO ════ -->
+        <g filter="url(#tsh)">
+          <rect x="24" y="30" width="286" height="380" rx="20" fill="#141210"/>
+          <rect x="34" y="40" width="266" height="360" rx="12" fill="url(#uiG)"/>
+          <text x="167" y="76" text-anchor="middle" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="9" letter-spacing="2.6">NUTRIFY LAB</text>
+          <g class="an-sway" style="transform-origin:167px 150px">
+            <g stroke="#C0EE4E" stroke-width="3" fill="none" stroke-linecap="round">
+              <path d="M196 108c0 34-20 52-42 52"/><path d="M196 108c-34 0-54 17-54 40 0 4.6 1 9 2.8 13 5.4-15 22-27 51.2-33"/></g>
+          </g>
+          <text x="167" y="212" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="24" letter-spacing="-.8">SUA ROTINA</text>
+          <text x="167" y="240" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="24" letter-spacing="-.8">TEM UM MATCH</text>
+          <text x="167" y="272" text-anchor="middle" fill="#C0EE4E" font-family="Sacramento,cursive" font-size="34">Real Foods</text>
+          <text x="167" y="300" text-anchor="middle" fill="#A9D8C9" font-family="Figtree,sans-serif" font-size="12">4 perguntas · 90 segundos</text>
+          <g class="an-bob">
+            <rect x="70" y="326" width="194" height="46" rx="23" fill="#C0EE4E"/>
+            <text x="167" y="355" text-anchor="middle" fill="#050505" font-family="Archivo,sans-serif" font-weight="800" font-size="15" letter-spacing=".4">COMEÇAR</text>
+          </g>
+          <text x="167" y="392" text-anchor="middle" fill="#6E9689" font-family="Space Mono,monospace" font-size="7.6" letter-spacing="1.6">SEM CADASTRO OBRIGATÓRIO</text>
+        </g>
+        <text x="167" y="428" text-anchor="middle" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.4">01 · ATRAÇÃO</text>
+
+        <!-- ════ TELA 2 · PERGUNTA ════ -->
+        <g filter="url(#tsh)">
+          <rect x="364" y="30" width="286" height="380" rx="20" fill="#141210"/>
+          <rect x="374" y="40" width="266" height="360" rx="12" fill="#FFFFFF"/>
+          <rect x="374" y="40" width="266" height="52" rx="12" fill="url(#uiG)"/><rect x="374" y="76" width="266" height="16" fill="url(#uiG)"/>
+          <text x="392" y="72" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="800" font-size="12" letter-spacing=".8">PERGUNTA 1 DE 4</text>
+          <g><rect x="392" y="104" width="230" height="5" rx="2.5" fill="#E4E0D7"/>
+             <rect x="392" y="104" width="58" height="5" rx="2.5" fill="#05B590" class="grw"/></g>
+          <text x="392" y="140" fill="#211915" font-family="Archivo,sans-serif" font-weight="800" font-size="16">Qual cenário mais</text>
+          <text x="392" y="160" fill="#211915" font-family="Archivo,sans-serif" font-weight="800" font-size="16">combina com a sua</text>
+          <text x="392" y="180" fill="#211915" font-family="Archivo,sans-serif" font-weight="800" font-size="16">rotina?</text>
+          <g class="pop">
+            <g><rect x="392" y="200" width="230" height="42" rx="10" fill="#D6F4EC" stroke="#05B590" stroke-width="1.8"/>
+               <circle cx="414" cy="221" r="8" fill="#05B590"/><path d="m410.5 221 2.6 2.6 4.6-5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+               <text x="432" y="226" fill="#006C52" font-family="Figtree,sans-serif" font-weight="600" font-size="12.4">Treino faz parte da semana</text></g>
+            <g><rect x="392" y="250" width="230" height="42" rx="10" fill="#F7F5F0" stroke="#E4E0D7"/>
+               <circle cx="414" cy="271" r="8" fill="none" stroke="#C6C0B6" stroke-width="1.6"/>
+               <text x="432" y="276" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="12.4">Corrida entre casa e trabalho</text></g>
+            <g><rect x="392" y="300" width="230" height="42" rx="10" fill="#F7F5F0" stroke="#E4E0D7"/>
+               <circle cx="414" cy="321" r="8" fill="none" stroke="#C6C0B6" stroke-width="1.6"/>
+               <text x="432" y="326" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="12.4">Rotina puxada, sono curto</text></g>
+          </g>
+          <g class="an-bob an-d2"><rect x="392" y="354" width="230" height="34" rx="17" fill="#211915"/>
+            <text x="507" y="376" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="800" font-size="12" letter-spacing=".6">CONTINUAR →</text></g>
+        </g>
+        <text x="507" y="428" text-anchor="middle" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.4">02 · DESCOBERTA</text>
+
+        <!-- ════ TELA 3 · RESULTADO ════ -->
+        <g filter="url(#tsh)">
+          <rect x="704" y="30" width="286" height="380" rx="20" fill="#141210"/>
+          <rect x="714" y="40" width="266" height="360" rx="12" fill="#FFFFFF"/>
+          <rect x="714" y="40" width="266" height="84" rx="12" fill="url(#uiG)"/><rect x="714" y="108" width="266" height="16" fill="url(#uiG)"/>
+          <path d="M714 112c62 12 204 12 266 0v12H714Z" fill="#8C342B"/>
+          <text x="732" y="70" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="2.2">SEU MOMENTO NUTRIFY</text>
+          <text x="732" y="98" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="21" letter-spacing="-.5">ROTINA ATIVA</text>
+          <text x="732" y="148" fill="#9A9089" font-family="Space Mono,monospace" font-size="8" letter-spacing="1.8">EXPLORE NA LOJA · 3 SUGESTÕES</text>
+          <g class="pop">
+            <g><rect x="732" y="158" width="230" height="52" rx="10" fill="#E8F2EC" stroke="#CAE1D6"/>
+               <rect x="742" y="166" width="36" height="36" rx="7" fill="#006C52"/>
+               <text x="760" y="189" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-size="14">C</text>
+               <text x="788" y="181" fill="#211915" font-family="Archivo,sans-serif" font-weight="800" font-size="12.4">100% Creatine</text>
+               <text x="788" y="196" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="10.4">Creatinas · 300 g · neutro</text></g>
+            <g><rect x="732" y="218" width="230" height="52" rx="10" fill="#E8F2EC" stroke="#CAE1D6"/>
+               <rect x="742" y="226" width="36" height="36" rx="7" fill="#006C52"/>
+               <text x="760" y="249" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-size="14">P</text>
+               <text x="788" y="241" fill="#211915" font-family="Archivo,sans-serif" font-weight="800" font-size="12.4">Vegan Protein</text>
+               <text x="788" y="256" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="10.4">Proteínas · 100% vegano</text></g>
+            <g><rect x="732" y="278" width="230" height="52" rx="10" fill="#D6F4EC" stroke="#AEEADD"/>
+               <rect x="742" y="286" width="36" height="36" rx="7" fill="#8C342B"/>
+               <text x="760" y="309" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="14">M</text>
+               <text x="788" y="301" fill="#211915" font-family="Archivo,sans-serif" font-weight="800" font-size="12.4">Mag 5 Complex</text>
+               <text x="788" y="316" fill="#5A4F47" font-family="Figtree,sans-serif" font-size="10.4">Complementares · 90 cáps</text></g>
+          </g>
+          <g class="an-bob an-d3"><rect x="732" y="342" width="230" height="44" rx="22" fill="#C0EE4E"/>
+            <text x="847" y="362" text-anchor="middle" fill="#050505" font-family="Archivo,sans-serif" font-weight="800" font-size="12.4">VER NA EXPOSIÇÃO AO LADO</text>
+            <text x="847" y="376" text-anchor="middle" fill="#4A5921" font-family="Space Mono,monospace" font-size="8" letter-spacing="1.4">A 8 PASSOS DAQUI →</text></g>
+        </g>
+        <text x="847" y="428" text-anchor="middle" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.4">03 · CONVERSÃO</text>
+      </svg>
+    </div>
+    <p class="note rv" style="margin-top:8px">Render de interface — telas ilustrativas. Copy, categorias e SKUs finais são configurados por rede/loja e aprovados pela Nutrify.</p>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">16</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 17 · OPERAÇÃO ROUTINE ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · OPERAÇÃO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Ficha técnica</span></div>
+    <h2 class="t rv">Uma operação leve sustenta <b>escala</b> sem comprometer a <em>conversão</em>.</h2>
+    <div class="rule rv"></div>
+    <div class="grid g6 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile"><span class="ic"><svg><use href="#i-ruler"/></svg></span><span class="n">ÁREA</span><h4>≈ 1,2 × 1,2 m</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-users"/></svg></span><span class="n">EQUIPE</span><h4>1 promotor</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-clock"/></svg></span><span class="n">TEMPO</span><h4>2–3 min</h4></div>
+      <div class="tile hl"><span class="ic"><svg><use href="#i-chart"/></svg></span><span class="n">CAPACIDADE</span><h4>120–180 / dia</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-plug"/></svg></span><span class="n">ENERGIA</span><h4>1 ponto 127/220 V</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-wifi"/></svg></span><span class="n">CONECTIVIDADE</span><h4>Offline + 4G</h4></div>
+    </div>
+    <div class="band soft rv">
+      <span class="ic"><svg><use href="#i-hand"/></svg></span>
+      <span class="k">O papel do promotor</span>
+      <p>Um promotor conduz <b>abordagem</b>, <b>quiz no tablet</b> e <b>orientação até a zona de conversão</b> — três funções em um só posto, sem perder o próximo shopper que passa.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">17</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 18 · ESCALA E ADAPTAÇÃO ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl mint">ROUTINE LAB · ESCALA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Adaptação e risco</span></div>
+    <h2 class="t rv">Routine Lab escala porque <b>conteúdo, estrutura e dados são desacoplados.</b></h2>
+    <div class="rule rv"></div>
+    <div class="rv" style="overflow-x:auto">
+      <table class="tb">
+        <thead><tr><th>Adaptação</th><th>Como muda</th><th>Risco</th><th>Resposta</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Mix / rede</td><td>Árvore de conteúdo e SKUs</td><td>Produto indisponível</td><td><b>Lista elegível + checagem de estoque</b></td></tr>
+          <tr><td class="k">Área menor</td><td>Só totem + adesivo</td><td>Obstrução do corredor</td><td><b>Posição pré-aprovada com o varejista</b></td></tr>
+          <tr><td class="k">Internet limitada</td><td>Modo offline</td><td>Perda de sincronização</td><td><b>Cache local + 4G próprio</b></td></tr>
+          <tr><td class="k">Linguagem</td><td>Conteúdo aprovado</td><td>Alegação indevida</td><td><b>Governança regulatória Nutrify</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2 pop" style="margin-top:clamp(10px,1.3vw,18px)">
+      <div class="tile mint"><span class="ic"><svg><use href="#i-shield"/></svg></span><span class="n">CRITICIDADE GERAL</span><h4 style="font-size:clamp(14px,1.35vw,21px)">BAIXA–MÉDIA</h4></div>
+      <div class="tile hl"><span class="ic"><svg><use href="#i-layers"/></svg></span><span class="n">ESCALABILIDADE</span><h4 style="font-size:clamp(14px,1.35vw,21px)">MUITO ALTA</h4></div>
+    </div>
+    <div class="band clay rv" style="margin-top:clamp(9px,1.15vw,16px)">
+      <span class="ic"><svg><use href="#i-alert"/></svg></span>
+      <span class="k">Princípio</span>
+      <p>Qualquer falha digital deve ter um <b>modo manual de continuidade da venda</b> — o promotor segue conduzindo até a exposição, com card impresso de apoio.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">18</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 19 · CAPA SOLUÇÃO 02 ═════════ -->
+<section class="slide chap ink-slide">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">SOLUÇÃO 02 · LOJAS MAIORES</span></div>
+  <div class="content">
+    <div class="split" style="align-items:center">
+      <div>
+        <div class="rv" style="display:flex;align-items:center;gap:12px;margin-bottom:clamp(8px,1vw,16px)">
+          <span class="big on-d" style="font-size:clamp(34px,4.4vw,72px);line-height:.8">02</span>
+          <div class="hr-lime" style="height:2px;flex:1;width:auto"></div>
+        </div>
+        <div class="rv"><span class="eyebrow">Nutrify</span></div>
+        <h1 class="wordbig rv" style="font-size:clamp(30px,5.4vw,86px)">MOVE<em>LAB</em></h1>
+        <p class="lead rv" style="margin-top:clamp(11px,1.4vw,20px);font-size:clamp(12.4px,1.16vw,17.5px);max-width:34ch">
+          <b>60 segundos. Um desafio.</b><br>Qual será o seu resultado?
+        </p>
+        <div class="chips on-d rv" style="margin-top:clamp(10px,1.3vw,18px)">
+          <span class="chip l">impacto público</span><span class="chip l">rota de produto</span>
+        </div>
+      </div>
+      <div class="rv" style="display:grid;place-items:center">
+        <svg viewBox="0 0 320 320" style="width:100%;max-width:clamp(180px,26vw,330px);height:auto">
+          <circle cx="160" cy="160" r="140" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+          <circle cx="160" cy="160" r="118" fill="rgba(5,181,144,.07)"/>
+          <g fill="none" stroke="#05B590" stroke-width="8" stroke-linecap="round">
+            <circle cx="160" cy="72"  r="26" class="an-pulse"/>
+            <circle cx="238" cy="118" r="26" class="an-pulse an-d1"/>
+            <circle cx="238" cy="204" r="26" class="an-pulse an-d2"/>
+            <circle cx="160" cy="250" r="26" class="an-pulse an-d3"/>
+            <circle cx="82"  cy="204" r="26" class="an-pulse an-d4"/>
+            <circle cx="82"  cy="118" r="26" class="an-pulse"/>
+          </g>
+          <circle cx="160" cy="160" r="34" fill="#C0EE4E"/>
+          <text x="160" y="168" text-anchor="middle" fill="#050505" font-family="Archivo,sans-serif" font-weight="900" font-size="26">60</text>
+          <circle cx="160" cy="160" r="46" fill="none" stroke="#C0EE4E" stroke-width="2" class="an-ring" style="transform-origin:160px 160px"/>
+          <text x="160" y="304" text-anchor="middle" fill="#8FA79E" font-family="Space Mono,monospace" font-size="11" letter-spacing="3.4">ALVOS ILUMINADOS · SCORE</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">19</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 20 · JORNADA MOVE ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · JORNADA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Como funciona</span></div>
+    <h2 class="t rv">Move Lab transforma <b>movimento em atração pública</b> — e atenção em <em>descoberta</em>.</h2>
+    <div class="rule rv"></div>
+    <div class="flow rv" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="fstep"><span class="n">01</span><h5>Convite</h5><p>Uma frase e o equipamento aceso.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">02</span><h5>30–45s de jogo</h5><p>Alvos iluminados, ritmo crescente.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">03</span><h5>Score</h5><p>Pontuação e entrada no ranking da loja.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">04</span><h5>Território</h5><p>A pessoa escolhe o interesse dela.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">05</span><h5>Produtos</h5><p>Mix da loja compatível com o interesse.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep acc"><span class="n">06</span><h5>Compra</h5><p>Exposição a poucos passos.</p></div>
+    </div>
+    <div class="grid g2 pop">
+      <div class="tile"><span class="ic"><svg><use href="#i-target"/></svg></span><span class="n">A MECÂNICA</span><h4>O promotor segura o equipamento</h4><p>O shopper golpeia os alvos iluminados, soma pontos e entra no ranking do dia.</p></div>
+      <div class="tile clay"><span class="ic" style="color:var(--clay)"><svg><use href="#i-shield"/></svg></span><span class="n">O CUIDADO</span><h4>Score nunca é promessa</h4><p>A pontuação <b>jamais</b> é associada à eficácia de produto ou a promessa de performance.</p></div>
+    </div>
+    <div class="band rv" style="margin-top:clamp(9px,1.15vw,16px)">
+      <span class="ic"><svg><use href="#i-route"/></svg></span>
+      <span class="k">Regra de ouro</span>
+      <p>O desafio é a <b>porta de entrada</b>; a venda acontece na sequência.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">20</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 21 · RANKING E MÍDIA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · MÍDIA ESPONTÂNEA</span></div>
+  <div class="content">
+    <div class="split-a" style="align-items:center">
+      <div>
+        <div class="rv"><span class="eyebrow">Efeito plateia</span></div>
+        <h2 class="t rv">Cada participação vira <b>mídia</b> para quem está passando.</h2>
+        <div class="rule rv"></div>
+        <div class="grid g1 pop" style="gap:clamp(8px,1vw,15px)">
+          <div class="tile"><span class="ic"><svg><use href="#i-eye"/></svg></span><span class="n">VISIBILIDADE · A FILA OBSERVA</span><h4>A plateia entende a dinâmica antes de ser abordada</h4><p>Quando o promotor convida, a pessoa já sabe o que vai acontecer. A taxa de aceite sobe e o tempo de explicação cai.</p></div>
+          <div class="tile"><span class="ic"><svg><use href="#i-refresh"/></svg></span><span class="n">REPETIÇÃO · O RANKING CONVIDA</span><h4>O participante compartilha, compara e pode tentar de novo</h4><p>Conforme a regra da ação — sempre com higienização entre usos.</p></div>
+        </div>
+      </div>
+      <div class="rv zin">
+        <!-- PLACAR DE RANKING -->
+        <svg viewBox="0 0 460 320" style="width:100%;height:auto;filter:drop-shadow(0 18px 34px rgba(33,25,21,.28))">
+          <rect x="0" y="0" width="460" height="320" rx="16" fill="#211915"/>
+          <rect x="0" y="0" width="460" height="58" rx="16" fill="#006C52"/><rect x="0" y="42" width="460" height="16" fill="#006C52"/>
+          <text x="26" y="26" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="9" letter-spacing="2.6">MOVE LAB · HOJE</text>
+          <text x="26" y="46" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="17" letter-spacing=".4">TOP SCORES DA LOJA</text>
+          <g class="an-blink"><circle cx="424" cy="30" r="6" fill="#C0EE4E"/></g>
+          <text x="410" y="34" text-anchor="end" fill="#C0EE4E" font-family="Space Mono,monospace" font-size="8.6" letter-spacing="1.8">AO VIVO</text>
+          <g class="pop">
+            <g><rect x="24" y="76" width="412" height="52" rx="10" fill="#C0EE4E"/>
+               <text x="46" y="110" fill="#050505" font-family="Archivo,sans-serif" font-weight="900" font-size="20">1º</text>
+               <rect x="80" y="94" width="150" height="7" rx="3.5" fill="rgba(5,5,5,.22)"/>
+               <rect x="80" y="108" width="96" height="6" rx="3" fill="rgba(5,5,5,.14)"/>
+               <text x="414" y="112" text-anchor="end" fill="#050505" font-family="Archivo,sans-serif" font-weight="900" font-size="27" letter-spacing="-1">892</text></g>
+            <g><rect x="24" y="138" width="412" height="52" rx="10" fill="rgba(255,255,255,.07)"/>
+               <text x="46" y="172" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-size="20">2º</text>
+               <rect x="80" y="156" width="132" height="7" rx="3.5" fill="rgba(255,255,255,.18)"/>
+               <rect x="80" y="170" width="84" height="6" rx="3" fill="rgba(255,255,255,.10)"/>
+               <text x="414" y="174" text-anchor="end" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="27" letter-spacing="-1">851</text></g>
+            <g><rect x="24" y="200" width="412" height="52" rx="10" fill="rgba(255,255,255,.07)"/>
+               <text x="46" y="234" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-size="20">3º</text>
+               <rect x="80" y="218" width="118" height="7" rx="3.5" fill="rgba(255,255,255,.18)"/>
+               <rect x="80" y="232" width="72" height="6" rx="3" fill="rgba(255,255,255,.10)"/>
+               <text x="414" y="236" text-anchor="end" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="27" letter-spacing="-1">834</text></g>
+          </g>
+          <line x1="24" y1="268" x2="436" y2="268" stroke="rgba(255,255,255,.14)"/>
+          <text x="24" y="292" fill="#8FA79E" font-family="Space Mono,monospace" font-size="9" letter-spacing="1.6">RANKING RESETA A CADA DIA DE ATIVAÇÃO</text>
+          <g class="an-bob"><rect x="330" y="278" width="106" height="26" rx="13" fill="#05B590"/>
+            <text x="383" y="295" text-anchor="middle" fill="#04352B" font-family="Archivo,sans-serif" font-weight="800" font-size="10" letter-spacing=".6">QUERO TENTAR</text></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">21</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 22 · TERRITÓRIOS ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · DO SCORE AO PRODUTO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Quatro territórios</span></div>
+    <h2 class="t rv">Depois do score, o shopper <b>escolhe um território</b> e encontra o mix da loja.</h2>
+    <div class="rule rv"></div>
+    <div class="grid g4 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile"><span class="ic"><svg><use href="#i-dumbbell"/></svg></span><span class="n">01</span><h4>Treino</h4><p>Creatinas · Proteínas</p>
+        <div class="chips" style="margin-top:3px"><span class="chip m">100% Creatine</span><span class="chip m">Creapure</span></div></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-bolt"/></svg></span><span class="n">02</span><h4>Rotina ativa</h4><p>Proteínas · Complementares</p>
+        <div class="chips" style="margin-top:3px"><span class="chip m">Vegan Protein</span><span class="chip m">Barrinhas</span></div></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-sun"/></svg></span><span class="n">03</span><h4>Bem-estar</h4><p>Vitaminas · Minerais</p>
+        <div class="chips" style="margin-top:3px"><span class="chip m">Ômega 3</span><span class="chip m">Mag 5</span></div></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-drop"/></svg></span><span class="n">04</span><h4>Recuperação</h4><p>Categorias aprovadas</p>
+        <div class="chips" style="margin-top:3px"><span class="chip m">Colágenos</span><span class="chip m">Fibras</span></div></div>
+    </div>
+    <div class="band clay rv">
+      <span class="ic"><svg><use href="#i-shield"/></svg></span>
+      <span class="k">Score ≠ Benefício</span>
+      <p>O produto entra como <b>exploração de portfólio compatível</b> com o interesse declarado e com as mensagens aprovadas — nunca como consequência da pontuação obtida.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">22</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 23 · RENDER MOVE 01 (AMBIENTE) ═════════ -->
+<section class="slide chap ink-slide">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">MOVE LAB · RENDER 01 DE 03</span></div>
+  <div class="content">
+    <div class="split-b" style="align-items:center;gap:clamp(14px,2.1vw,36px)">
+      <div class="rv zin shot" style="aspect-ratio:16/9">
+        <img src="assets/render-move-lab.jpg" alt="Move Lab em operação no corredor de um supermercado">
+        <span class="badge">AMBIENTAÇÃO</span>
+        <div class="tagl"><span class="s">Corredor largo · ≈ 1,5 × 1,5 m · zona de segurança demarcada</span><span class="k">A experiência de um atrai os próximos.</span></div>
+      </div>
+      <div>
+        <div class="rv"><span class="eyebrow">Visual conceitual</span></div>
+        <h2 class="t rv" style="font-size:clamp(17px,2.3vw,34px)"><b>MOVE LAB</b><br>A experiência de um<br><em>atrai os próximos.</em></h2>
+        <div class="rule rv"></div>
+        <div class="chips on-d rv" style="margin-bottom:clamp(9px,1.1vw,16px)">
+          <span class="chip l">equipamento portátil</span><span class="chip">luvas</span><span class="chip">score</span>
+          <span class="chip">adesivo de segurança</span><span class="chip">exposição próxima</span>
+        </div>
+        <div class="grid g2 pop">
+          <div class="kv"><span class="k">Área ocupada</span><span class="v">≈ 1,5 × 1,5 m</span></div>
+          <div class="kv"><span class="k">Duração do jogo</span><span class="v">30–45 s</span></div>
+        </div>
+        <p class="note rv" style="margin-top:clamp(9px,1.1vw,15px)">Render conceitual — sujeito a projeto técnico, normas e aprovação do varejista.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">23</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 24 · RENDER MOVE 02 · EQUIPAMENTO + SEGURANÇA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · RENDER 02 DE 03</span></div>
+  <div class="content">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Render técnico</span>
+        <h2 class="t" style="font-size:clamp(16px,2.2vw,32px)">O equipamento e a <b>zona de segurança</b> que ele exige.</h2>
+      </div>
+      <div class="chips"><span class="chip c">6 ALVOS LED</span><span class="chip f">PORTÁTIL · 3,4 KG</span><span class="chip">BATERIA 6 H</span></div>
+    </div>
+    <div class="rule rv"></div>
+    <div class="svgbox rv" style="background:#F7F5F0">
+      <svg viewBox="0 0 1020 452" role="img" aria-label="Render técnico do equipamento Move Lab e da zona de segurança em planta">
+        <defs>
+          <radialGradient id="mPad" cx=".38" cy=".32" r=".78">
+            <stop offset="0" stop-color="#3A3B38"/><stop offset=".62" stop-color="#211915"/><stop offset="1" stop-color="#0E0C0A"/></radialGradient>
+          <radialGradient id="mLed" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#7BFFDC"/><stop offset=".55" stop-color="#05B590"/><stop offset="1" stop-color="#05B590" stop-opacity="0"/></radialGradient>
+          <linearGradient id="mGrip" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5A4F47"/><stop offset=".5" stop-color="#8C342B"/><stop offset="1" stop-color="#4A2119"/></linearGradient>
+        </defs>
+        <rect width="1020" height="452" fill="#F7F5F0"/>
+        <g stroke="#E4E0D7"><path d="M0 40h1020M0 412h1020M498 24v404"/></g>
+        <text x="30" y="30" fill="#9A9089" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2.6">A · EQUIPAMENTO · VISTA FRONTAL</text>
+        <text x="528" y="30" fill="#9A9089" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2.6">B · ZONA DE SEGURANÇA · PLANTA</text>
+        <text x="920" y="30" fill="#8C342B" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2">MOVE LAB</text>
+
+        <!-- ══ A · EQUIPAMENTO ══ -->
+        <g transform="translate(256,222)">
+          <ellipse cx="0" cy="152" rx="120" ry="14" fill="#211915" opacity=".14"/>
+          <!-- pega -->
+          <rect x="-16" y="52" width="32" height="112" rx="14" fill="url(#mGrip)"/>
+          <g stroke="rgba(255,255,255,.22)" stroke-width="2"><path d="M-10 74h20M-10 88h20M-10 102h20M-10 116h20"/></g>
+          <!-- corpo -->
+          <circle r="112" fill="url(#mPad)"/>
+          <circle r="112" fill="none" stroke="#3F4340" stroke-width="3"/>
+          <circle r="96" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1.4"/>
+          <!-- alvos -->
+          <g>
+            <g transform="translate(0,-62)"><circle r="30" fill="url(#mLed)" class="an-pulse"/><circle r="24" fill="none" stroke="#05B590" stroke-width="4.6"/><circle r="13" fill="#0E0C0A"/></g>
+            <g transform="translate(54,-31)"><circle r="30" fill="url(#mLed)" class="an-pulse an-d1"/><circle r="24" fill="none" stroke="#05B590" stroke-width="4.6"/><circle r="13" fill="#0E0C0A"/></g>
+            <g transform="translate(54,31)"><circle r="30" fill="url(#mLed)" class="an-pulse an-d2"/><circle r="24" fill="none" stroke="#05B590" stroke-width="4.6"/><circle r="13" fill="#0E0C0A"/></g>
+            <g transform="translate(0,62)"><circle r="30" fill="url(#mLed)" class="an-pulse an-d3"/><circle r="24" fill="none" stroke="#05B590" stroke-width="4.6"/><circle r="13" fill="#0E0C0A"/></g>
+            <g transform="translate(-54,31)"><circle r="30" fill="url(#mLed)" class="an-pulse an-d4"/><circle r="24" fill="none" stroke="#05B590" stroke-width="4.6"/><circle r="13" fill="#0E0C0A"/></g>
+            <g transform="translate(-54,-31)"><circle r="30" fill="url(#mLed)" class="an-pulse"/><circle r="24" fill="none" stroke="#05B590" stroke-width="4.6"/><circle r="13" fill="#0E0C0A"/></g>
+          </g>
+          <!-- centro / marca -->
+          <circle r="26" fill="#006C52"/>
+          <text y="-2" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="10" letter-spacing=".6">NUTRIFY</text>
+          <text y="11" text-anchor="middle" fill="#C0EE4E" font-family="Space Mono,monospace" font-size="7" letter-spacing="1.2">MOVE LAB</text>
+          <!-- cota diametro -->
+          <g stroke="#8C342B" stroke-width="1.2" fill="none">
+            <path class="draw" style="stroke-dasharray:230;stroke-dashoffset:230" d="M-112 -150h224"/>
+            <path d="M-107 -155l-5 5 5 5M107 -155l5 5-5 5"/>
+            <path d="M-112 -145v-14M112 -145v-14" stroke-dasharray="4 4" opacity=".55"/>
+          </g>
+          <text y="-160" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="11" letter-spacing="1">Ø 640 mm</text>
+        </g>
+        <g>
+          <text x="70" y="404" fill="#5A4F47" font-family="Space Mono,monospace" font-size="9.2" letter-spacing="1.4">PESO 3,4 KG</text>
+          <text x="196" y="404" fill="#5A4F47" font-family="Space Mono,monospace" font-size="9.2" letter-spacing="1.4">BATERIA 6 H</text>
+          <text x="322" y="404" fill="#5A4F47" font-family="Space Mono,monospace" font-size="9.2" letter-spacing="1.4">ESPUMA DE ALTA DENSIDADE</text>
+        </g>
+
+        <!-- ══ B · PLANTA DE SEGURANÇA ══ -->
+        <g transform="translate(528,58)">
+          <!-- buffer -->
+          <rect x="6" y="6" width="296" height="270" rx="8" fill="#FBF1EE" stroke="#8C342B" stroke-width="1.4" stroke-dasharray="7 6" class="an-flow"/>
+          <text x="154" y="-2" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="9.4" letter-spacing="1.6">BUFFER DE CIRCULAÇÃO · 2400 × 2200</text>
+          <!-- zona ativa -->
+          <rect x="62" y="52" width="184" height="184" fill="#EDF4F0" stroke="#05B590" stroke-width="1.8"/>
+          <text x="154" y="44" text-anchor="middle" fill="#006C52" font-family="Space Mono,monospace" font-weight="700" font-size="10" letter-spacing="1.4">ZONA ATIVA · 1500 × 1500</text>
+          <!-- círculo adesivo -->
+          <circle cx="154" cy="144" r="80" fill="none" stroke="#05B590" stroke-width="2.2" stroke-dasharray="9 6" class="an-flow"/>
+          <circle cx="154" cy="144" r="80" fill="#05B590" opacity=".08" class="an-throb"/>
+          <!-- promotor -->
+          <circle cx="112" cy="144" r="13" fill="#8C342B"/><text x="112" y="149" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-weight="800" font-size="11">P</text>
+          <text x="112" y="122" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-size="8.2" letter-spacing="1">PROMOTOR</text>
+          <!-- equipamento -->
+          <circle cx="140" cy="144" r="9" fill="none" stroke="#211915" stroke-width="3"/>
+          <!-- shopper -->
+          <circle cx="196" cy="144" r="13" fill="#05B590" class="an-pulse"/><text x="196" y="149" text-anchor="middle" fill="#04352B" font-family="Archivo,sans-serif" font-weight="800" font-size="11">S</text>
+          <text x="196" y="122" text-anchor="middle" fill="#006C52" font-family="Space Mono,monospace" font-size="8.2" letter-spacing="1">SHOPPER</text>
+          <!-- cota distancia -->
+          <g stroke="#8C342B" stroke-width="1.1" fill="none">
+            <path d="M140 178h56M140 174v8M196 174v8"/></g>
+          <text x="168" y="196" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="9" letter-spacing="1">≥ 600</text>
+          <!-- plateia -->
+          <g fill="#CAE1D6">
+            <circle cx="96" cy="256" r="8"/><circle cx="120" cy="258" r="8"/><circle cx="144" cy="256" r="8"/><circle cx="168" cy="258" r="8"/><circle cx="192" cy="256" r="8"/>
+          </g>
+          <text x="144" y="298" text-anchor="middle" fill="#5A4F47" font-family="Space Mono,monospace" font-size="8.6" letter-spacing="1.4">FILA / PLATEIA · FORA DA ZONA ATIVA</text>
+          <!-- kit lateral -->
+          <g transform="translate(330,52)">
+            <rect x="0" y="0" width="128" height="184" rx="8" fill="#FFFFFF" stroke="#E4E0D7"/>
+            <text x="64" y="20" text-anchor="middle" fill="#006C52" font-family="Archivo,sans-serif" font-weight="800" font-size="10.4" letter-spacing="1">KIT DE CAMPO</text>
+            <g font-family="Figtree,sans-serif" font-size="10.4" fill="#5A4F47">
+              <g><rect x="12" y="34" width="14" height="14" rx="4" fill="#D6F4EC" stroke="#05B590"/><text x="34" y="45">Luvas (pares)</text></g>
+              <g><rect x="12" y="58" width="14" height="14" rx="4" fill="#D6F4EC" stroke="#05B590"/><text x="34" y="69">Higienizador</text></g>
+              <g><rect x="12" y="82" width="14" height="14" rx="4" fill="#D6F4EC" stroke="#05B590"/><text x="34" y="93">Toalha descartável</text></g>
+              <g><rect x="12" y="106" width="14" height="14" rx="4" fill="#D6F4EC" stroke="#05B590"/><text x="34" y="117">Bateria reserva</text></g>
+              <g><rect x="12" y="130" width="14" height="14" rx="4" fill="#D6F4EC" stroke="#05B590"/><text x="34" y="141">Adesivo de piso</text></g>
+              <g><rect x="12" y="154" width="14" height="14" rx="4" fill="#FBE7E2" stroke="#8C342B"/><text x="34" y="165">Card impresso (plano B)</text></g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="grid g4 pop" style="margin-top:clamp(8px,1.05vw,15px)">
+      <div class="kv"><span class="k">Zona ativa</span><span class="v">2,25 m²</span></div>
+      <div class="kv"><span class="k">Distância mínima</span><span class="v">600 mm</span></div>
+      <div class="kv"><span class="k">Higienização</span><span class="v">Entre cada uso</span></div>
+      <div class="kv"><span class="k">Teste de abertura</span><span class="v">Diário</span></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">24</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 25 · RENDER MOVE 03 · ARENA COMPLETA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · RENDER 03 DE 03</span></div>
+  <div class="content">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Render de conjunto</span>
+        <h2 class="t" style="font-size:clamp(16px,2.2vw,32px)">A arena montada: <b>desafio, placar e gôndola no mesmo enquadramento.</b></h2>
+      </div>
+      <div class="chips"><span class="chip f">ELEVAÇÃO</span><span class="chip c">ZONA DE CONVERSÃO A 0–12 M</span></div>
+    </div>
+    <div class="rule rv"></div>
+    <div class="svgbox rv dk">
+      <svg viewBox="0 0 1020 428" role="img" aria-label="Render de elevação da arena Move Lab com backdrop, placar, equipamento e exposição Nutrify">
+        <defs>
+          <linearGradient id="aBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A1815"/><stop offset="1" stop-color="#0C0B09"/></linearGradient>
+          <linearGradient id="aFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2723"/><stop offset="1" stop-color="#161412"/></linearGradient>
+          <linearGradient id="aBack" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#006C52"/><stop offset="1" stop-color="#003D2E"/></linearGradient>
+          <radialGradient id="aGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#05B590" stop-opacity=".55"/><stop offset="1" stop-color="#05B590" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1020" height="428" fill="url(#aBg)"/>
+        <rect y="316" width="1020" height="112" fill="url(#aFloor)"/>
+        <line x1="0" y1="316" x2="1020" y2="316" stroke="rgba(255,255,255,.09)"/>
+        <ellipse cx="330" cy="368" rx="230" ry="46" fill="url(#aGlow)"/>
+
+        <!-- BACKDROP -->
+        <g>
+          <rect x="60" y="52" width="330" height="264" rx="6" fill="url(#aBack)"/>
+          <path d="M60 276c110 22 220 22 330 0v40H60Z" fill="#8C342B" opacity=".92"/>
+          <text x="225" y="106" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="34" letter-spacing="1.6">NUTRIFY</text>
+          <text x="225" y="140" text-anchor="middle" fill="#C0EE4E" font-family="Sacramento,cursive" font-size="34">Real Foods</text>
+          <line x1="130" y1="158" x2="320" y2="158" stroke="rgba(255,255,255,.22)"/>
+          <text x="225" y="192" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="26" letter-spacing="-.6">MOVE LAB</text>
+          <text x="225" y="220" text-anchor="middle" fill="#A9D8C9" font-family="Figtree,sans-serif" font-size="14">60 segundos. Um desafio.</text>
+          <text x="225" y="242" text-anchor="middle" fill="#A9D8C9" font-family="Figtree,sans-serif" font-size="14">Qual será o seu resultado?</text>
+          <text x="160" y="302" text-anchor="middle" fill="#FFFFFF" font-family="Space Mono,monospace" font-size="9" letter-spacing="2">BACKDROP 3300 × 2640</text>
+        </g>
+
+        <!-- PLACAR VERTICAL -->
+        <g>
+          <rect x="424" y="88" width="150" height="228" rx="8" fill="#100E0C" stroke="#2E2B27"/>
+          <rect x="434" y="98" width="130" height="196" rx="4" fill="#181614"/>
+          <rect x="434" y="98" width="130" height="30" rx="4" fill="#006C52"/>
+          <text x="499" y="118" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="800" font-size="10" letter-spacing="1.2">TOP SCORES</text>
+          <g>
+            <rect x="444" y="138" width="110" height="34" rx="6" fill="#C0EE4E"/>
+            <text x="456" y="160" fill="#050505" font-family="Archivo,sans-serif" font-weight="900" font-size="13">1º</text>
+            <text x="544" y="161" text-anchor="end" fill="#050505" font-family="Archivo,sans-serif" font-weight="900" font-size="17" letter-spacing="-.6">892</text>
+            <rect x="444" y="180" width="110" height="34" rx="6" fill="rgba(255,255,255,.07)"/>
+            <text x="456" y="202" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-size="13">2º</text>
+            <text x="544" y="203" text-anchor="end" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="17" letter-spacing="-.6">851</text>
+            <rect x="444" y="222" width="110" height="34" rx="6" fill="rgba(255,255,255,.07)"/>
+            <text x="456" y="244" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-size="13">3º</text>
+            <text x="544" y="245" text-anchor="end" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="17" letter-spacing="-.6">834</text>
+          </g>
+          <g class="an-blink"><circle cx="452" cy="276" r="4" fill="#C0EE4E"/></g>
+          <text x="464" y="280" fill="#8FA79E" font-family="Space Mono,monospace" font-size="7.6" letter-spacing="1.4">ATUALIZA AO VIVO</text>
+          <rect x="486" y="316" width="26" height="0" fill="#2E2B27"/>
+          <text x="499" y="338" text-anchor="middle" fill="#8FA79E" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1.6">PLACAR 43”</text>
+        </g>
+
+        <!-- EQUIPAMENTO EM USO -->
+        <g transform="translate(346,282)">
+          <ellipse cx="0" cy="78" rx="70" ry="11" fill="#000" opacity=".45"/>
+          <circle r="52" fill="#211915" stroke="#3F4340" stroke-width="2.4"/>
+          <g fill="none" stroke="#05B590" stroke-width="3.2">
+            <circle cx="0" cy="-28" r="11" class="an-pulse"/><circle cx="24" cy="-14" r="11" class="an-pulse an-d1"/>
+            <circle cx="24" cy="14" r="11" class="an-pulse an-d2"/><circle cx="0" cy="28" r="11" class="an-pulse an-d3"/>
+            <circle cx="-24" cy="14" r="11" class="an-pulse an-d4"/><circle cx="-24" cy="-14" r="11" class="an-pulse"/>
+          </g>
+          <circle r="12" fill="#006C52"/>
+          <rect x="-8" y="42" width="16" height="44" rx="7" fill="#8C342B"/>
+        </g>
+        <!-- adesivo de piso -->
+        <ellipse cx="330" cy="362" rx="186" ry="25" fill="none" stroke="#05B590" stroke-width="2.6" stroke-dasharray="10 8" class="an-flow"/>
+        <text x="330" y="400" text-anchor="middle" fill="#6E9689" font-family="Space Mono,monospace" font-size="9.4" letter-spacing="2.2">ZONA ATIVA · ADESIVO DE SEGURANÇA</text>
+
+        <!-- SETA ATÉ A GÔNDOLA -->
+        <g stroke="#C0EE4E" stroke-width="3.6" fill="none" stroke-linecap="round">
+          <path class="an-flow" style="stroke-dasharray:11 9" d="M600 372h104"/><path d="m696 364 10 8-10 8"/>
+        </g>
+        <text x="652" y="360" text-anchor="middle" fill="#C0EE4E" font-family="Space Mono,monospace" font-weight="700" font-size="10" letter-spacing="1.6">0–12 M</text>
+
+        <!-- EXPOSIÇÃO NUTRIFY -->
+        <g>
+          <rect x="726" y="72" width="240" height="244" rx="5" fill="#F7F5F0"/>
+          <rect x="726" y="72" width="240" height="34" rx="5" fill="#006C52"/>
+          <text x="846" y="94" text-anchor="middle" fill="#FFFFFF" font-family="Archivo,sans-serif" font-weight="900" font-size="13" letter-spacing="1.4">EXPOSIÇÃO NUTRIFY</text>
+          <g>
+            <rect x="738" y="118" width="216" height="8" fill="#D8D3C8"/>
+            <rect x="738" y="176" width="216" height="8" fill="#D8D3C8"/>
+            <rect x="738" y="234" width="216" height="8" fill="#D8D3C8"/>
+            <rect x="738" y="292" width="216" height="8" fill="#D8D3C8"/>
+          </g>
+          <g class="pop">
+            <g fill="#006C52"><rect x="746" y="132" width="24" height="44" rx="3"/><rect x="776" y="132" width="24" height="44" rx="3"/><rect x="806" y="132" width="24" height="44" rx="3"/></g>
+            <g fill="#8C342B"><rect x="838" y="136" width="26" height="40" rx="3"/><rect x="870" y="136" width="26" height="40" rx="3"/><rect x="902" y="136" width="26" height="40" rx="3"/></g>
+            <g fill="#05B590"><rect x="746" y="196" width="28" height="38" rx="3"/><rect x="780" y="196" width="28" height="38" rx="3"/><rect x="814" y="196" width="28" height="38" rx="3"/><rect x="848" y="196" width="28" height="38" rx="3"/></g>
+            <g fill="#947053"><rect x="884" y="192" width="22" height="42" rx="3"/><rect x="912" y="192" width="22" height="42" rx="3"/></g>
+            <g fill="#CAE1D6"><rect x="746" y="252" width="30" height="40" rx="3"/><rect x="782" y="252" width="30" height="40" rx="3"/><rect x="818" y="252" width="30" height="40" rx="3"/><rect x="854" y="252" width="30" height="40" rx="3"/><rect x="890" y="252" width="30" height="40" rx="3"/></g>
+          </g>
+          <g><rect x="738" y="118" width="94" height="12" rx="2" fill="#C0EE4E"/>
+             <text x="785" y="127" text-anchor="middle" fill="#050505" font-family="Archivo,sans-serif" font-weight="800" font-size="7.4" letter-spacing=".8">SUA SELEÇÃO AQUI</text></g>
+          <text x="846" y="394" text-anchor="middle" fill="#8FA79E" font-family="Space Mono,monospace" font-size="8.6" letter-spacing="1.6">DISPLAY SECUNDÁRIO OU SHELF NAVIGATION</text>
+        </g>
+      </svg>
+    </div>
+    <p class="note rv" style="margin-top:8px">Render de conjunto — proporções indicativas. Layout final depende da planta da loja e da aprovação do varejista.</p>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">25</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 26 · OPERAÇÃO MOVE ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · OPERAÇÃO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Ficha técnica</span></div>
+    <h2 class="t rv">O ganho de impacto exige uma camada maior de <b>segurança e manutenção.</b></h2>
+    <div class="rule rv"></div>
+    <div class="grid g6 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile"><span class="ic"><svg><use href="#i-ruler"/></svg></span><span class="n">ÁREA</span><h4>≈ 1,5 × 1,5 m</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-users"/></svg></span><span class="n">EQUIPE</span><h4>1 promotor</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-clock"/></svg></span><span class="n">TEMPO</span><h4>1,5–2,5 min</h4></div>
+      <div class="tile hl"><span class="ic"><svg><use href="#i-chart"/></svg></span><span class="n">CAPACIDADE</span><h4>150–220 / dia</h4></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-bolt"/></svg></span><span class="n">TECNOLOGIA</span><h4>Equipamento portátil</h4></div>
+      <div class="tile warn"><span class="ic" style="color:var(--warn)"><svg><use href="#i-alert"/></svg></span><span class="n">COMPLEXIDADE</span><h4>Média–alta</h4></div>
+    </div>
+    <div class="band rv">
+      <span class="ic"><svg><use href="#i-gear"/></svg></span>
+      <span class="k">Padrão de serviço</span>
+      <p>Disponibilidade-alvo <b>&gt; 98%</b> · kit de reposição local · suporte remoto · <b>teste de abertura diário</b> antes do primeiro shopper.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">26</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 27 · RISCOS MOVE ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl clay">MOVE LAB · RISCOS</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Matriz de contingência</span></div>
+    <h2 class="t rv">Move Lab entra onde o <b>impacto adicional justifica a complexidade.</b></h2>
+    <div class="rule rv"></div>
+    <div class="rv" style="overflow-x:auto">
+      <table class="tb">
+        <thead><tr><th>Risco</th><th>Sinal precoce</th><th>Prevenção</th><th>Contingência</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Equipamento se move</td><td>Folga / instabilidade</td><td>Checagem + pegada firme</td><td><b>Pausar e ajustar</b></td></tr>
+          <tr><td class="k">Golpe fora do alvo</td><td>Postura / distância</td><td>Instrução + demonstração</td><td><b>Parar e reiniciar</b></td></tr>
+          <tr><td class="k">Higiene insuficiente</td><td>Uso contínuo sem pausa</td><td>Limpeza entre usos</td><td><b>Trocar / higienizar luvas</b></td></tr>
+          <tr><td class="k">Fluxo interfere</td><td>Corredor obstruído</td><td>Adesivo + posição segura</td><td><b>Pausar e reposicionar</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="band clay rv" style="margin-top:clamp(10px,1.3vw,18px)">
+      <span class="ic"><svg><use href="#i-layers"/></svg></span>
+      <span class="k">Regra de escala</span>
+      <p>Começar com <b>poucas lojas Hero</b>, validar uptime e só então ampliar a frota. Impacto sem uptime não escala — vira custo.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">MOVE LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">27</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 28 · ZONA DE CONVERSÃO ═════════ -->
+<section class="slide chap">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">CONVERSÃO</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">O elo que fecha a venda</span></div>
+    <h2 class="t rv">A conversão precisa acontecer <b>fisicamente</b> — não três corredores depois.</h2>
+    <div class="rule rv"></div>
+    <div class="flow rv" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">01</span><h5 style="color:#fff">Experiência</h5><p style="color:#A9C0B7">Routine ou Move.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">02</span><h5 style="color:#fff">Resultado</h5><p style="color:#A9C0B7">Momento ou território.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">03</span><h5 style="color:#fff">Exposição</h5><p style="color:#A9C0B7">Display visível e imediato.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)"><span class="n" style="color:var(--lime)">04</span><h5 style="color:#fff">Produto</h5><p style="color:#A9C0B7">SKU elegível em estoque.</p></div>
+      <div class="arw" style="color:var(--lime)"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep" style="background:var(--lime);border-color:var(--lime)"><span class="n" style="color:#4A5921">05</span><h5 style="color:var(--lab-ink)">Compra</h5><p style="color:#38431E">Registrada no funil.</p></div>
+    </div>
+    <div class="split rv" style="gap:clamp(12px,1.7vw,28px)">
+      <div class="tile" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)">
+        <span class="ic" style="color:var(--lime)"><svg><use href="#i-pin"/></svg></span>
+        <span class="n" style="color:var(--lime)">ZONA DE CONVERSÃO NUTRIFY</span>
+        <h4 style="color:#fff">Display secundário, shelf navigation ou indicação visível e imediatamente acionável</h4>
+      </div>
+      <div style="display:flex;align-items:center;gap:clamp(12px,1.6vw,26px)">
+        <div class="stat"><span class="big on-d">0–12<i>m</i></span><span class="cap">distância-alvo</span></div>
+        <p class="lead" style="font-size:clamp(10.4px,.92vw,13.4px)">Quanto <b>menor a distância</b>, maior a capacidade de <b>atribuir</b> e <b>converter</b>. Acima de 12 m, a atribuição perde confiabilidade e o shopper se dispersa.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">28</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 29 · FUNIL ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">MENSURAÇÃO · FUNIL</span></div>
+  <div class="content">
+    <div class="split-a" style="align-items:center">
+      <div>
+        <div class="rv"><span class="eyebrow">Um funil único</span></div>
+        <h2 class="t rv">Um funil único permite comparar <b>formatos, redes, lojas e dias.</b></h2>
+        <div class="rule rv"></div>
+        <p class="mini rv" style="margin-bottom:8px"><b>KPIs-CHAVE</b></p>
+        <div class="chips rv" style="margin-bottom:clamp(9px,1.15vw,16px)">
+          <span class="chip f">atração</span><span class="chip f">completion</span><span class="chip f">conversão</span>
+          <span class="chip f">unidades / interação</span><span class="chip f">uplift vs. baseline</span>
+        </div>
+        <div class="band soft rv">
+          <span class="ic"><svg><use href="#i-target"/></svg></span>
+          <span class="k">Metas iniciais de piloto</span>
+          <p>completion <b>&gt; 85%</b> · abordagem→participação <b>25–35%</b> · conversão assistida <b>12–20%</b>.</p>
+        </div>
+      </div>
+      <div class="fun rv">
+        <div class="frow"><span class="lb">Fluxo</span><span class="tr"><span class="fl grw" style="width:100%"></span></span><span class="vl">100%</span></div>
+        <div class="frow"><span class="lb">Abordados</span><span class="tr"><span class="fl grw" style="width:74%;animation-delay:.4s"></span></span><span class="vl">A</span></div>
+        <div class="frow"><span class="lb">Iniciaram</span><span class="tr"><span class="fl grw" style="width:56%;animation-delay:.5s"></span></span><span class="vl">B</span></div>
+        <div class="frow"><span class="lb">Concluíram</span><span class="tr"><span class="fl grw" style="width:47%;animation-delay:.6s"></span></span><span class="vl">C</span></div>
+        <div class="frow"><span class="lb">Direcionados</span><span class="tr"><span class="fl grw" style="width:38%;animation-delay:.7s"></span></span><span class="vl">D</span></div>
+        <div class="frow"><span class="lb">Compraram</span><span class="tr"><span class="fl grw" style="width:24%;animation-delay:.8s;background:linear-gradient(90deg,#8C342B,#C0EE4E)"></span></span><span class="vl">E</span></div>
+        <p class="note" style="margin-top:9px">Proporções ilustrativas do desenho do funil — os percentuais reais são definidos no piloto.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">29</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 30 · NÍVEIS DE MENSURAÇÃO ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">MENSURAÇÃO · NÍVEIS</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Plano B por design</span></div>
+    <h2 class="t rv">A mensuração continua útil <b>mesmo quando o varejista não integra o POS.</b></h2>
+    <div class="rule rv"></div>
+    <div class="grid g3 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile hl"><span class="ic"><svg><use href="#i-scan"/></svg></span><span class="n">NÍVEL 1 · MELHOR CENÁRIO</span><h4>POS / Cupom</h4><p>Conversão direta, item a item, com atribuição precisa por loja e por hora.</p></div>
+      <div class="tile mint"><span class="ic"><svg><use href="#i-monitor"/></svg></span><span class="n">NÍVEL 2 · INTERMEDIÁRIO</span><h4>QR + Nota</h4><p>Validação assistida: o shopper registra a nota e o sistema confirma a compra.</p></div>
+      <div class="tile soft"><span class="ic"><svg><use href="#i-box"/></svg></span><span class="n">NÍVEL 3 · MÍNIMO</span><h4>Estoque</h4><p>Contagem de início, reposição e fim de operação — sempre disponível.</p></div>
+    </div>
+    <div class="band rv">
+      <span class="ic"><svg><use href="#i-layers"/></svg></span>
+      <span class="k">Dashboard final</span>
+      <p style="font-family:var(--mono);letter-spacing:.5px;font-size:clamp(9.4px,.82vw,12px)">nacional → região → rede → loja → dia → hora → categoria → <b>compra</b></p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">30</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 31 · LOGÍSTICA REGIONAL ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">OPERAÇÃO NACIONAL</span></div>
+  <div class="content">
+    <div class="split-a" style="align-items:center">
+      <div>
+        <div class="rv"><span class="eyebrow">Logística e governança</span></div>
+        <h2 class="t rv">Três frentes regionais e uma <b>governança central</b> sustentam até <em>30 lojas</em>.</h2>
+        <div class="rule rv"></div>
+        <div class="grid g3 pop" style="margin-bottom:clamp(9px,1.15vw,16px)">
+          <div class="tile"><span class="ic"><svg><use href="#i-pin"/></svg></span><span class="n">KIT A</span><h4>Sudeste</h4><p>Supervisão regional</p></div>
+          <div class="tile"><span class="ic"><svg><use href="#i-pin"/></svg></span><span class="n">KIT B</span><h4>Nordeste</h4><p>Supervisão regional</p></div>
+          <div class="tile"><span class="ic"><svg><use href="#i-pin"/></svg></span><span class="n">KIT C</span><h4>Centro-Oeste</h4><p>Supervisão regional</p></div>
+        </div>
+        <div class="band lime rv">
+          <span class="ic"><svg><use href="#i-gear"/></svg></span>
+          <span class="k">HQ · PMO 75 LAB</span>
+          <p>dashboard · conteúdo · manutenção · logística · relatório</p>
+        </div>
+      </div>
+      <div class="rv zin" style="display:grid;place-items:center">
+        <svg viewBox="0 0 340 340" style="width:100%;max-width:clamp(190px,26vw,340px);height:auto">
+          <circle cx="170" cy="170" r="150" fill="var(--sage-g)" stroke="var(--sage)"/>
+          <circle cx="170" cy="170" r="112" fill="none" stroke="var(--sage)" stroke-dasharray="5 6"/>
+          <g stroke="#05B590" stroke-width="2.4" fill="none" stroke-linecap="round">
+            <path class="an-flow" style="stroke-dasharray:8 7" d="M170 170 118 90"/>
+            <path class="an-flow an-d1" style="stroke-dasharray:8 7" d="M170 170 258 128"/>
+            <path class="an-flow an-d2" style="stroke-dasharray:8 7" d="M170 170 148 268"/>
+          </g>
+          <g><circle cx="118" cy="90" r="30" fill="#006C52"/><text x="118" y="88" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-weight="800" font-size="12">KIT A</text>
+             <text x="118" y="102" text-anchor="middle" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="7.4" letter-spacing=".8">SUDESTE</text></g>
+          <g><circle cx="258" cy="128" r="30" fill="#8C342B"/><text x="258" y="126" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-weight="800" font-size="12">KIT B</text>
+             <text x="258" y="140" text-anchor="middle" fill="#EFC9BE" font-family="Space Mono,monospace" font-size="7.4" letter-spacing=".8">NORDESTE</text></g>
+          <g><circle cx="148" cy="268" r="30" fill="#947053"/><text x="148" y="266" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-weight="800" font-size="12">KIT C</text>
+             <text x="148" y="280" text-anchor="middle" fill="#EADDCF" font-family="Space Mono,monospace" font-size="7" letter-spacing=".6">C.-OESTE</text></g>
+          <circle cx="170" cy="170" r="44" fill="#211915"/>
+          <circle cx="170" cy="170" r="52" fill="none" stroke="#C0EE4E" stroke-width="1.6" class="an-ring" style="transform-origin:170px 170px"/>
+          <text x="170" y="167" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-size="16">HQ</text>
+          <text x="170" y="182" text-anchor="middle" fill="#8FA79E" font-family="Space Mono,monospace" font-size="7.4" letter-spacing="1.2">PMO 75 LAB</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">31</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 32 · EQUIPE DE LOJA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">EQUIPE DE LOJA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Desenho de posto</span></div>
+    <h2 class="t rv">A equipe de loja é desenhada para <b>não perder abordagem</b> durante a conversão.</h2>
+    <div class="rule rv"></div>
+    <div class="grid g3 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="tile"><span class="ic"><svg><use href="#i-hand"/></svg></span><span class="n">PROMOTOR A</span><h4>Atração · fila · início</h4><p>Mantém o fluxo e explica a ação em <b>uma frase</b>.</p></div>
+      <div class="tile hl"><span class="ic"><svg><use href="#i-route"/></svg></span><span class="n">PROMOTOR B</span><h4>Experiência · produto</h4><p>Conduz o resultado e acompanha até a zona de conversão.</p></div>
+      <div class="tile"><span class="ic"><svg><use href="#i-shield"/></svg></span><span class="n">SUPERVISÃO</span><h4>Qualidade · contingência</h4><p>Audita execução, estoque, sistema e evidências.</p></div>
+    </div>
+    <div class="split rv" style="gap:clamp(12px,1.7vw,26px);align-items:stretch">
+      <div class="tile dark">
+        <span class="ic"><svg><use href="#i-flask"/></svg></span>
+        <span class="n">TREINAMENTO</span>
+        <h4>2 h antes da onda + check de 30 min antes de cada abertura</h4>
+      </div>
+      <div style="display:flex;align-items:center">
+        <div class="chips">
+          <span class="chip m">abordagem</span><span class="chip m">produtos</span><span class="chip m">linguagem</span>
+          <span class="chip m">conversão</span><span class="chip m">sistema</span><span class="chip m">segurança</span><span class="chip m">registro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">32</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 33 · PILOTO → ESCALA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">ESTRATÉGIA DE ESCALA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">Aprender antes de escalar</span></div>
+    <h2 class="t rv">Escalar <b>depois de aprender</b> custa menos do que corrigir <em>30 lojas em campo.</em></h2>
+    <div class="rule rv"></div>
+    <div class="flow rv" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="fstep"><span class="n">FASE 01</span><h5>Piloto · 2 lojas</h5><p>Validar jornada, operação e linguagem em campo real.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep"><span class="n">FASE 02</span><h5>Onda 1 · 8 lojas</h5><p>Recalibrar por perfil de loja e por rede.</p></div>
+      <div class="arw"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+      <div class="fstep acc"><span class="n">FASE 03</span><h5>Escala · 20 lojas</h5><p>Otimizar a rede nacional com dados consolidados.</p></div>
+    </div>
+    <div class="split rv" style="gap:clamp(12px,1.7vw,26px);align-items:center">
+      <div>
+        <p class="mini" style="margin-bottom:8px"><b>GATES DE DECISÃO</b></p>
+        <div class="chips">
+          <span class="chip">tempo</span><span class="chip">abandono</span><span class="chip">atração</span><span class="chip">conversão</span>
+          <span class="chip">uptime</span><span class="chip">segurança</span><span class="chip">ruptura</span><span class="chip">custo por interação</span>
+        </div>
+      </div>
+      <div class="grid g3 pop" style="gap:clamp(6px,.75vw,11px)">
+        <div class="tile mint" style="align-items:center;text-align:center"><h4 style="font-size:clamp(13px,1.25vw,19px);color:var(--green)">GO</h4></div>
+        <div class="tile soft" style="align-items:center;text-align:center"><h4 style="font-size:clamp(13px,1.25vw,19px);color:var(--sand)">AJUSTAR</h4></div>
+        <div class="tile warn" style="align-items:center;text-align:center"><h4 style="font-size:clamp(13px,1.25vw,19px);color:var(--warn)">PARAR</h4></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">33</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 34 · CRONOGRAMA ═════════ -->
+<section class="slide">
+  <div class="chrome"><button class="lbl js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">CRONOGRAMA</span></div>
+  <div class="content">
+    <div class="rv"><span class="eyebrow">16 semanas</span></div>
+    <h2 class="t rv">Da aprovação à escala nacional: <b>16 semanas com gates claros.</b></h2>
+    <div class="rule rv"></div>
+    <div class="tline rv" style="margin-bottom:clamp(11px,1.4vw,20px)">
+      <div class="tstep a"><span class="bar grw"></span><span class="w">S1–2</span><span class="l">Imersão + mix</span><span class="d">Lojas, plantas, portfólio e estoque.</span></div>
+      <div class="tstep a"><span class="bar grw" style="animation-delay:.45s"></span><span class="w">S3–5</span><span class="l">Design + tech</span><span class="d">Estrutura, conteúdo aprovado e sistema.</span></div>
+      <div class="tstep b"><span class="bar grw" style="animation-delay:.55s"></span><span class="w">S6</span><span class="l">Produção</span><span class="d">Kits, equipamentos e logística.</span></div>
+      <div class="tstep b"><span class="bar grw" style="animation-delay:.65s"></span><span class="w">S7</span><span class="l">Piloto</span><span class="d">2 lojas em operação real.</span></div>
+      <div class="tstep c"><span class="bar grw" style="animation-delay:.75s"></span><span class="w">S8–10</span><span class="l">Onda 1</span><span class="d">8 lojas, recalibragem por perfil.</span></div>
+      <div class="tstep c"><span class="bar grw" style="animation-delay:.85s"></span><span class="w">S11–16</span><span class="l">Escala</span><span class="d">20 lojas e relatório consolidado.</span></div>
+    </div>
+    <div class="band clay rv">
+      <span class="ic"><svg><use href="#i-alert"/></svg></span>
+      <span class="k">Dependências críticas</span>
+      <p>lojas + plantas · mix e estoque · conteúdo regulatório · integração promocional · fornecedores · calendário do varejista</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">34</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 35 · INVESTIMENTO ═════════ -->
+<section class="slide chap">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">INVESTIMENTO</span></div>
+  <div class="content">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Duas opções, dois investimentos</span>
+        <h2 class="t" style="font-size:clamp(17px,2.5vw,38px)">Escolha o formato. <b>O custo por loja/dia é <em>fechado</em>.</b></h2>
+      </div>
+      <span class="chip l" style="font-family:var(--mono)">VALORES POR LOJA / POR DIA DE ATIVAÇÃO</span>
+    </div>
+    <div class="rule rv"></div>
+    <div class="grid g2 pop" style="margin-bottom:clamp(10px,1.3vw,18px)">
+      <div class="pricecard g">
+        <span class="pu">Opção 01 · lojas menores</span>
+        <h3>NUTRIFY ROUTINE LAB</h3>
+        <div class="pv"><small>R$</small>600<small style="font-size:.26em;vertical-align:.9em">,00</small></div>
+        <span class="pu">por loja / por dia</span>
+        <ul class="bl on-d" style="margin-top:4px">
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>1 promotor · <b>2–3 min</b> por shopper</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>Capacidade <b>120–180 interações/dia</b></span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>Totem, tablet, adesivo de piso e ecobag</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>Quiz, Routine Card e registro no funil</span></li>
+        </ul>
+      </div>
+      <div class="pricecard d">
+        <span class="ribbon">Maior impacto</span>
+        <span class="pu">Opção 02 · lojas maiores</span>
+        <h3>NUTRIFY MOVE LAB</h3>
+        <div class="pv"><small>R$</small>1.100<small style="font-size:.26em;vertical-align:.9em">,00</small></div>
+        <span class="pu">por loja / por dia</span>
+        <ul class="bl on-d" style="margin-top:4px">
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>1 promotor · <b>1,5–2,5 min</b> por shopper</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>Capacidade <b>150–220 interações/dia</b></span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>Equipamento de alvos, placar ao vivo e backdrop</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span>Kit de segurança, higienização e bateria reserva</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rv" style="overflow-x:auto;margin-bottom:clamp(8px,1vw,14px)">
+      <table class="tb">
+        <thead><tr><th>Cenário</th><th>Composição</th><th>Dias-loja</th><th>Investimento de operação</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Piloto</td><td>1 Routine + 1 Move · 2,5 dias cada</td><td>5</td><td><b>R$ 4.250,00</b></td></tr>
+          <tr><td class="k">Onda 1 · 8 lojas</td><td>6 Routine + 2 Move · 2,5 dias cada</td><td>20</td><td><b>R$ 14.500,00</b></td></tr>
+          <tr class="hi"><td class="k">Rede recomendada · 30 lojas</td><td>24 Routine + 6 Move · 2,5 dias cada</td><td>75</td><td><b>R$ 52.500,00</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note rv"><b>Inclui</b> equipe em loja, operação da experiência, kit de campo, supervisão, registro de dados e relatório. <b>Não inclui</b> mídia do varejista, descontos/cashback, impostos específicos, integrações de POS não dimensionadas nem produção inicial de estrutura — orçados à parte conforme o escopo aprovado. Projeções derivadas dos valores por loja/dia acima aplicados à premissa de 2,5 dias por loja.</p>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">35</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+<!-- ═════════ 36 · RECOMENDAÇÃO ═════════ -->
+<section class="slide chap ink-slide">
+  <div class="chrome"><button class="lbl lime js-menu"><span class="dt"></span>ÍNDICE</button><span class="lbl ghost">RECOMENDAÇÃO FINAL</span></div>
+  <div class="content">
+    <div class="split-a" style="align-items:center">
+      <div>
+        <div class="rv"><span class="eyebrow">O próximo passo</span></div>
+        <h2 class="t rv" style="font-size:clamp(20px,3.1vw,46px)">Aprovar a plataforma.<br>Testar os dois formatos.<br><b>Escalar pelo que <em>converter</em>.</b></h2>
+        <div class="rule rv"></div>
+        <p class="mini rv" style="margin-bottom:9px"><b>DECISÕES PARA O PRÓXIMO GATE</b></p>
+        <ul class="nl rv">
+          <li><span class="bd">1</span><span class="tx">Redes e <b>lojas candidatas</b></span></li>
+          <li><span class="bd">2</span><span class="tx"><b>Mix prioritário</b> por loja</span></li>
+          <li><span class="bd">3</span><span class="tx">Nível de <b>integração promocional</b></span></li>
+          <li><span class="bd">4</span><span class="tx"><b>Envelope de investimento</b> e número de dias por loja</span></li>
+          <li><span class="bd">5</span><span class="tx"><b>Calendário</b> do piloto</span></li>
+        </ul>
+      </div>
+      <div class="rv" style="display:flex;flex-direction:column;gap:clamp(11px,1.4vw,22px);align-items:flex-start">
+        <img src="assets/75lab-wordmark-lime.png" alt="75 LAB" style="width:100%;max-width:clamp(105px,13vw,178px);height:auto">
+        <h2 class="wordbig" style="font-size:clamp(28px,4.4vw,70px);line-height:.88">IDEIA BOA<br>É A QUE<br><em>ACONTECE.</em></h2>
+        <div class="rule" style="width:100%"></div>
+        <div class="covlogos">
+          <img class="l75" src="assets/75lab-wordmark-paper.png" alt="75 LAB">
+          <span class="sep"></span>
+          <img class="lnu" src="assets/nutrify-logo.png" alt="Nutrify Real Foods">
+        </div>
+        <p class="mini">75 LAB · Aceleradora de Trade Marketing<br>Proposta NUTRIFY LAB · Agosto 2026</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="tag">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb js-prev">‹</button><span class="count"><b class="js-cur">36</b> / <span class="js-tot">36</span></span><button class="nb js-next">›</button></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════ ÍNDICE ══════════════ -->
+<div class="menu" id="menu">
+  <div class="mhead">
+    <span class="mt">NUTRIFY LAB · Índice</span>
+    <button class="mclose" id="mclose">FECHAR ✕</button>
+  </div>
+  <ul class="mlist" id="mlist"></ul>
+</div>
+
+<script>
+(function(){
+  var TITLES=[
+    "Capa — NUTRIFY LAB",
+    "75 LAB — quem somos",
+    "75 LAB — o Método 75",
+    "A plataforma: uma lógica, dois formatos",
+    "O desafio: parar, entender, escolher, comprar",
+    "Contexto de shopper",
+    "Território: ciência, descoberta, conversão",
+    "Arquitetura por perfil de loja",
+    "Matriz de decisão de formato",
+    "SOLUÇÃO 01 — ROUTINE LAB",
+    "Routine Lab — a jornada",
+    "Routine Lab — as quatro perguntas",
+    "Routine Lab — o Routine Card",
+    "Render 01 — ambientação",
+    "Render 02 — elevação e planta",
+    "Render 03 — interface do tablet",
+    "Routine Lab — operação",
+    "Routine Lab — escala e adaptação",
+    "SOLUÇÃO 02 — MOVE LAB",
+    "Move Lab — a jornada",
+    "Move Lab — ranking e mídia",
+    "Move Lab — do score ao produto",
+    "Render 01 — ambientação",
+    "Render 02 — equipamento e segurança",
+    "Render 03 — arena completa",
+    "Move Lab — operação",
+    "Move Lab — riscos e contingências",
+    "Zona de conversão",
+    "Funil único de mensuração",
+    "Três níveis de mensuração",
+    "Logística e governança nacional",
+    "Equipe de loja e treinamento",
+    "Piloto → Onda 1 → Escala",
+    "Cronograma de 16 semanas",
+    "INVESTIMENTO — R$ 600 e R$ 1.100",
+    "Recomendação final"
+  ];
+  var SECTIONS=[0,1,3,9,18,27,34,35];
+  var deck=document.getElementById('deck');
+  var slides=[].slice.call(document.querySelectorAll('.slide')), i=0, n=slides.length;
+  var menu=document.getElementById('menu'), mlist=document.getElementById('mlist'), prog=document.getElementById('prog');
+
+  /* ——— índice ——— */
+  TITLES.forEach(function(t,k){
+    var li=document.createElement('li');
+    if(SECTIONS.indexOf(k)>-1) li.className='sec';
+    li.innerHTML='<span class="n">'+String(k+1).padStart(2,'0')+'</span><span class="t"></span>';
+    li.querySelector('.t').textContent=t;
+    li.onclick=function(){go(k);closeMenu()};
+    mlist.appendChild(li);
+  });
+
+  /* ——— contadores ——— */
+  function counters(sl){
+    [].forEach.call(sl.querySelectorAll('[data-count]'),function(el){
+      var target=parseFloat(el.getAttribute('data-count')), t0=null, dur=950;
+      function step(ts){
+        if(!t0) t0=ts;
+        var p=Math.min((ts-t0)/dur,1), e=1-Math.pow(1-p,3);
+        el.textContent=Math.round(target*e);
+        if(p<1) requestAnimationFrame(step);
+      }
+      el.textContent='0';
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* ——— reinicia animações CSS do slide ——— */
+  function replay(sl){
+    sl.querySelectorAll('.draw, .grw, .grwY').forEach(function(el){
+      var a=el.style.animation; el.style.animation='none';
+      void el.offsetWidth; el.style.animation=a||'';
+    });
+  }
+
+  /* ——— ajuste fino de altura ——— */
+  function fit(sl){
+    var c=sl.querySelector('.content'); if(!c) return;
+    c.style.zoom='';
+    if(window.innerWidth<=1080) return;
+    var f=1;
+    while(sl.scrollHeight>sl.clientHeight+1 && f>0.72){
+      f=Math.round((f-0.025)*1000)/1000;
+      c.style.zoom=f;
+    }
+  }
+  function fitAll(){
+    slides.forEach(function(s){
+      var was=s.classList.contains('on');
+      if(!was){s.style.visibility='hidden';s.classList.add('on')}
+      fit(s);
+      if(!was){s.classList.remove('on');s.style.visibility=''}
+    });
+  }
+
+  function isDark(sl){return sl.classList.contains('chap')}
+
+  function go(k){
+    if(k<0||k>=n||k===i)return;
+    deck.classList.toggle('rev',k<i);
+    slides[i].classList.remove('on');
+    i=k;
+    slides[i].classList.add('on');
+    slides[i].scrollTop=0;
+    fit(slides[i]);
+    replay(slides[i]);
+    counters(slides[i]);
+    document.body.classList.toggle('dk',isDark(slides[i]));
+    [].forEach.call(document.querySelectorAll('.js-cur'),function(e){e.textContent=String(i+1).padStart(2,'0')});
+    prog.style.width=(i/(n-1)*100)+'%';
+  }
+  function openMenu(){menu.classList.add('open')}
+  function closeMenu(){menu.classList.remove('open')}
+
+  [].forEach.call(document.querySelectorAll('.js-next'),function(b){b.onclick=function(){go(i+1)}});
+  [].forEach.call(document.querySelectorAll('.js-prev'),function(b){b.onclick=function(){go(i-1)}});
+  [].forEach.call(document.querySelectorAll('.js-menu'),function(b){b.onclick=openMenu});
+  [].forEach.call(document.querySelectorAll('.js-tot'),function(e){e.textContent=String(n).padStart(2,'0')});
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(e){e.style.cursor='pointer';e.onclick=function(){go(+e.getAttribute('data-go'))}});
+  document.getElementById('mclose').onclick=closeMenu;
+
+  document.addEventListener('keydown',function(e){
+    if(menu.classList.contains('open')){ if(e.key==='Escape')closeMenu(); return; }
+    if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();go(i+1)}
+    if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(i-1)}
+    if(e.key==='Home'){e.preventDefault();go(0)}
+    if(e.key==='End'){e.preventDefault();go(n-1)}
+    if(e.key==='m'||e.key==='M')openMenu();
+  });
+
+  /* ——— swipe ——— */
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)){dx<0?go(i+1):go(i-1)}
+    x0=null;y0=null;
+  },{passive:true});
+
+  /* ═══════════ CURSOR CUSTOMIZADO ═══════════ */
+  (function(){
+    if(window.matchMedia('(pointer:coarse)').matches) return;
+    var cur=document.getElementById('cur'), dot=document.getElementById('curDot');
+    var mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,dx2=mx,dy2=my,shown=false;
+    var HOT='a,button,.tile,.fstep,.chip,.nb,.lbl,.mlist li,[data-go],.pricecard,.shot,.nl li,.tstep,.band';
+    document.addEventListener('mousemove',function(e){
+      mx=e.clientX;my=e.clientY;
+      if(!shown){shown=true;cur.classList.remove('hide');dot.classList.remove('hide')}
+      var t=e.target;
+      document.body.classList.toggle('hot', !!(t&&t.closest&&t.closest(HOT)));
+    },{passive:true});
+    document.addEventListener('mouseleave',function(){shown=false;cur.classList.add('hide');dot.classList.add('hide')});
+    document.addEventListener('mousedown',function(){cur.style.transform+=' scale(.82)'});
+    (function loop(){
+      cx+=(mx-cx)*0.17; cy+=(my-cy)*0.17;
+      dx2+=(mx-dx2)*0.42; dy2+=(my-dy2)*0.42;
+      cur.style.transform='translate3d('+cx+'px,'+cy+'px,0)';
+      dot.style.transform='translate3d('+dx2+'px,'+dy2+'px,0)';
+      requestAnimationFrame(loop);
+    })();
+    cur.classList.add('hide');dot.classList.add('hide');
+  })();
+
+  /* ——— boot ——— */
+  prog.style.width='0%';
+  document.body.classList.toggle('dk',isDark(slides[0]));
+  fitAll();
+  counters(slides[0]);
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fitAll,180)});
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fitAll)}
+  window.addEventListener('load',fitAll);
+  setTimeout(fitAll,400);setTimeout(fitAll,1200);
+})();
+</script>
+</body>
+</html>
