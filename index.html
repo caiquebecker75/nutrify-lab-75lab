@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NUTRIFY LAB — 75 LAB × Nutrify</title>
-<meta name="description" content="Duas experiências de loja que transformam interesse em compra. Routine Lab e Move Lab — proposta 75 LAB para a Nutrify.">
+<title>NUTRIFY LAB · 75 LAB × Nutrify</title>
+<meta name="description" content="Duas experiências de loja que transformam interesse em compra. Routine Lab e Move Lab. Proposta 75 LAB para a Nutrify.">
 <meta name="author" content="75 LAB">
 <meta name="theme-color" content="#00402F">
 <meta property="og:type" content="website">
-<meta property="og:title" content="NUTRIFY LAB — 75 LAB × Nutrify">
+<meta property="og:title" content="NUTRIFY LAB · 75 LAB × Nutrify">
 <meta property="og:description" content="Duas experiências de loja que transformam interesse em compra.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
   --forest:#00402F; --forest-d:#002B20; --green:#006C52; --mint:#05B590; --sage:#CAE1D6;
   --bone:#F4F2EC;   --bone-d:#E4E0D5;   --clay:#8C342B;  --clay-l:#C4674F;
   --ink:#1A1310;    --ink-2:#5E5349;
-  /* 75 LAB — cor da ação */
+  /* 75 LAB · cor da ação */
   --lime:#C0EE4E;   --lab-ink:#0A0A08;
   --disp:'Archivo',Impact,sans-serif;
   --body:'Space Grotesk',system-ui,sans-serif;
@@ -37,8 +37,8 @@ body{background:var(--forest-d);color:var(--bone);font-family:var(--body);overfl
 #cur{width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:1.5px solid #fff;
   transition:width .2s cubic-bezier(.2,1.1,.3,1),height .2s cubic-bezier(.2,1.1,.3,1),margin .2s cubic-bezier(.2,1.1,.3,1),background .2s,opacity .2s}
 #dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#fff;transition:opacity .2s,transform .16s}
-body.hot #cur{width:78px;height:78px;margin:-39px 0 0 -39px;background:#fff}
-body.hot #dot{transform:scale(0)}
+body.hot #cur{width:54px;height:54px;margin:-27px 0 0 -27px;border-width:2.5px}
+body.hot #dot{transform:scale(1.7)}
 #cur.off,#dot.off{opacity:0}
 @media (hover:none),(pointer:coarse){body{cursor:auto}#cur,#dot{display:none}}
 
@@ -55,7 +55,7 @@ body.hot #dot{transform:scale(0)}
 .s.deep{background:var(--forest-d)}
 .s.pic{padding:0;justify-content:flex-end}
 
-/* ══ régua nutricional — o sistema ══ */
+/* ══ régua nutricional · o sistema ══ */
 .meta{flex:none;display:flex;justify-content:space-between;align-items:baseline;gap:16px;
   font-family:var(--mono);font-size:clamp(8.4px,.72vw,11px);letter-spacing:.18em;text-transform:uppercase}
 .meta .l{opacity:.62}
@@ -76,6 +76,7 @@ body.hot #dot{transform:scale(0)}
 .mega.sm{font-size:clamp(28px,6.2vw,102px)}
 .mega.xs{font-size:clamp(24px,4.6vw,74px)}
 .mega em{font-style:normal;color:var(--lime)}
+.mega .pre{font-size:.36em;font-stretch:112%;letter-spacing:-.012em;margin-bottom:.1em}
 .s.bone .mega em{color:var(--green)}
 .s.clay .mega em{color:var(--lime)}
 .ln{display:block;overflow:hidden;padding:.19em 0 .1em;margin:-.19em 0 -.1em}
@@ -156,9 +157,10 @@ body.hot #dot{transform:scale(0)}
 .cta:active{transform:translateY(0)}
 .cta .ar{width:1.05em;height:1.05em;flex:none}
 .cta .ar svg{width:100%;height:100%;display:block}
-.cta.gh{background:transparent;color:currentColor;box-shadow:inset 0 0 0 1.5px currentColor}
-.cta.gh:hover{background:currentColor;color:var(--forest)}
-.s.bone .cta.gh:hover{color:var(--bone)}
+.cta.gh{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.cta.gh:hover{background:var(--bone);color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--bone)}
+.s.bone .cta.gh:hover{background:var(--ink);color:var(--bone);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.s.clay .cta.gh:hover{background:var(--bone);color:var(--clay);box-shadow:inset 0 0 0 1.5px var(--bone)}
 .ctas{display:flex;gap:clamp(9px,1.1vw,18px);flex-wrap:wrap;align-items:center}
 .s.on .cta{animation:fadeup .6s cubic-bezier(.2,.85,.3,1) .58s backwards}
 
@@ -207,9 +209,9 @@ body.hot #dot{transform:scale(0)}
 .chip{font-family:var(--mono);font-size:clamp(9px,.78vw,12.4px);letter-spacing:.12em;text-transform:uppercase;
   padding:clamp(6px,.62vw,10px) clamp(11px,1.05vw,18px);border-radius:999px;
   box-shadow:inset 0 0 0 1px currentColor;opacity:.7;transition:.2s;white-space:nowrap}
-.chip:hover{opacity:1;background:currentColor}
-.chip:hover{color:var(--forest)}
-.s.bone .chip:hover{color:var(--bone)}
+.chip:hover{opacity:1;background:var(--bone);color:var(--forest);box-shadow:inset 0 0 0 1px var(--bone)}
+.s.bone .chip:hover{background:var(--ink);color:var(--bone);box-shadow:inset 0 0 0 1px var(--ink)}
+.s.clay .chip:hover{background:var(--bone);color:var(--clay);box-shadow:inset 0 0 0 1px var(--bone)}
 .chip.on{opacity:1;background:var(--lime);color:var(--lab-ink);box-shadow:none}
 .chip.on:hover{color:var(--lab-ink)}
 
@@ -335,11 +337,11 @@ body.hot #dot{transform:scale(0)}
 
 <!-- 04 ─────────── O DESAFIO ─────────── -->
 <section class="s clay">
-  <div class="meta"><span class="l">O desafio</span><span class="r">Categoria suplementos</span></div>
+  <div class="meta"><span class="l">A tese</span><span class="r">Categoria suplementos</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
-    <h2 class="mega"><span class="ln"><i>Suplemento</i></span><span class="ln"><i>não se explica</i></span><span class="ln"><i>na <em>gôndola.</em></i></span></h2>
-    <p class="say w fu">O shopper não precisa de mais uma exposição. Precisa de alguém que traduza o portfólio <b>no tempo do supermercado</b>.</p>
+    <h2 class="mega sm"><span class="ln"><i>Suplementos podem</i></span><span class="ln"><i>ser explicados</i></span><span class="ln"><i>diretamente no</i></span><span class="ln"><i><em>ponto de venda.</em></i></span></h2>
+    <p class="say w fu">Para encantar o shopper temos que ir além da exposição. Alguém precisa traduzir o portfólio <b>no tempo do supermercado</b>.</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
@@ -356,7 +358,7 @@ body.hot #dot{transform:scale(0)}
       <div><span class="num"><span data-n="86">0</span><u>%</u></span></div>
       <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
         <h2 class="mega xs"><span class="ln"><i>já mudaram</i></span><span class="ln"><i>algum <em>hábito.</em></i></span></h2>
-        <p class="say">Metade delas já procura fibras e vitaminas na compra da semana. A intenção existe — <b>falta o contexto na hora da escolha.</b></p>
+        <p class="say">Metade delas já procura fibras e vitaminas na compra da semana. A intenção existe. <b>Falta o contexto na hora da escolha.</b></p>
       </div>
     </div>
   </div>
@@ -371,7 +373,7 @@ body.hot #dot{transform:scale(0)}
   <div class="meta"><span class="l">A proposta</span><span class="r">Uma plataforma · dois formatos</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
-    <h2 class="mega"><span class="ln"><i>Nutrify</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
+    <h2 class="mega"><span class="ln pre"><i>Apresentamos a solução</i></span><span class="ln"><i>Nutrify</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
     <div class="rows">
       <div class="row"><span class="k">Formato 01 · lojas menores</span><span class="v">Routine Lab <em>90 s</em></span></div>
       <div class="row"><span class="k">Formato 02 · lojas maiores</span><span class="v">Move Lab <em>60 s</em></span></div>
@@ -830,7 +832,7 @@ body.hot #dot{transform:scale(0)}
       <div class="step"><span class="bl"></span><span class="n">SE NÃO HÁ</span><span class="t">QR + nota</span><span class="d">A pessoa registra a nota e o sistema confirma a compra.</span></div>
       <div class="step"><span class="bl"></span><span class="n">SEMPRE</span><span class="t">Estoque</span><span class="d">Contagem de início, reposição e fim de operação.</span></div>
     </div>
-    <p class="say w fu">Um funil único compara <b>formatos, redes, lojas e dias</b> — do nacional até a hora da compra.</p>
+    <p class="say w fu">Um funil único compara <b>formatos, redes, lojas e dias</b>, do nacional até a hora da compra.</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
@@ -898,7 +900,7 @@ body.hot #dot{transform:scale(0)}
   <div class="body">
     <h2 class="mega"><span class="ln"><i>Duas lojas.</i></span><span class="ln"><i>Duas semanas.</i></span><span class="ln"><i><em>Um número real.</em></i></span></h2>
     <div class="sp">
-      <p class="say">Começamos pelo piloto, medimos tudo e escalamos <b>pelo que converter</b>. Escolha as lojas — o resto é com a gente.</p>
+      <p class="say">Começamos pelo piloto, medimos tudo e escalamos <b>pelo que converter</b>. Escolha as lojas. O resto é com a gente.</p>
       <div class="stack" style="gap:clamp(10px,1.3vw,20px);align-items:flex-start">
         <div class="ctas">
           <button class="cta" data-go="0">Rever a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
@@ -930,10 +932,10 @@ body.hot #dot{transform:scale(0)}
 
 <script>
 (function(){
-  var T=["Capa","75 LAB — ideia boa é a que acontece","O que a 75 LAB pluga","O desafio",
-    "A oportunidade","NUTRIFY LAB","Routine Lab","90 segundos","Como funciona","Render — o tablet",
-    "Render — a estrutura","Routine Lab por dia","Move Lab","60 segundos","Como funciona",
-    "Render — o placar","Render — a arena","Move Lab por dia","A conversão","Como medimos",
+  var T=["Capa","75 LAB · ideia boa é a que acontece","O que a 75 LAB pluga","O desafio",
+    "A oportunidade","NUTRIFY LAB","Routine Lab","90 segundos","Como funciona","Render · o tablet",
+    "Render · a estrutura","Routine Lab por dia","Move Lab","60 segundos","Como funciona",
+    "Render · o placar","Render · a arena","Move Lab por dia","A conversão","Como medimos",
     "Cronograma","Investimento","Próximo passo"];
   var HD=[0,1,5,6,12,18,21,22];
   var sl=[].slice.call(document.querySelectorAll('.s')), i=0, n=sl.length;
