@@ -1,10 +1,12 @@
 # NUTRIFY LAB · 75 LAB × Nutrify
 
-Apresentação comercial em HTML, **23 telas**, uma ideia por tela.
+Apresentação comercial em HTML, **22 telas**, uma ideia por tela.
 
 **Duas experiências de loja que transformam interesse em compra.**
-- **Routine Lab** · lojas menores · 90 segundos · **R$ 600,00 por loja/dia**
-- **Move Lab** · lojas maiores · 60 segundos · **R$ 1.100,00 por loja/dia**
+- **Routine Lab** · lojas menores · 90 segundos · até 160 pessoas/dia · **R$ 600,00 por loja/dia**
+- **Move Lab** · lojas maiores · 60 segundos · até 96 pessoas/dia · **R$ 1.100,00 por loja/dia**
+
+No Move Lab, quem cumpre o desafio leva uma **amostra Nutrify na hora**. Não há ranking.
 
 ## Direção visual
 A linguagem *clean label* da Nutrify vira o sistema do deck: cada tela abre com a régua de
@@ -25,10 +27,16 @@ aparece só onde há ação.
 
 Os botões de chamada navegam direto para a seção correspondente.
 
+## Demonstração ao vivo
+A tela 10 traz o **Routine Lab funcionando de verdade**: quatro perguntas clicáveis, barra de
+progresso e um resultado que calcula o território (Rotina ativa, Energia diária, Bem-estar e
+sono, Imunidade e pele) com os SKUs Nutrify correspondentes. Dá para rodar na frente do cliente.
+
 ## Renders
 - `assets/render-routine-lab.jpg` · `assets/render-move-lab.jpg` · ambientação em loja
-- Vetoriais no próprio HTML: interface do tablet (3 telas), elevação + planta do Routine Lab,
-  placar ao vivo e arena do Move Lab
+- Vetoriais no próprio HTML: elevação e planta do Routine Lab, voucher de sampling do Move Lab
+
+Todas as telas de render trazem o aviso *imagens meramente ilustrativas e não finais*.
 
 ---
 © 75 LAB · *Ideia boa é a que acontece.*

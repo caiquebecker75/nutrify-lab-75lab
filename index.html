@@ -90,6 +90,8 @@ body.hot #dot{transform:scale(1.7)}
 .say{font-size:clamp(13px,1.5vw,25px);line-height:1.32;font-weight:400;max-width:26ch;opacity:.82}
 .say b{font-weight:600;opacity:1}
 .say.w{max-width:40ch}
+.disc{font-family:var(--mono);font-size:clamp(8px,.68vw,10.4px);letter-spacing:.14em;text-transform:uppercase;opacity:.42;margin-top:.4em}
+.pic .disc{opacity:.6}
 .tag{font-family:var(--mono);font-size:clamp(9px,.78vw,12px);letter-spacing:.2em;text-transform:uppercase;opacity:.6}
 
 /* ══ números gigantes ══ */
@@ -133,18 +135,44 @@ body.hot #dot{transform:scale(1.7)}
 .s.on .fu:nth-child(5){animation-delay:.60s}.s.on .fu:nth-child(6){animation-delay:.68s}
 
 /* ══ passo (sequência real) ══ */
-.step{display:flex;flex-direction:column;gap:clamp(6px,.8vw,13px)}
-.step .n{font-family:var(--mono);font-size:clamp(9px,.76vw,12px);letter-spacing:.18em;opacity:.5}
+.steps{display:grid;gap:clamp(14px,2.2vw,44px)}
+.steps.g4{grid-template-columns:repeat(4,1fr)}
+.step{display:flex;flex-direction:column;gap:clamp(6px,.8vw,13px);transition:transform .45s cubic-bezier(.2,.9,.3,1)}
+.step .n{font-family:var(--mono);font-size:clamp(9px,.76vw,12px);letter-spacing:.18em;opacity:.5;transition:opacity .35s}
 .step .t{font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
-  font-size:clamp(14px,1.7vw,29px);line-height:1.02;letter-spacing:-.022em}
-.step .d{font-size:clamp(10.6px,.94vw,15px);line-height:1.4;opacity:.7;max-width:22ch}
-.step .bl{height:2px;background:currentColor;opacity:.28;transform:scaleX(0);transform-origin:left}
-.s.on .step .bl{animation:wipe .6s cubic-bezier(.2,.82,.24,1) forwards}
-.s.on .step:nth-child(1) .bl{animation-delay:.30s}.s.on .step:nth-child(2) .bl{animation-delay:.40s}
-.s.on .step:nth-child(3) .bl{animation-delay:.50s}.s.on .step:nth-child(4) .bl{animation-delay:.60s}
-.step.hi .bl{opacity:1;background:var(--lime);height:4px}
-.s.bone .step.hi .bl{background:var(--green)}
-.step.hi .t{color:var(--lime)}.s.bone .step.hi .t{color:var(--green)}
+  font-size:clamp(14px,1.7vw,29px);line-height:1.02;letter-spacing:-.022em;transition:color .35s}
+.step .d{font-size:clamp(10.6px,.94vw,15px);line-height:1.4;opacity:.7;max-width:22ch;transition:opacity .35s}
+/* trilho + preenchimento */
+.step .bl{position:relative;height:3px;background:currentColor;opacity:.18;overflow:hidden;border-radius:2px}
+.step .bl>i{position:absolute;inset:0;background:var(--lime);transform:scaleX(0);transform-origin:left;
+  transition:transform .62s cubic-bezier(.2,.82,.24,1)}
+.s.bone .step .bl>i{background:var(--green)}
+.step.act .bl{opacity:1}
+.step.act .bl>i,.step.done .bl>i{transform:scaleX(1)}
+.step.done .bl{opacity:.5}
+/* ícone */
+.step .ic{width:clamp(28px,2.9vw,46px);height:clamp(28px,2.9vw,46px);opacity:.42;
+  transition:opacity .35s,color .35s,transform .45s cubic-bezier(.2,1.1,.3,1)}
+.step .ic svg{width:100%;height:100%;display:block}
+.step.act .ic{opacity:1;color:var(--lime);transform:scale(1.12)}
+.s.bone .step.act .ic{color:var(--green)}
+.step.done .ic{opacity:.7}
+.step.act .n{opacity:.9}.step.act .d{opacity:.95}
+.step.act .t{color:var(--lime)}.s.bone .step.act .t{color:var(--green)}
+.step.hi.act .t,.step.hi .t{color:var(--lime)}.s.bone .step.hi .t{color:var(--green)}
+.step.hi .bl>i{background:var(--lime)}.s.bone .step.hi .bl>i{background:var(--green)}
+/* ícones em loop */
+@keyframes ibob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+@keyframes ipulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes iring{0%{transform:scale(.55);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+@keyframes iflow{to{stroke-dashoffset:-32}}
+@keyframes ispin{to{transform:rotate(360deg)}}
+.i-bob{animation:ibob 2.4s ease-in-out infinite}
+.i-pulse{animation:ipulse 1.9s ease-in-out infinite;transform-origin:center}
+.i-ring{animation:iring 2.2s ease-out infinite;transform-origin:center}
+.i-flow{stroke-dasharray:6 5;animation:iflow 1.4s linear infinite}
+.i-spin{animation:ispin 7s linear infinite;transform-origin:center}
+.i-d1{animation-delay:.3s}.i-d2{animation-delay:.6s}.i-d3{animation-delay:.9s}
 
 /* ══ CTA ══ */
 .cta{display:inline-flex;align-items:center;gap:clamp(9px,1vw,16px);align-self:flex-start;
@@ -215,6 +243,76 @@ body.hot #dot{transform:scale(1.7)}
 .chip.on{opacity:1;background:var(--lime);color:var(--lab-ink);box-shadow:none}
 .chip.on:hover{color:var(--lab-ink)}
 
+/* ══ demo funcional do Routine Lab ══ */
+.qwrap{display:grid;grid-template-columns:1fr auto;gap:clamp(20px,3.6vw,72px);align-items:center}
+@media(max-width:900px){.qwrap{grid-template-columns:1fr}.tab{justify-self:start!important}}
+.tab{position:relative;background:#0D0B09;border-radius:clamp(16px,1.9vw,30px);padding:clamp(8px,.9vw,14px) clamp(8px,.9vw,14px) clamp(15px,1.5vw,24px);
+  box-shadow:0 34px 74px -32px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.08);
+  width:clamp(238px,30vw,352px);justify-self:end}
+.tab::after{content:"";position:absolute;left:50%;bottom:clamp(5px,.55vw,9px);transform:translateX(-50%);
+  width:24%;height:3px;border-radius:2px;background:rgba(255,255,255,.17)}
+.qscr{position:relative;border-radius:clamp(9px,1.1vw,17px);overflow:hidden;background:var(--bone);
+  aspect-ratio:3/4.15;color:var(--ink)}
+.qv{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;
+  transform:translateY(14px);transition:opacity .32s ease,transform .44s cubic-bezier(.16,.86,.26,1),visibility .32s}
+.qv.on{opacity:1;visibility:visible;transform:none}
+/* abertura */
+.qv.home{background:linear-gradient(178deg,#006C52,#00402F);color:var(--bone);align-items:center;
+  justify-content:center;text-align:center;padding:9%;gap:6%}
+.qv.home .lf{width:34%;color:var(--lime)}
+.qv.home .lf svg{width:100%;height:auto;display:block}
+.qv.home h4{font-family:var(--disp);font-weight:900;font-stretch:125%;font-size:clamp(16px,1.95vw,30px);
+  line-height:.96;letter-spacing:-.03em}
+.qv.home p{font-size:clamp(9.4px,.86vw,13px);opacity:.72}
+/* pergunta */
+.qhd{background:var(--green);color:var(--bone);padding:7% 8% 5.5%;display:flex;flex-direction:column;gap:.7em;flex:none}
+.qhd .st{font-family:var(--mono);font-size:clamp(8.4px,.72vw,11px);letter-spacing:.2em}
+.qbar{height:4px;border-radius:2px;background:rgba(244,242,236,.24);overflow:hidden}
+.qbar>i{display:block;height:100%;width:0;background:var(--lime);border-radius:2px;
+  transition:width .55s cubic-bezier(.2,.82,.24,1)}
+.qbody{flex:1;padding:7% 8% 5%;display:flex;flex-direction:column;gap:5%;min-height:0}
+.qt{font-family:var(--disp);font-weight:900;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(11.6px,1.3vw,20px);line-height:1.06;letter-spacing:-.02em}
+.qopts{display:flex;flex-direction:column;gap:3.6%;flex:1;justify-content:center}
+.qo{display:flex;align-items:center;gap:.65em;text-align:left;cursor:pointer;width:100%;
+  background:#EDEAE1;border:2px solid transparent;border-radius:999px;padding:.6em .85em;
+  font-family:var(--body);font-size:clamp(9.2px,.85vw,12.8px);font-weight:500;color:var(--ink-2);
+  transition:background .2s,border-color .2s,color .2s,transform .2s;line-height:1.18}
+.qo .rd{width:1.15em;height:1.15em;border-radius:50%;border:2px solid #C3BDB0;flex:none;position:relative;transition:.2s}
+.qo:hover{border-color:var(--mint);background:#E4F4EE;color:var(--ink);transform:translateX(2px)}
+.qo.sel{background:#DFF3EC;border-color:var(--mint);color:var(--green);font-weight:600}
+.qo.sel .rd{border-color:var(--mint);background:var(--mint)}
+.qo.sel .rd::after{content:"";position:absolute;left:30%;top:12%;width:28%;height:54%;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
+.qfoot{flex:none;padding:0 8% 7%;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.qback{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:clamp(8.2px,.7vw,10.6px);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);opacity:.65;transition:.2s}
+.qback:hover{opacity:1;color:var(--green)}
+/* resultado */
+.rhd{background:var(--green);color:var(--bone);padding:8% 8% 7%;position:relative;flex:none}
+.rhd .sw{position:absolute;left:-12%;right:-12%;bottom:-7px;height:26px;background:var(--clay);
+  border-radius:50%/100% 100% 0 0}
+.rhd .k{position:relative;z-index:1;font-family:var(--mono);font-size:clamp(8.2px,.7vw,10.6px);letter-spacing:.2em;opacity:.72}
+.rhd .t{position:relative;z-index:1;font-family:var(--disp);font-weight:900;font-stretch:125%;
+  font-size:clamp(14px,1.6vw,25px);letter-spacing:-.03em;line-height:1;margin-top:.35em}
+.rlist{flex:1;padding:6% 8% 4%;display:flex;flex-direction:column;gap:3.4%;justify-content:center;min-height:0}
+.rp{display:flex;align-items:center;gap:.65em;background:#DFF3EC;border-radius:.75em;padding:.58em .65em;
+  opacity:0;transform:translateY(10px);animation:rpin .5s cubic-bezier(.2,.9,.3,1) forwards}
+.rp:nth-child(1){animation-delay:.14s}.rp:nth-child(2){animation-delay:.24s}.rp:nth-child(3){animation-delay:.34s}
+@keyframes rpin{to{opacity:1;transform:none}}
+.rp .av{width:2.05em;height:2.05em;border-radius:.5em;display:grid;place-items:center;flex:none;
+  background:var(--green);color:var(--lime);font-family:var(--disp);font-weight:900;font-size:clamp(9.6px,.9vw,13.4px)}
+.rp:last-child .av{background:var(--clay);color:var(--bone)}
+.rp .tx{min-width:0}
+.rp .tx b{display:block;font-family:var(--disp);font-weight:800;font-stretch:112%;
+  font-size:clamp(9.8px,.92vw,14px);color:var(--ink);line-height:1.12}
+.rp .tx span{display:block;font-size:clamp(8.4px,.76vw,11.4px);color:var(--ink-2);line-height:1.24}
+.qcta{margin:0 8%;background:var(--lime);color:var(--lab-ink);border:none;border-radius:999px;cursor:pointer;
+  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;flex:none;
+  font-size:clamp(9px,.84vw,12.6px);padding:.9em 1em;transition:transform .2s,box-shadow .2s}
+.qcta:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(0,0,0,.5)}
+.qcta.big{width:calc(100% - 16%);margin:0 8%}
+
 /* ══ índice ══ */
 .menu{position:fixed;inset:0;background:var(--forest-d);z-index:300;display:none;
   padding:clamp(24px,4.6vw,72px) var(--pad);overflow:auto}
@@ -258,6 +356,30 @@ body.hot #dot{transform:scale(1.7)}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m13.5 6 6 6-6 6"/></symbol>
 <symbol id="al" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5"/><path d="m10.5 6-6 6 6 6"/></symbol>
+<symbol id="k-stop" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <g class="i-bob"><path d="M12 15V6.6a2.1 2.1 0 0 1 4.2 0V15"/><path d="M16.2 14.2V5.2a2.1 2.1 0 0 1 4.2 0V15"/>
+  <path d="M20.4 15V8.8a2.1 2.1 0 0 1 4.2 0v10.9c0 4.7-3.6 8.4-8.3 8.4-3.2 0-5.3-1.2-6.9-3.4l-4-5.4a2.2 2.2 0 0 1 3.5-2.6l3 3.4"/></g></symbol>
+<symbol id="k-tap" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="5" y="3" width="22" height="26" rx="3"/><path d="M9.5 9h13M9.5 14h13"/>
+  <circle cx="20" cy="21" r="3.4" class="i-ring"/><circle cx="20" cy="21" r="2" fill="currentColor" stroke="none"/></symbol>
+<symbol id="k-leaf" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M27 5c0 12.5-7.6 19.4-18 19.4"/><path d="M27 5C13.2 5 5 11.9 5 21.6c0 1.9.4 3.7 1.1 5.4C9.2 19.6 16.1 14.8 27 12.9"/>
+  <path class="i-flow" d="M5 29h22"/></symbol>
+<symbol id="k-cart" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 4h3.5l3.1 15a2.4 2.4 0 0 0 2.4 1.9h11.2a2.4 2.4 0 0 0 2.4-1.9L28 9H8"/>
+  <circle cx="13" cy="27" r="2" class="i-pulse"/><circle cx="24" cy="27" r="2" class="i-pulse i-d2"/></symbol>
+<symbol id="k-target" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+  <circle cx="16" cy="16" r="12.5"/><circle cx="16" cy="16" r="7" class="i-pulse"/>
+  <circle cx="16" cy="16" r="12.5" class="i-ring" opacity=".5"/><circle cx="16" cy="16" r="2.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="k-score" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 28V18M12 28V11M20 28V21M28 28V6" class="i-bob"/><path d="M2 28h28"/></symbol>
+<symbol id="k-gift" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <g class="i-bob"><rect x="3.5" y="11.5" width="25" height="17" rx="2.5"/><path d="M2 11.5h28v5H2zM16 11.5V29"/>
+  <path d="M16 11.5S13.4 4 9.6 4a3.6 3.6 0 0 0 0 7.5M16 11.5S18.6 4 22.4 4a3.6 3.6 0 0 1 0 7.5"/></g>
+  <circle cx="16" cy="20" r="10" class="i-ring" opacity=".45"/></symbol>
+<symbol id="k-grid" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3.5" y="3.5" width="11" height="11" rx="2"/><rect x="17.5" y="3.5" width="11" height="11" rx="2" class="i-pulse"/>
+  <rect x="3.5" y="17.5" width="11" height="11" rx="2" class="i-pulse i-d2"/><rect x="17.5" y="17.5" width="11" height="11" rx="2"/></symbol>
 </defs></svg>
 
 <main class="deck" id="deck">
@@ -278,7 +400,7 @@ body.hot #dot{transform:scale(1.7)}
         <p class="say fu">Duas experiências de loja que transformam <b>interesse em compra</b>.</p>
         <div class="ctas">
           <button class="cta" data-go="5">Ver a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="21">Ir ao investimento</button>
+          <button class="cta gh" data-go="20">Ir ao investimento</button>
         </div>
       </div>
       <div class="stack" style="gap:clamp(8px,1vw,16px)">
@@ -289,7 +411,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">23</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">22</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -311,7 +433,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -331,7 +453,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -345,7 +467,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -364,7 +486,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -385,7 +507,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -396,10 +518,11 @@ body.hot #dot{transform:scale(1.7)}
     <span class="tag">Formato 01 · lojas menores</span>
     <h2 class="mega"><span class="ln"><i>Routine</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
     <p class="say fu">Sua rotina tem um match Nutrify. <b>Descubra em 90 segundos.</b></p>
+    <p class="disc">Imagens meramente ilustrativas e não finais</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -423,7 +546,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -433,98 +556,71 @@ body.hot #dot{transform:scale(1.7)}
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <h2 class="mega sm"><span class="ln"><i>Quatro respostas.</i></span><span class="ln"><i>Uma <em>rota de produto.</em></i></span></h2>
-    <div class="g g4 keep">
-      <div class="step"><span class="bl"></span><span class="n">PASSO 01</span><span class="t">Parar</span><span class="d">Totem, adesivo de piso e uma frase.</span></div>
-      <div class="step"><span class="bl"></span><span class="n">PASSO 02</span><span class="t">Responder</span><span class="d">Quatro perguntas de rotina no tablet.</span></div>
-      <div class="step"><span class="bl"></span><span class="n">PASSO 03</span><span class="t">Descobrir</span><span class="d">O momento Nutrify da pessoa, com 2–3 produtos.</span></div>
-      <div class="step hi"><span class="bl"></span><span class="n">PASSO 04</span><span class="t">Comprar</span><span class="d">Levada até a exposição, ao lado.</span></div>
+    <div class="steps g4 keep" data-seq>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-stop"/></svg></span><span class="n">PASSO 01</span><span class="t">Parar</span><span class="d">Totem, adesivo de piso e uma frase.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">PASSO 02</span><span class="t">Responder</span><span class="d">Quatro perguntas de rotina no tablet.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-leaf"/></svg></span><span class="n">PASSO 03</span><span class="t">Descobrir</span><span class="d">O momento Nutrify da pessoa, com 2 a 3 produtos.</span></div>
+      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-cart"/></svg></span><span class="n">PASSO 04</span><span class="t">Comprar</span><span class="d">Levada até a exposição, ao lado.</span></div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- 10 ─────────── RENDER · TABLET ─────────── -->
+<!-- 10 ─────────── DEMO FUNCIONAL ─────────── -->
 <section class="s deep">
-  <div class="meta"><span class="l">Routine Lab · render</span><span class="r">Interface no tablet</span></div>
+  <div class="meta"><span class="l">Routine Lab · demonstração</span><span class="r">Funciona agora, nesta tela</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(10px,1.4vw,24px)">
-    <h2 class="mega xs"><span class="ln"><i>Três telas. <em>Nenhum cadastro.</em></i></span></h2>
-    <div class="frame" style="background:transparent">
-      <svg viewBox="0 0 1080 400" role="img" aria-label="Três telas do aplicativo Routine Lab">
-        <defs>
-          <linearGradient id="uG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#006C52"/><stop offset="1" stop-color="#00493700"/><stop offset="1" stop-color="#004937"/></linearGradient>
-          <filter id="sh" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#00150F" flood-opacity=".6"/></filter>
-        </defs>
-        <g stroke="#C0EE4E" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".9">
-          <path d="M352 200h48"/><path d="m392 194 8 6-8 6"/><path d="M712 200h48"/><path d="m752 194 8 6-8 6"/>
-        </g>
-        <!-- 1 -->
-        <g filter="url(#sh)">
-          <rect x="18" y="14" width="316" height="372" rx="22" fill="#100D0B"/>
-          <rect x="29" y="25" width="294" height="350" rx="14" fill="url(#uG)"/>
-          <g stroke="#C0EE4E" stroke-width="4" fill="none" stroke-linecap="round">
-            <path d="M222 92c0 42-25 64-52 64"/><path d="M222 92c-42 0-66 21-66 50 0 5.6 1 11 2.8 16 6-16 24-28 63.2-34"/></g>
-          <text x="176" y="216" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="31" letter-spacing="-1">SUA ROTINA</text>
-          <text x="176" y="250" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="31" letter-spacing="-1">TEM UM MATCH</text>
-          <rect x="66" y="288" width="220" height="54" rx="27" fill="#C0EE4E"/>
-          <text x="176" y="322" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="800" font-stretch="118%" font-size="18">COMEÇAR</text>
-        </g>
-        <text x="176" y="398" text-anchor="middle" fill="#7FA096" font-family="Space Mono,monospace" font-size="11" letter-spacing="3">ATRAÇÃO</text>
-        <!-- 2 -->
-        <g filter="url(#sh)">
-          <rect x="418" y="14" width="316" height="372" rx="22" fill="#100D0B"/>
-          <rect x="429" y="25" width="294" height="350" rx="14" fill="#F4F2EC"/>
-          <rect x="429" y="25" width="294" height="60" rx="14" fill="#006C52"/><rect x="429" y="66" width="294" height="19" fill="#006C52"/>
-          <text x="453" y="63" fill="#F4F2EC" font-family="Space Mono,monospace" font-size="12" letter-spacing="2.4">01 / 04</text>
-          <rect x="453" y="106" width="246" height="5" rx="2.5" fill="#DCD7CB"/><rect x="453" y="106" width="62" height="5" rx="2.5" fill="#05B590"/>
-          <text x="453" y="150" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="21" letter-spacing="-.5">QUAL CENÁRIO</text>
-          <text x="453" y="174" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="21" letter-spacing="-.5">COMBINA COM</text>
-          <text x="453" y="198" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="21" letter-spacing="-.5">A SUA ROTINA?</text>
-          <g><rect x="453" y="220" width="246" height="46" rx="12" fill="#DFF3EC" stroke="#05B590" stroke-width="2"/>
-             <circle cx="477" cy="243" r="9" fill="#05B590"/><path d="m473 243 3 3 5-5.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-             <text x="497" y="249" fill="#004937" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="14">Treino faz parte da semana</text></g>
-          <g><rect x="453" y="276" width="246" height="46" rx="12" fill="#EDEAE1"/>
-             <circle cx="477" cy="299" r="9" fill="none" stroke="#C3BDB0" stroke-width="2"/>
-             <text x="497" y="305" fill="#5E5349" font-family="Space Grotesk,sans-serif" font-size="14">Rotina puxada, sono curto</text></g>
-          <rect x="453" y="332" width="246" height="34" rx="17" fill="#1A1310"/>
-          <text x="576" y="355" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="13">CONTINUAR</text>
-        </g>
-        <text x="576" y="398" text-anchor="middle" fill="#7FA096" font-family="Space Mono,monospace" font-size="11" letter-spacing="3">DESCOBERTA</text>
-        <!-- 3 -->
-        <g filter="url(#sh)">
-          <rect x="778" y="14" width="316" height="372" rx="22" fill="#100D0B"/>
-          <rect x="789" y="25" width="294" height="350" rx="14" fill="#F4F2EC"/>
-          <rect x="789" y="25" width="294" height="96" rx="14" fill="#006C52"/><rect x="789" y="102" width="294" height="19" fill="#006C52"/>
-          <path d="M789 108c68 13 226 13 294 0v13H789Z" fill="#8C342B"/>
-          <text x="813" y="62" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="2.4">SEU MOMENTO NUTRIFY</text>
-          <text x="813" y="92" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="25" letter-spacing="-.8">ROTINA ATIVA</text>
-          <g>
-            <rect x="813" y="148" width="246" height="52" rx="12" fill="#DFF3EC"/>
-            <rect x="825" y="158" width="32" height="32" rx="8" fill="#006C52"/><text x="841" y="181" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-size="15">C</text>
-            <text x="869" y="174" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="15">100% Creatine</text>
-            <text x="869" y="190" fill="#5E5349" font-family="Space Grotesk,sans-serif" font-size="12">Creatinas · 300 g</text>
-            <rect x="813" y="210" width="246" height="52" rx="12" fill="#DFF3EC"/>
-            <rect x="825" y="220" width="32" height="32" rx="8" fill="#006C52"/><text x="841" y="243" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-size="15">P</text>
-            <text x="869" y="236" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="15">Vegan Protein</text>
-            <text x="869" y="252" fill="#5E5349" font-family="Space Grotesk,sans-serif" font-size="12">Proteínas · 100% vegano</text>
-            <rect x="813" y="272" width="246" height="52" rx="12" fill="#DFF3EC"/>
-            <rect x="825" y="282" width="32" height="32" rx="8" fill="#8C342B"/><text x="841" y="305" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-size="15">M</text>
-            <text x="869" y="298" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="15">Mag 5 Complex</text>
-            <text x="869" y="314" fill="#5E5349" font-family="Space Grotesk,sans-serif" font-size="12">Complementares · 90 cáps</text>
-          </g>
-          <rect x="813" y="334" width="246" height="30" rx="15" fill="#C0EE4E"/>
-          <text x="936" y="354" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="12">ESTÁ NA EXPOSIÇÃO AO LADO</text>
-        </g>
-        <text x="936" y="398" text-anchor="middle" fill="#7FA096" font-family="Space Mono,monospace" font-size="11" letter-spacing="3">CONVERSÃO</text>
-      </svg>
+  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
+    <div class="qwrap">
+      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
+        <h2 class="mega sm"><span class="ln"><i>Experimente</i></span><span class="ln"><i><em>agora.</em></i></span></h2>
+        <p class="say">É o mesmo fluxo que roda no tablet da loja. <b>Toque nas respostas</b> e chegue ao seu momento Nutrify.</p>
+        <div class="rows thin" style="max-width:32ch">
+          <div class="row"><span class="k">Perguntas</span><span class="v"><em>4</em></span></div>
+          <div class="row"><span class="k">Tempo médio</span><span class="v"><em>90 s</em></span></div>
+          <div class="row"><span class="k">Cadastro</span><span class="v"><em>0</em></span></div>
+        </div>
+        <p class="disc">Imagens meramente ilustrativas e não finais</p>
+      </div>
+      <div class="tab">
+        <div class="qscr" id="qz">
+          <div class="qv home on" data-v="home">
+            <span class="lf"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M56 8c0 27-16.4 42-40 42"/><path class="i-bob" d="M56 8C28 8 12 22 12 42c0 3.8.8 7.4 2.2 10.8C20 37 34 27 56 22"/></svg></span>
+            <h4>Sua rotina tem um match</h4>
+            <p>4 perguntas · 90 segundos · sem cadastro</p>
+            <button class="qcta big" id="qstart">Começar</button>
+          </div>
+          <div class="qv" data-v="q">
+            <div class="qhd">
+              <span class="st" id="qstep">01 / 04</span>
+              <span class="qbar"><i id="qfill"></i></span>
+            </div>
+            <div class="qbody">
+              <h5 class="qt" id="qtitle"></h5>
+              <div class="qopts" id="qopts"></div>
+            </div>
+            <div class="qfoot"><button class="qback" id="qprev">Voltar</button></div>
+          </div>
+          <div class="qv" data-v="r">
+            <div class="rhd"><span class="sw"></span>
+              <span class="k">Seu momento Nutrify</span>
+              <span class="t" id="rname"></span>
+            </div>
+            <div class="rlist" id="rlist"></div>
+            <button class="qcta" id="rcta">Está na exposição ao lado</button>
+            <div class="qfoot" style="padding-top:5%"><button class="qback" id="qagain">Refazer</button></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -542,6 +638,7 @@ body.hot #dot{transform:scale(1.7)}
         <div class="row"><span class="k">Transporte</span><span class="v">1 case</span></div>
       </div>
     </div>
+    <p class="disc">Imagens meramente ilustrativas e não finais</p>
     <div class="frame">
       <svg viewBox="0 0 1080 330" role="img" aria-label="Elevação e planta baixa do Routine Lab">
         <defs>
@@ -595,7 +692,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -605,10 +702,10 @@ body.hot #dot{transform:scale(1.7)}
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <div class="sp-a">
-      <div><span class="num mid"><span data-n="180">0</span></span><p class="tag" style="margin-top:8px">pessoas por dia, por loja</p></div>
+      <div><span class="num mid"><span data-n="160">0</span></span><p class="tag" style="margin-top:8px">pessoas por dia, por loja</p></div>
       <div class="rows thin">
         <div class="row"><span class="k">Equipe</span><span class="v">1 promotor</span></div>
-        <div class="row"><span class="k">Tempo por pessoa</span><span class="v">2–3 min</span></div>
+        <div class="row"><span class="k">Tempo por pessoa</span><span class="v">2 a 3 min</span></div>
         <div class="row"><span class="k">Energia</span><span class="v">1 ponto 127/220 V</span></div>
         <div class="row"><span class="k">Internet</span><span class="v">Roda offline</span></div>
       </div>
@@ -617,7 +714,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -627,11 +724,12 @@ body.hot #dot{transform:scale(1.7)}
   <div class="cap">
     <span class="tag">Formato 02 · lojas maiores</span>
     <h2 class="mega"><span class="ln"><i>Move</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
-    <p class="say fu">60 segundos. Um desafio. <b>Qual será o seu resultado?</b></p>
+    <p class="say fu">60 segundos. Um desafio. <b>Cumpriu, leva a amostra.</b></p>
+    <p class="disc">Imagens meramente ilustrativas e não finais</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -650,7 +748,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -660,123 +758,70 @@ body.hot #dot{transform:scale(1.7)}
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <h2 class="mega sm"><span class="ln"><i>Movimento vira</i></span><span class="ln"><i><em>atenção pública.</em></i></span></h2>
-    <div class="g g4 keep">
-      <div class="step"><span class="bl"></span><span class="n">PASSO 01</span><span class="t">Desafiar</span><span class="d">Alvos iluminados, 30–45 segundos de jogo.</span></div>
-      <div class="step"><span class="bl"></span><span class="n">PASSO 02</span><span class="t">Pontuar</span><span class="d">O score entra no ranking do dia da loja.</span></div>
-      <div class="step"><span class="bl"></span><span class="n">PASSO 03</span><span class="t">Escolher</span><span class="d">A pessoa escolhe o território que combina com ela.</span></div>
-      <div class="step hi"><span class="bl"></span><span class="n">PASSO 04</span><span class="t">Comprar</span><span class="d">Levada até a exposição, ao lado.</span></div>
+    <div class="steps g4 keep" data-seq>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-target"/></svg></span><span class="n">PASSO 01</span><span class="t">Desafiar</span><span class="d">Alvos iluminados, 30 a 45 segundos de jogo.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-gift"/></svg></span><span class="n">PASSO 02</span><span class="t">Ganhar</span><span class="d">Cumpriu o desafio, leva uma amostra Nutrify na hora.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">PASSO 03</span><span class="t">Escolher</span><span class="d">A pessoa escolhe o território que combina com ela.</span></div>
+      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-cart"/></svg></span><span class="n">PASSO 04</span><span class="t">Comprar</span><span class="d">Levada até a exposição, ao lado.</span></div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- 16 ─────────── PLACAR ─────────── -->
+<!-- 16 ─────────── SAMPLING ─────────── -->
 <section class="s deep">
-  <div class="meta"><span class="l">Move Lab · render</span><span class="r">Placar ao vivo</span></div>
+  <div class="meta"><span class="l">Move Lab · a recompensa</span><span class="r">Sampling na hora</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <div class="sp">
       <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega sm"><span class="ln"><i>O ranking</i></span><span class="ln"><i><em>convida.</em></i></span></h2>
-        <p class="say">Cada participação vira mídia para quem está passando. <b>A fila se forma sozinha.</b></p>
+        <h2 class="mega sm"><span class="ln"><i>Cumpriu o desafio,</i></span><span class="ln"><i><em>leva a amostra.</em></i></span></h2>
+        <p class="say">A amostra entra na mão da pessoa <b>enquanto a experiência ainda está acontecendo</b>. Da amostra até a gôndola são poucos passos.</p>
+        <p class="disc">Imagens meramente ilustrativas e não finais</p>
       </div>
       <div class="frame" style="background:transparent">
-        <svg viewBox="0 0 520 340" role="img" aria-label="Placar de ranking do Move Lab">
-          <rect x="0" y="0" width="520" height="340" rx="16" fill="#100D0B"/>
-          <rect x="0" y="0" width="520" height="62" rx="16" fill="#006C52"/><rect x="0" y="46" width="520" height="16" fill="#006C52"/>
-          <text x="28" y="30" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="10.5" letter-spacing="3">MOVE LAB · HOJE</text>
-          <text x="28" y="52" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="20" letter-spacing="-.4">TOP SCORES DA LOJA</text>
-          <circle cx="484" cy="32" r="6" fill="#C0EE4E"/>
-          <text x="468" y="36" text-anchor="end" fill="#C0EE4E" font-family="Space Mono,monospace" font-size="10" letter-spacing="2">AO VIVO</text>
-          <rect x="26" y="84" width="468" height="60" rx="12" fill="#C0EE4E"/>
-          <text x="50" y="124" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="23">1º</text>
-          <rect x="94" y="104" width="168" height="8" rx="4" fill="rgba(10,10,8,.24)"/><rect x="94" y="120" width="108" height="7" rx="3.5" fill="rgba(10,10,8,.14)"/>
-          <text x="468" y="128" text-anchor="end" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="34" letter-spacing="-1.4">892</text>
-          <rect x="26" y="154" width="468" height="60" rx="12" fill="rgba(244,242,236,.07)"/>
-          <text x="50" y="194" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="23">2º</text>
-          <rect x="94" y="174" width="146" height="8" rx="4" fill="rgba(244,242,236,.2)"/><rect x="94" y="190" width="92" height="7" rx="3.5" fill="rgba(244,242,236,.11)"/>
-          <text x="468" y="198" text-anchor="end" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="34" letter-spacing="-1.4">851</text>
-          <rect x="26" y="224" width="468" height="60" rx="12" fill="rgba(244,242,236,.07)"/>
-          <text x="50" y="264" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="23">3º</text>
-          <rect x="94" y="244" width="128" height="8" rx="4" fill="rgba(244,242,236,.2)"/><rect x="94" y="260" width="78" height="7" rx="3.5" fill="rgba(244,242,236,.11)"/>
-          <text x="468" y="268" text-anchor="end" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="34" letter-spacing="-1.4">834</text>
-          <rect x="332" y="298" width="162" height="30" rx="15" fill="#05B590"/>
-          <text x="413" y="318" text-anchor="middle" fill="#00291F" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="13">QUERO TENTAR</text>
+        <svg viewBox="0 0 520 340" role="img" aria-label="Voucher de amostra Nutrify entregue ao cumprir o desafio">
+          <defs>
+            <linearGradient id="vG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#006C52"/><stop offset="1" stop-color="#00402F"/></linearGradient>
+          </defs>
+          <g transform="translate(0,26)">
+            <rect x="14" y="14" width="492" height="184" rx="16" fill="#0A0A08" opacity=".35"/>
+            <rect x="8" y="8" width="492" height="184" rx="16" fill="#F4F2EC"/>
+            <path d="M8 24a16 16 0 0 1 16-16h158v184H24A16 16 0 0 1 8 176Z" fill="url(#vG)"/>
+            <path d="M182 8h20v184h-20Z" fill="#8C342B" opacity=".14"/>
+            <line x1="192" y1="20" x2="192" y2="180" stroke="#8C342B" stroke-width="2" stroke-dasharray="7 8" opacity=".55"/>
+            <circle cx="192" cy="8" r="9" fill="#00402F"/><circle cx="192" cy="192" r="9" fill="#00402F"/>
+            <circle cx="95" cy="78" r="30" fill="none" stroke="#C0EE4E" stroke-width="3"/>
+            <path d="m82 78 9.5 9.5L110 68" stroke="#C0EE4E" stroke-width="4.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="95" y="130" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="15" letter-spacing="-.2">DESAFIO</text>
+            <text x="95" y="150" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="15" letter-spacing="-.2">CUMPRIDO</text>
+            <text x="222" y="48" fill="#8C342B" font-family="Space Mono,monospace" font-size="11" letter-spacing="2.6">AMOSTRA LIBERADA</text>
+            <text x="222" y="88" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="30" letter-spacing="-1">NUTRIFY</text>
+            <text x="222" y="118" fill="#006C52" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="19" letter-spacing="-.4">100% CREATINE</text>
+            <text x="222" y="142" fill="#5E5349" font-family="Space Grotesk,sans-serif" font-size="13">Sachê de porção única</text>
+            <rect x="222" y="156" width="200" height="26" rx="13" fill="#C0EE4E"/>
+            <text x="322" y="174" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="11" letter-spacing=".6">RETIRE COM O PROMOTOR</text>
+          </g>
+          <g transform="translate(384,232)">
+            <path d="M0 14h96l-6 84a10 10 0 0 1-10 9H16a10 10 0 0 1-10-9Z" fill="#006C52"/>
+            <path d="M0 14h96l-6 84a10 10 0 0 1-10 9H16a10 10 0 0 1-10-9Z" fill="#00402F" opacity=".35"/>
+            <path d="M0 0h96v14H0Z" fill="#8C342B"/>
+            <path d="M0 4h96M0 9h96" stroke="#F4F2EC" stroke-width="1" opacity=".35"/>
+            <text x="48" y="56" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="12" letter-spacing=".4">NUTRIFY</text>
+            <text x="48" y="74" text-anchor="middle" fill="#C0EE4E" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1.4">AMOSTRA</text>
+          </g>
+          <text x="24" y="286" fill="#7FA096" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.2">SACHÊ DE PORÇÃO ÚNICA</text>
+          <text x="24" y="306" fill="#7FA096" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.2">MIX APROVADO PELA NUTRIFY</text>
         </svg>
       </div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 17 ─────────── RENDER ARENA ─────────── -->
-<section class="s">
-  <div class="meta"><span class="l">Move Lab · render</span><span class="r">A arena montada</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(10px,1.4vw,24px)">
-    <h2 class="mega xs"><span class="ln"><i>Desafio, placar e gôndola <em>no mesmo olhar.</em></i></span></h2>
-    <div class="frame">
-      <svg viewBox="0 0 1080 358" role="img" aria-label="Elevação da arena Move Lab">
-        <defs>
-          <linearGradient id="aB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A1815"/><stop offset="1" stop-color="#0C0B09"/></linearGradient>
-          <linearGradient id="aK" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#006C52"/><stop offset="1" stop-color="#003D2E"/></linearGradient>
-          <radialGradient id="aG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#05B590" stop-opacity=".5"/><stop offset="1" stop-color="#05B590" stop-opacity="0"/></radialGradient>
-        </defs>
-        <rect width="1080" height="358" fill="url(#aB)"/>
-        <rect y="266" width="1080" height="92" fill="#191713"/>
-        <ellipse cx="330" cy="308" rx="250" ry="46" fill="url(#aG)"/>
-        <g>
-          <rect x="52" y="34" width="298" height="232" fill="url(#aK)"/>
-          <path d="M52 230c100 20 198 20 298 0v36H52Z" fill="#8C342B"/>
-          <text x="201" y="96" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="34" letter-spacing="-.6">NUTRIFY</text>
-          <text x="201" y="150" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="27" letter-spacing="-.4">MOVE LAB</text>
-          <text x="201" y="184" text-anchor="middle" fill="#A9D8C9" font-family="Space Grotesk,sans-serif" font-size="15">60 segundos. Um desafio.</text>
-        </g>
-        <g transform="translate(414,214)">
-          <ellipse cx="0" cy="70" rx="62" ry="10" fill="#000" opacity=".5"/>
-          <circle r="48" fill="#1A1310" stroke="#3F4340" stroke-width="2.4"/>
-          <g fill="none" stroke="#05B590" stroke-width="3.2">
-            <circle cx="0" cy="-26" r="10.5"/><circle cx="23" cy="-13" r="10.5"/><circle cx="23" cy="13" r="10.5"/>
-            <circle cx="0" cy="26" r="10.5"/><circle cx="-23" cy="13" r="10.5"/><circle cx="-23" cy="-13" r="10.5"/></g>
-          <circle r="12" fill="#006C52"/>
-          <rect x="-8" y="40" width="16" height="44" rx="7" fill="#8C342B"/>
-        </g>
-        <g>
-          <rect x="498" y="82" width="146" height="184" rx="8" fill="#0E0C0A" stroke="#2E2B27"/>
-          <rect x="508" y="92" width="126" height="30" rx="4" fill="#006C52"/>
-          <text x="571" y="112" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="11" letter-spacing="1">TOP SCORES</text>
-          <rect x="508" y="130" width="126" height="34" rx="6" fill="#C0EE4E"/><text x="624" y="153" text-anchor="end" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="17">892</text><text x="518" y="153" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-size="13">1º</text>
-          <rect x="508" y="172" width="126" height="34" rx="6" fill="rgba(244,242,236,.07)"/><text x="624" y="195" text-anchor="end" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="17">851</text><text x="518" y="195" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-size="13">2º</text>
-          <rect x="508" y="214" width="126" height="34" rx="6" fill="rgba(244,242,236,.07)"/><text x="624" y="237" text-anchor="end" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="17">834</text><text x="518" y="237" fill="#05B590" font-family="Archivo,sans-serif" font-weight="900" font-size="13">3º</text>
-        </g>
-        <ellipse cx="360" cy="304" rx="196" ry="26" fill="none" stroke="#05B590" stroke-width="2.6" stroke-dasharray="11 9" opacity=".8"/>
-        <g stroke="#C0EE4E" stroke-width="3.8" fill="none" stroke-linecap="round"><path d="M676 306h96"/><path d="m764 298 10 8-10 8"/></g>
-        <text x="724" y="290" text-anchor="middle" fill="#C0EE4E" font-family="Space Mono,monospace" font-weight="700" font-size="11" letter-spacing="2">0–12 M</text>
-        <g>
-          <rect x="800" y="60" width="240" height="206" fill="#F4F2EC"/>
-          <rect x="800" y="60" width="240" height="32" fill="#006C52"/>
-          <text x="920" y="82" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="13" letter-spacing="1">EXPOSIÇÃO NUTRIFY</text>
-          <g fill="#CFC9BB"><rect x="812" y="106" width="216" height="7"/><rect x="812" y="162" width="216" height="7"/><rect x="812" y="218" width="216" height="7"/></g>
-          <g fill="#006C52"><rect x="820" y="118" width="26" height="44"/><rect x="852" y="118" width="26" height="44"/><rect x="884" y="118" width="26" height="44"/></g>
-          <g fill="#8C342B"><rect x="920" y="122" width="28" height="40"/><rect x="954" y="122" width="28" height="40"/><rect x="988" y="122" width="28" height="40"/></g>
-          <g fill="#05B590"><rect x="820" y="176" width="30" height="42"/><rect x="856" y="176" width="30" height="42"/><rect x="892" y="176" width="30" height="42"/><rect x="928" y="176" width="30" height="42"/></g>
-          <g fill="#CAE1D6"><rect x="964" y="176" width="26" height="42"/><rect x="996" y="176" width="26" height="42"/></g>
-          <g fill="#947053"><rect x="820" y="232" width="34" height="34"/><rect x="860" y="232" width="34" height="34"/><rect x="900" y="232" width="34" height="34"/></g>
-          <rect x="812" y="100" width="106" height="14" fill="#C0EE4E"/>
-          <text x="865" y="111" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="8.6" letter-spacing=".6">SUA SELEÇÃO AQUI</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -786,10 +831,10 @@ body.hot #dot{transform:scale(1.7)}
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <div class="sp-a">
-      <div><span class="num mid"><span data-n="220">0</span></span><p class="tag" style="margin-top:8px">pessoas por dia, por loja</p></div>
+      <div><span class="num mid"><span data-n="96">0</span></span><p class="tag" style="margin-top:8px">pessoas por dia, por loja</p></div>
       <div class="rows thin">
         <div class="row"><span class="k">Equipe</span><span class="v">1 promotor</span></div>
-        <div class="row"><span class="k">Tempo por pessoa</span><span class="v">1,5–2,5 min</span></div>
+        <div class="row"><span class="k">Tempo por pessoa</span><span class="v">5 a 6 min</span></div>
         <div class="row"><span class="k">Área</span><span class="v">1,5 × 1,5 m</span></div>
         <div class="row"><span class="k">Higienização</span><span class="v">Entre cada uso</span></div>
       </div>
@@ -798,26 +843,26 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 19 ─────────── A CONVERSÃO ─────────── -->
 <section class="s clay">
-  <div class="meta"><span class="l">A conversão</span><span class="r">Distância até a gôndola</span></div>
+  <div class="meta"><span class="l">A conversão</span><span class="r">Distância até a exposição</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <div class="sp-a">
-      <div><span class="num">0–12<u>m</u></span></div>
+      <div><span class="num">0–3<u>m</u></span><p class="tag" style="margin-top:.6em">de distância da ação</p></div>
       <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega xs"><span class="ln"><i>A venda</i></span><span class="ln"><i>não pode ficar</i></span><span class="ln"><i><em>três corredores depois.</em></i></span></h2>
-        <p class="say">A exposição Nutrify fica no campo de visão da experiência. <b>Quanto menor a distância, mais fácil atribuir e converter.</b></p>
+        <h2 class="mega xs"><span class="ln"><i>Da ação até</i></span><span class="ln"><i>o <em>ponto natural.</em></i></span></h2>
+        <p class="say">A exposição Nutrify fica a <b>até 3 metros</b> da experiência, no ponto natural da categoria. Quanto menor a distância, mais fácil atribuir e converter.</p>
       </div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -827,16 +872,16 @@ body.hot #dot{transform:scale(1.7)}
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <h2 class="mega sm"><span class="ln"><i>Você vai saber</i></span><span class="ln"><i><em>quanto vendeu.</em></i></span></h2>
-    <div class="g g3">
-      <div class="step hi"><span class="bl"></span><span class="n">SE HÁ POS</span><span class="t">Cupom</span><span class="d">Conversão direta, item a item, por loja e por hora.</span></div>
-      <div class="step"><span class="bl"></span><span class="n">SE NÃO HÁ</span><span class="t">QR + nota</span><span class="d">A pessoa registra a nota e o sistema confirma a compra.</span></div>
-      <div class="step"><span class="bl"></span><span class="n">SEMPRE</span><span class="t">Estoque</span><span class="d">Contagem de início, reposição e fim de operação.</span></div>
+    <div class="steps" style="grid-template-columns:repeat(3,1fr)" data-seq>
+      <div class="step hi"><span class="bl"><i></i></span><span class="n">SE HÁ POS</span><span class="t">Cupom</span><span class="d">Conversão direta, item a item, por loja e por hora.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="n">SE NÃO HÁ</span><span class="t">QR + nota</span><span class="d">A pessoa registra a nota e o sistema confirma a compra.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="n">SEMPRE</span><span class="t">Estoque</span><span class="d">Contagem de início, reposição e fim de operação.</span></div>
     </div>
     <p class="say w fu">Um funil único compara <b>formatos, redes, lojas e dias</b>, do nacional até a hora da compra.</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -858,7 +903,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -872,12 +917,12 @@ body.hot #dot{transform:scale(1.7)}
       <div class="fu stack" style="gap:clamp(6px,.8vw,12px)">
         <span class="tag">Formato 01 · Routine Lab</span>
         <div class="price"><span class="cur">R$</span><span class="val"><span data-n="600" data-f="1">0</span></span></div>
-        <span class="tag">por loja / por dia · até 180 pessoas</span>
+        <span class="tag">por loja / por dia · até 160 pessoas</span>
       </div>
       <div class="fu stack" style="gap:clamp(6px,.8vw,12px)">
         <span class="tag">Formato 02 · Move Lab</span>
         <div class="price"><span class="cur">R$</span><span class="val"><span data-n="1100" data-f="1">0</span></span></div>
-        <span class="tag">por loja / por dia · até 220 pessoas</span>
+        <span class="tag">por loja / por dia · até 96 pessoas</span>
       </div>
     </div>
     <div class="rows thin">
@@ -885,11 +930,11 @@ body.hot #dot{transform:scale(1.7)}
       <div class="row"><span class="k">Onda 1 · 8 lojas · 2,5 dias</span><span class="v">R$ 14.500</span></div>
       <div class="row"><span class="k">Rede · 30 lojas · 2,5 dias</span><span class="v"><em>R$ 52.500</em></span></div>
     </div>
-    <div class="ctas"><button class="cta" data-go="22">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="21">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -904,7 +949,7 @@ body.hot #dot{transform:scale(1.7)}
       <div class="stack" style="gap:clamp(10px,1.3vw,20px);align-items:flex-start">
         <div class="ctas">
           <button class="cta" data-go="0">Rever a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="21">Ver o investimento</button>
+          <button class="cta gh" data-go="20">Ver o investimento</button>
         </div>
         <div style="display:flex;align-items:center;gap:clamp(12px,1.5vw,24px);margin-top:clamp(6px,.8vw,14px)">
           <img src="assets/75lab-wordmark-black.png" alt="75 LAB" style="height:clamp(15px,1.5vw,24px)">
@@ -916,7 +961,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">23</b> / <span class="to">23</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -932,10 +977,10 @@ body.hot #dot{transform:scale(1.7)}
 
 <script>
 (function(){
-  var T=["Capa","75 LAB · ideia boa é a que acontece","O que a 75 LAB pluga","O desafio",
-    "A oportunidade","NUTRIFY LAB","Routine Lab","90 segundos","Como funciona","Render · o tablet",
-    "Render · a estrutura","Routine Lab por dia","Move Lab","60 segundos","Como funciona",
-    "Render · o placar","Render · a arena","Move Lab por dia","A conversão","Como medimos",
+  var T=["Capa","75 LAB · ideia boa é a que acontece","O que a 75 LAB pluga","A tese",
+    "A oportunidade","NUTRIFY LAB","Routine Lab","90 segundos","Como funciona","Demonstração ao vivo",
+    "A estrutura em loja","Routine Lab por dia","Move Lab","60 segundos","Como funciona",
+    "Sampling na hora","Move Lab por dia","A conversão","Como medimos",
     "Cronograma","Investimento","Próximo passo"];
   var HD=[0,1,5,6,12,18,21,22];
   var sl=[].slice.call(document.querySelectorAll('.s')), i=0, n=sl.length;
@@ -971,7 +1016,8 @@ body.hot #dot{transform:scale(1.7)}
     if(k<0||k>=n||k===i)return;
     sl[i].classList.remove('on'); i=k;
     sl[i].classList.add('on'); sl[i].scrollTop=0;
-    replay(sl[i]); nums(sl[i]);
+    replay(sl[i]); nums(sl[i]); runSeq(sl[i]);
+    if(window.__qzReset && !sl[i].querySelector('#qz')) window.__qzReset();
     document.querySelectorAll('.cu').forEach(function(e){e.textContent=String(i+1).padStart(2,'0')});
     pro.style.width=(i/(n-1)*100)+'%';
   }
@@ -983,6 +1029,7 @@ body.hot #dot{transform:scale(1.7)}
 
   document.addEventListener('keydown',function(e){
     if(menu.classList.contains('open')){ if(e.key==='Escape')menu.classList.remove('open'); return; }
+    if(e.target&&e.target.closest&&e.target.closest('#qz'))return;
     if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(i+1)}
     if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(i-1)}
     if(e.key==='Home'){e.preventDefault();go(0)}
@@ -1018,8 +1065,124 @@ body.hot #dot{transform:scale(1.7)}
     })();
   }
 
+  /* ══ passo a passo animado ══ */
+  var seqT=null;
+  function stopSeq(){ if(seqT){clearTimeout(seqT);seqT=null} }
+  function runSeq(s){
+    stopSeq();
+    var box=s.querySelector('[data-seq]'); if(!box)return;
+    var st=[].slice.call(box.querySelectorAll('.step'));
+    st.forEach(function(e){e.classList.remove('act','done')});
+    var k=0;
+    function tick(){
+      st.forEach(function(e,j){
+        e.classList.toggle('act', j===k);
+        e.classList.toggle('done', j<k);
+      });
+      var last=(k===st.length-1);
+      k=last?0:k+1;
+      seqT=setTimeout(tick, last?2600:1500);
+    }
+    seqT=setTimeout(tick,600);
+  }
+
+  /* ══ Routine Lab · demonstração funcional ══ */
+  (function(){
+    var QS=[
+      {t:'Qual cenário mais combina com a sua rotina?',o:[
+        {l:'Treino faz parte da semana',w:'ativa'},
+        {l:'Corrida entre casa e trabalho',w:'energia'},
+        {l:'Rotina puxada, sono curto',w:'bem'},
+        {l:'Quero cuidar mais de mim',w:'imune'}]},
+      {t:'Com que frequência você se movimenta?',o:[
+        {l:'Quase todos os dias',w:'ativa'},
+        {l:'Duas ou três vezes na semana',w:'ativa'},
+        {l:'De vez em quando',w:'energia'},
+        {l:'Raramente',w:'bem'}]},
+      {t:'Em qual momento você mais pensa em nutrição?',o:[
+        {l:'Antes ou depois do treino',w:'ativa'},
+        {l:'No meio da tarde',w:'energia'},
+        {l:'À noite, antes de dormir',w:'bem'},
+        {l:'O dia todo',w:'imune'}]},
+      {t:'O que você mais valoriza em um suplemento?',o:[
+        {l:'Resultado no treino',w:'ativa'},
+        {l:'Praticidade no dia a dia',w:'energia'},
+        {l:'Fórmula limpa',w:'imune'},
+        {l:'Origem natural',w:'bem'}]}
+    ];
+    var TR={
+      ativa:{n:'Rotina ativa',p:[
+        {a:'C',b:'100% Creatine',c:'Creatinas · 300 g · neutro'},
+        {a:'P',b:'Vegan Protein',c:'Proteínas · 100% vegano'},
+        {a:'M',b:'Mag 5 Complex',c:'Complementares · 90 cáps'}]},
+      energia:{n:'Energia diária',p:[
+        {a:'O',b:'Ômega 3',c:'Ômega · 120 cáps'},
+        {a:'B',b:'Barrinhas Nutrify',c:'Barrinhas · clean label'},
+        {a:'M',b:'Mag 5 Complex',c:'Complementares · 90 cáps'}]},
+      bem:{n:'Bem-estar e sono',p:[
+        {a:'M',b:'Magnésio bisglicinato',c:'Minerais · 60 cáps'},
+        {a:'O',b:'Ômega 3',c:'Ômega · 60 cáps'},
+        {a:'C',b:'Collagen Pro',c:'Colágenos · 450 g'}]},
+      imune:{n:'Imunidade e pele',p:[
+        {a:'V',b:'Vitaminas Nutrify',c:'Vitaminas · uso diário'},
+        {a:'C',b:'Collagen Pro + Body Balance',c:'Colágenos · 450 g'},
+        {a:'F',b:'Fibras Nutrify',c:'Fibras · saúde intestinal'}]}
+    };
+    var qz=document.getElementById('qz'); if(!qz)return;
+    var views={}, i=0, ans=[];
+    [].forEach.call(qz.querySelectorAll('.qv'),function(v){views[v.getAttribute('data-v')]=v});
+    function show(k){ for(var v in views) views[v].classList.toggle('on', v===k) }
+    function render(){
+      var q=QS[i];
+      document.getElementById('qstep').textContent=String(i+1).padStart(2,'0')+' / 0'+QS.length;
+      document.getElementById('qfill').style.width=((i)/QS.length*100)+'%';
+      document.getElementById('qtitle').textContent=q.t;
+      var box=document.getElementById('qopts'); box.innerHTML='';
+      q.o.forEach(function(o,j){
+        var b=document.createElement('button');
+        b.className='qo'+(ans[i]===j?' sel':'');
+        b.innerHTML='<span class="rd"></span><span></span>';
+        b.lastChild.textContent=o.l;
+        b.onclick=function(){
+          ans[i]=j;
+          [].forEach.call(box.children,function(c,ci){c.classList.toggle('sel',ci===j)});
+          document.getElementById('qfill').style.width=((i+1)/QS.length*100)+'%';
+          setTimeout(function(){ i<QS.length-1?(i++,render()):result() },340);
+        };
+        box.appendChild(b);
+      });
+      document.getElementById('qprev').textContent=i===0?'Recomeçar':'Voltar';
+      show('q');
+    }
+    function result(){
+      var sc={ativa:0,energia:0,bem:0,imune:0};
+      ans.forEach(function(a,k){ if(a!=null) sc[QS[k].o[a].w]++ });
+      var best='ativa'; for(var k in sc) if(sc[k]>sc[best]) best=k;
+      var t=TR[best];
+      document.getElementById('rname').textContent=t.n;
+      var L=document.getElementById('rlist'); L.innerHTML='';
+      t.p.forEach(function(pr){
+        var d=document.createElement('div'); d.className='rp';
+        d.innerHTML='<span class="av"></span><span class="tx"><b></b><span></span></span>';
+        d.querySelector('.av').textContent=pr.a;
+        d.querySelector('b').textContent=pr.b;
+        d.querySelector('.tx span').textContent=pr.c;
+        L.appendChild(d);
+      });
+      show('r');
+    }
+    function reset(){ i=0; ans=[]; show('home'); }
+    document.getElementById('qstart').onclick=function(){ i=0;ans=[];render() };
+    document.getElementById('qprev').onclick=function(){ i>0?(i--,render()):reset() };
+    document.getElementById('qagain').onclick=reset;
+    document.getElementById('rcta').onclick=reset;
+    qz.addEventListener('keydown',function(e){ e.stopPropagation() });
+    window.__qzReset=reset;
+  })();
+
   pro.style.width='0%';
   nums(sl[0]);
+  runSeq(sl[0]);
 })();
 </script>
 </body>
