@@ -34,7 +34,8 @@ sono, Imunidade e pele) com os SKUs Nutrify correspondentes. Dá para rodar na f
 
 ## Renders
 - 8 renders de ambientação em `assets/r-routine-*.jpg` e `assets/r-move-*.jpg`
-- Duas telas de galeria (13 e 19) reúnem as variações de cada formato
+- Duas telas de galeria (09 e 16) reúnem as variações de cada formato, logo depois
+  do número que abre cada um
 - Vetoriais no próprio HTML: elevação e planta do Routine Lab, voucher de sampling do Move Lab
 
 Todas as imagens trazem o aviso *imagens meramente ilustrativas, não são imagens finais*,
