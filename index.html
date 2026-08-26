@@ -92,6 +92,32 @@ body.hot #dot{transform:scale(1.7)}
 .say.w{max-width:40ch}
 .disc{font-family:var(--mono);font-size:clamp(8px,.68vw,10.4px);letter-spacing:.14em;text-transform:uppercase;opacity:.42;margin-top:.4em}
 .pic .disc{opacity:.6}
+/* aviso aplicado sobre a própria imagem */
+.shot{position:relative}
+.shot::after{content:"Imagens meramente ilustrativas, não são imagens finais";
+  position:absolute;left:0;right:0;bottom:0;padding:.75em .9em .6em;
+  font-family:var(--mono);font-size:clamp(6.6px,.6vw,9px);letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(244,242,236,.82);line-height:1.25;pointer-events:none;
+  background:linear-gradient(0deg,rgba(0,32,24,.86),rgba(0,32,24,.42) 62%,transparent)}
+
+/* galeria de renders */
+.gal{display:grid;gap:clamp(7px,.9vw,15px);flex:1;min-height:0}
+.gal.a{grid-template-columns:1.34fr 1fr;grid-template-rows:1fr 1fr}
+.gal.a .shot:first-child{grid-row:span 2}
+.gal .shot{height:100%;min-height:0}
+@media(max-width:900px){
+  .gal{flex:none}
+  .gal.a{grid-template-columns:1fr;grid-template-rows:none}
+  .gal.a .shot:first-child{grid-row:auto}
+  .gal .shot{height:auto;aspect-ratio:16/10}
+}
+.gal .shot{border-radius:2px}
+.gal .shot img{transition:transform .7s cubic-bezier(.16,.86,.26,1)}
+.gal .shot:hover img{transform:scale(1.045)}
+.gal .shot:not(:first-child)::after{display:none}
+.gal .cp{position:absolute;top:0;left:0;padding:.85em 1em;z-index:2;
+  font-family:var(--mono);font-size:clamp(7.4px,.66vw,10px);letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(244,242,236,.92);text-shadow:0 1px 10px rgba(0,32,24,.9)}
 .tag{font-family:var(--mono);font-size:clamp(9px,.78vw,12px);letter-spacing:.2em;text-transform:uppercase;opacity:.6}
 
 /* ══ números gigantes ══ */
@@ -400,18 +426,18 @@ body.hot #dot{transform:scale(1.7)}
         <p class="say fu">Duas experiências de loja que transformam <b>interesse em compra</b>.</p>
         <div class="ctas">
           <button class="cta" data-go="5">Ver a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="20">Ir ao investimento</button>
+          <button class="cta gh" data-go="22">Ir ao investimento</button>
         </div>
       </div>
       <div class="stack" style="gap:clamp(8px,1vw,16px)">
-        <div class="shot" style="aspect-ratio:16/10"><img src="assets/render-routine-lab.jpg" alt="Routine Lab em loja"></div>
+        <div class="shot" style="aspect-ratio:16/10"><img src="assets/r-routine-01-abordagem.jpg" alt="Routine Lab montado no corredor da loja"></div>
         <div class="shot" style="aspect-ratio:16/10"><img src="assets/render-move-lab.jpg" alt="Move Lab em loja"></div>
       </div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">22</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">24</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -433,7 +459,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -453,7 +479,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -467,7 +493,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -486,7 +512,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -502,27 +528,27 @@ body.hot #dot{transform:scale(1.7)}
     </div>
     <div class="ctas">
       <button class="cta" data-go="6">Conhecer o Routine Lab <span class="ar"><svg><use href="#ar"/></svg></span></button>
-      <button class="cta gh" data-go="12">Conhecer o Move Lab</button>
+      <button class="cta gh" data-go="13">Conhecer o Move Lab</button>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 07 ─────────── DIVISOR ROUTINE ─────────── -->
 <section class="s pic">
-  <div class="img"><img src="assets/render-routine-lab.jpg" alt="Routine Lab montado no corredor da loja"><div class="scrim"></div></div>
+  <div class="img"><img src="assets/r-routine-02-conversa.jpg" alt="Promotora conduzindo o Routine Lab com uma shopper"><div class="scrim"></div></div>
   <div class="cap">
     <span class="tag">Formato 01 · lojas menores</span>
     <h2 class="mega"><span class="ln"><i>Routine</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
     <p class="say fu">Sua rotina tem um match Nutrify. <b>Descubra em 90 segundos.</b></p>
-    <p class="disc">Imagens meramente ilustrativas e não finais</p>
+    <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -546,7 +572,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -565,7 +591,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -583,7 +609,7 @@ body.hot #dot{transform:scale(1.7)}
           <div class="row"><span class="k">Tempo médio</span><span class="v"><em>90 s</em></span></div>
           <div class="row"><span class="k">Cadastro</span><span class="v"><em>0</em></span></div>
         </div>
-        <p class="disc">Imagens meramente ilustrativas e não finais</p>
+        <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
       </div>
       <div class="tab">
         <div class="qscr" id="qz">
@@ -620,7 +646,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -638,7 +664,7 @@ body.hot #dot{transform:scale(1.7)}
         <div class="row"><span class="k">Transporte</span><span class="v">1 case</span></div>
       </div>
     </div>
-    <p class="disc">Imagens meramente ilustrativas e não finais</p>
+    <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
     <div class="frame">
       <svg viewBox="0 0 1080 330" role="img" aria-label="Elevação e planta baixa do Routine Lab">
         <defs>
@@ -692,7 +718,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -710,26 +736,47 @@ body.hot #dot{transform:scale(1.7)}
         <div class="row"><span class="k">Internet</span><span class="v">Roda offline</span></div>
       </div>
     </div>
-    <div class="ctas"><button class="cta" data-go="12">Ver o formato 02 <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="13">Ver o formato 02 <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ─────────── GALERIA ROUTINE ─────────── -->
+<section class="s bone">
+  <div class="meta"><span class="l">Routine Lab em loja</span><span class="r">Estudo de ambientação</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.6vw,26px)">
+    <div class="sp" style="align-items:end;flex:none">
+      <h2 class="mega xs"><span class="ln"><i>Ocupa o corredor</i></span><span class="ln"><i>sem <em>fechar a loja.</em></i></span></h2>
+      <p class="say">Totem cilíndrico, balcão de exposição e adesivo de piso. <b>Um promotor conduz tudo.</b></p>
+    </div>
+    <div class="gal a">
+      <div class="shot"><span class="cp">Abordagem no corredor</span><img src="assets/r-routine-01-abordagem.jpg" alt="Promotora abordando shopper ao lado do totem Routine Lab" loading="lazy"></div>
+      <div class="shot"><span class="cp">Quiz no tablet</span><img src="assets/r-routine-03-tablet.jpg" alt="Shopper respondendo o quiz no tablet" loading="lazy"></div>
+      <div class="shot"><span class="cp">Zona de conversão ao lado</span><img src="assets/r-routine-04-corredor.jpg" alt="Routine Lab montado junto à exposição de suplementos" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 13 ─────────── DIVISOR MOVE ─────────── -->
 <section class="s pic">
-  <div class="img"><img src="assets/render-move-lab.jpg" alt="Move Lab em operação na loja"><div class="scrim"></div></div>
+  <div class="img"><img src="assets/r-move-01-arena.jpg" alt="Move Lab em operação com público no corredor"><div class="scrim"></div></div>
   <div class="cap">
     <span class="tag">Formato 02 · lojas maiores</span>
     <h2 class="mega"><span class="ln"><i>Move</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
     <p class="say fu">60 segundos. Um desafio. <b>Cumpriu, leva a amostra.</b></p>
-    <p class="disc">Imagens meramente ilustrativas e não finais</p>
+    <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -748,7 +795,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -767,7 +814,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -780,7 +827,7 @@ body.hot #dot{transform:scale(1.7)}
       <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
         <h2 class="mega sm"><span class="ln"><i>Cumpriu o desafio,</i></span><span class="ln"><i><em>leva a amostra.</em></i></span></h2>
         <p class="say">A amostra entra na mão da pessoa <b>enquanto a experiência ainda está acontecendo</b>. Da amostra até a gôndola são poucos passos.</p>
-        <p class="disc">Imagens meramente ilustrativas e não finais</p>
+        <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
       </div>
       <div class="frame" style="background:transparent">
         <svg viewBox="0 0 520 340" role="img" aria-label="Voucher de amostra Nutrify entregue ao cumprir o desafio">
@@ -821,7 +868,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -839,11 +886,32 @@ body.hot #dot{transform:scale(1.7)}
         <div class="row"><span class="k">Higienização</span><span class="v">Entre cada uso</span></div>
       </div>
     </div>
-    <div class="ctas"><button class="cta" data-go="18">Como medimos o resultado <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="20">Como medimos o resultado <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ─────────── GALERIA MOVE ─────────── -->
+<section class="s deep">
+  <div class="meta"><span class="l">Move Lab em loja</span><span class="r">Estudo de ambientação</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.6vw,26px)">
+    <div class="sp" style="align-items:end;flex:none">
+      <h2 class="mega xs"><span class="ln"><i>Quem passa</i></span><span class="ln"><i><em>para para ver.</em></i></span></h2>
+      <p class="say">Totem, tapete de zona ativa e a prateleira de amostras a poucos passos. <b>A plateia se forma sozinha.</b></p>
+    </div>
+    <div class="gal a">
+      <div class="shot"><span class="cp">Desafio em andamento</span><img src="assets/r-move-04-desafio.jpg" alt="Shopper golpeando os alvos iluminados do Move Lab" loading="lazy"></div>
+      <div class="shot"><span class="cp">Prateleira de amostras</span><img src="assets/r-move-03-prateleira.jpg" alt="Prateleira de amostras Nutrify ao lado do Move Lab" loading="lazy"></div>
+      <div class="shot"><span class="cp">Equipe em campo</span><img src="assets/r-move-02-equipe.jpg" alt="Promotora conduzindo o equipamento do Move Lab" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -862,7 +930,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -881,7 +949,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -903,7 +971,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -930,11 +998,11 @@ body.hot #dot{transform:scale(1.7)}
       <div class="row"><span class="k">Onda 1 · 8 lojas · 2,5 dias</span><span class="v">R$ 14.500</span></div>
       <div class="row"><span class="k">Rede · 30 lojas · 2,5 dias</span><span class="v"><em>R$ 52.500</em></span></div>
     </div>
-    <div class="ctas"><button class="cta" data-go="21">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="23">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">23</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -949,7 +1017,7 @@ body.hot #dot{transform:scale(1.7)}
       <div class="stack" style="gap:clamp(10px,1.3vw,20px);align-items:flex-start">
         <div class="ctas">
           <button class="cta" data-go="0">Rever a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="20">Ver o investimento</button>
+          <button class="cta gh" data-go="22">Ver o investimento</button>
         </div>
         <div style="display:flex;align-items:center;gap:clamp(12px,1.5vw,24px);margin-top:clamp(6px,.8vw,14px)">
           <img src="assets/75lab-wordmark-black.png" alt="75 LAB" style="height:clamp(15px,1.5vw,24px)">
@@ -961,7 +1029,7 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">22</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">24</b> / <span class="to">24</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -979,8 +1047,8 @@ body.hot #dot{transform:scale(1.7)}
 (function(){
   var T=["Capa","75 LAB · ideia boa é a que acontece","O que a 75 LAB pluga","A tese",
     "A oportunidade","NUTRIFY LAB","Routine Lab","90 segundos","Como funciona","Demonstração ao vivo",
-    "A estrutura em loja","Routine Lab por dia","Move Lab","60 segundos","Como funciona",
-    "Sampling na hora","Move Lab por dia","A conversão","Como medimos",
+    "A estrutura em loja","Routine Lab por dia","Routine Lab em loja","Move Lab","60 segundos","Como funciona",
+    "Sampling na hora","Move Lab por dia","Move Lab em loja","A conversão","Como medimos",
     "Cronograma","Investimento","Próximo passo"];
   var HD=[0,1,5,6,12,18,21,22];
   var sl=[].slice.call(document.querySelectorAll('.s')), i=0, n=sl.length;
