@@ -1,10 +1,21 @@
 # NUTRIFY LAB · 75 LAB × Nutrify
 
-Apresentação comercial em HTML, **24 telas**, uma ideia por tela.
+Apresentação comercial em HTML, **29 telas**, uma ideia por tela.
+
+**Objetivo do projeto:** estruturar a 75 LAB como braço estratégico e operacional das
+ativações de Integral, Nutrify e Darkness, assumindo desde o desenvolvimento da experiência
+até a execução no PDV, logística, gestão da equipe e mensuração dos resultados, com foco em
+conversão e geração de venda.
 
 **Duas experiências de loja que transformam interesse em compra.**
-- **Routine Lab** · lojas menores · 90 segundos · até 160 pessoas/dia · **R$ 600,00 por loja/dia**
-- **Move Lab** · lojas maiores · 60 segundos · até 96 pessoas/dia · **R$ 1.100,00 por loja/dia**
+- **Routine Lab** · lojas menores · 90 segundos · até 160 pessoas/dia
+- **Move Lab** · lojas maiores · 60 segundos · até 96 pessoas/dia
+
+**Investimento:** R$ 1.008,84 por loja e por dia de ativação, com promotor, supervisor,
+coordenação, uniforme, insumos, refeição, deslocamento, app de campo, BI e a experiência
+inclusos. Projeto completo de 30 lojas e 96 diárias: R$ 96.848,89. Piloto de 2 lojas e
+6 diárias: R$ 6.053,06. Base de cálculo no orçamento de promotoria, com fee 12%, BV 20%
+e impostos 19% já aplicados.
 
 No Move Lab, quem cumpre o desafio leva uma **amostra Nutrify na hora**. Não há ranking.
 
