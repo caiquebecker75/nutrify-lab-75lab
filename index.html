@@ -339,6 +339,175 @@ body.hot #dot{transform:scale(1.7)}
 .qcta:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(0,0,0,.5)}
 .qcta.big{width:calc(100% - 16%);margin:0 8%}
 
+
+/* ══ fundo vivo, discreto ══ */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.3;will-change:transform}
+.bg i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:-14vw;background:var(--mint);animation:drift1 34s ease-in-out infinite}
+.bg i:nth-child(2){width:38vw;height:38vw;right:-10vw;bottom:-12vw;background:var(--clay);animation:drift2 42s ease-in-out infinite}
+.bg i:nth-child(3){width:28vw;height:28vw;left:52vw;top:28vh;background:var(--green);animation:drift3 38s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(6vw,8vh,0) scale(1.14)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.08)}50%{transform:translate3d(-7vw,-6vh,0) scale(1)}}
+@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(.94)}50%{transform:translate3d(-5vw,7vh,0) scale(1.1)}}
+.bg .grid{position:absolute;inset:0;opacity:.055;
+  background-image:linear-gradient(var(--bone) 1px,transparent 1px),linear-gradient(90deg,var(--bone) 1px,transparent 1px);
+  background-size:76px 76px;animation:gslide 52s linear infinite}
+@keyframes gslide{to{background-position:76px 76px}}
+.s{position:absolute;z-index:1}
+
+/* ══ cabeçalho fixo com as duas marcas ══ */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;justify-content:space-between;align-items:center;
+  padding:clamp(11px,1.5vw,22px) var(--pad);pointer-events:none}
+.hdr img{height:clamp(11px,1.15vw,17px);width:auto;display:block;opacity:.8;
+  mix-blend-mode:difference;filter:brightness(0) invert(1)}
+.hdr .nu{height:clamp(19px,2vw,30px);border-radius:5px;filter:none;opacity:.95;
+  mix-blend-mode:normal;box-shadow:0 0 0 1px rgba(244,242,236,.16)}
+.hdr .lf,.hdr .rt{display:flex;align-items:center;gap:clamp(8px,.9vw,15px)}
+.hdr .ch{font-family:var(--mono);font-size:clamp(7.6px,.66vw,10px);letter-spacing:.2em;text-transform:uppercase;
+  color:#fff;opacity:.55;mix-blend-mode:difference}
+@media(max-width:720px){.hdr .ch{display:none}}
+.s{padding-top:clamp(40px,4.6vw,70px)}
+.s.pic .cap{padding-top:clamp(46px,5vw,76px)}
+
+.kv{display:flex;flex-direction:column;gap:.3em}
+.kv .k{font-family:var(--mono);font-size:clamp(8px,.7vw,10.4px);letter-spacing:.16em;text-transform:uppercase;opacity:.5}
+.kv .v{font-family:var(--disp);font-weight:800;font-stretch:112%;font-size:clamp(11.6px,1.08vw,16px);letter-spacing:-.016em}
+
+/* ══ fonte do dado ══ */
+.src{font-family:var(--mono);font-size:clamp(7.4px,.64vw,9.6px);letter-spacing:.1em;opacity:.42;margin-top:.5em}
+.src b{font-weight:400;opacity:.75}
+
+/* ══ capítulo ══ */
+.chapmark{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);
+  font-size:clamp(8.4px,.72vw,11px);letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chapmark b{font-family:var(--disp);font-weight:900;font-stretch:118%;font-size:1.9em;letter-spacing:-.02em;opacity:1}
+.s.bone .chapmark b{color:var(--green)}.chapmark b{color:var(--lime)}
+
+/* ══ agenda / trilha ══ */
+.trail{display:grid;gap:clamp(8px,1vw,16px);flex:1;min-height:0;align-content:center}
+.tr{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(12px,1.6vw,26px);align-items:center;
+  padding:clamp(8px,1vw,16px) 0;border-top:1px solid currentColor;cursor:pointer;transition:.26s;position:relative}
+.tr:last-child{border-bottom:1px solid currentColor}
+.tr .no{font-family:var(--mono);font-size:clamp(8.6px,.74vw,11px);letter-spacing:.16em;opacity:.45;transition:.26s}
+.tr .ti{font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(13px,1.6vw,27px);letter-spacing:-.022em;line-height:1;transition:.26s}
+.tr .go{width:1.2em;height:1.2em;opacity:0;transform:translateX(-8px);transition:.26s}
+.tr .go svg{width:100%;height:100%;display:block}
+.tr:hover{padding-left:clamp(8px,1vw,18px)}
+.tr:hover .ti{color:var(--lime)}
+.s.bone .tr:hover .ti{color:var(--green)}
+.tr:hover .no{opacity:.9}
+.tr:hover .go{opacity:1;transform:none}
+
+/* ══ decupagem / escuta ══ */
+.deck2{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,1.3vw,22px);flex:1;min-height:0;align-content:center}
+.quo{border-left:2px solid currentColor;padding:clamp(7px,.9vw,15px) 0 clamp(7px,.9vw,15px) clamp(11px,1.3vw,22px);
+  display:flex;flex-direction:column;gap:.5em;transition:.24s}
+.quo:hover{border-color:var(--lime)}
+.s.bone .quo:hover{border-color:var(--green)}
+.quo .w{font-size:clamp(10.4px,.95vw,14.6px);line-height:1.34;opacity:.78;font-style:italic}
+.quo .r{font-family:var(--mono);font-size:clamp(7.8px,.68vw,10px);letter-spacing:.16em;text-transform:uppercase;opacity:.5}
+.quo b{opacity:1;font-style:normal;font-weight:600}
+
+/* ══ aparente x real ══ */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(12px,2vw,40px);align-items:center;flex:1;min-height:0}
+.vs .sd{display:flex;flex-direction:column;gap:clamp(7px,.9vw,15px)}
+.vs .lb{font-family:var(--mono);font-size:clamp(8px,.7vw,10.4px);letter-spacing:.2em;text-transform:uppercase;opacity:.5}
+.vs .bg2{font-family:var(--disp);font-weight:900;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(15px,2.1vw,36px);line-height:1;letter-spacing:-.028em}
+.vs .ds{font-size:clamp(10px,.9vw,13.6px);line-height:1.4;opacity:.7;max-width:26ch}
+.vs .ar2{width:clamp(26px,3vw,54px);color:var(--lime);opacity:.9}
+.s.bone .vs .ar2{color:var(--green)}
+.vs .ar2 svg{width:100%;height:auto;display:block}
+.vs .sd.on .bg2{color:var(--lime)}
+.s.bone .vs .sd.on .bg2{color:var(--green)}
+.vs .sd:not(.on){opacity:.52}
+@media(max-width:900px){.vs{grid-template-columns:1fr}.vs .ar2{transform:rotate(90deg);justify-self:center}}
+
+/* ══ mapa de posicionamento ══ */
+.mapbox{position:relative;flex:1;min-height:0;border:1px solid currentColor;border-color:rgba(244,242,236,.18)}
+.s.bone .mapbox{border-color:rgba(26,19,16,.18)}
+.mapbox .ax{position:absolute;background:currentColor;opacity:.16}
+.mapbox .ax.h{left:0;right:0;top:50%;height:1px}
+.mapbox .ax.v{top:0;bottom:0;left:50%;width:1px}
+.mapbox .axl{position:absolute;font-family:var(--mono);font-size:clamp(7.6px,.66vw,10px);letter-spacing:.16em;text-transform:uppercase;opacity:.5}
+.mapbox .dot{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.5em;
+  font-family:var(--body);font-size:clamp(9.4px,.84vw,12.6px);font-weight:500;white-space:nowrap;transition:.3s;cursor:default}
+.mapbox .dot::before{content:"";width:clamp(7px,.72vw,11px);height:clamp(7px,.72vw,11px);border-radius:50%;
+  background:currentColor;opacity:.45;flex:none;transition:.3s}
+.mapbox .dot:hover{transform:translate(-50%,-50%) scale(1.1)}
+.mapbox .dot:hover::before{opacity:1}
+.mapbox .dot.me{font-family:var(--disp);font-weight:900;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(11px,1.15vw,18px);letter-spacing:-.02em;color:var(--lime);opacity:1}
+.s.bone .mapbox .dot.me{color:var(--green)}
+.mapbox .dot.me::before{opacity:1;width:clamp(11px,1.1vw,17px);height:clamp(11px,1.1vw,17px);
+  box-shadow:0 0 0 0 currentColor;animation:mepulse 2.6s ease-out infinite}
+@keyframes mepulse{0%{box-shadow:0 0 0 0 rgba(192,238,78,.5)}100%{box-shadow:0 0 0 18px rgba(192,238,78,0)}}
+.mapbox .zone{position:absolute;border:1px dashed var(--lime);opacity:.5;border-radius:4px}
+.s.bone .mapbox .zone{border-color:var(--green)}
+.mapbox .zonel{position:absolute;font-family:var(--mono);font-size:clamp(7.4px,.64vw,9.6px);background:inherit;padding-right:.5em;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}
+.s.bone .mapbox .zonel{color:var(--green)}
+
+/* ══ jornada do shopper ══ */
+.jny{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(5px,.7vw,12px);flex:1;min-height:0;align-content:center}
+.jn{display:flex;flex-direction:column;gap:clamp(6px,.75vw,12px);position:relative;padding-top:clamp(16px,1.8vw,28px)}
+.jn .pt{position:absolute;top:0;left:0;width:clamp(10px,1vw,15px);height:clamp(10px,1vw,15px);border-radius:50%;
+  border:2px solid currentColor;opacity:.4;transition:.3s}
+.jn::after{content:"";position:absolute;top:clamp(5px,.5vw,7.5px);left:clamp(10px,1vw,15px);right:0;height:2px;
+  background:currentColor;opacity:.16}
+.jn:last-child::after{display:none}
+.jn .st{font-family:var(--mono);font-size:clamp(7.6px,.66vw,10px);letter-spacing:.16em;text-transform:uppercase;opacity:.48}
+.jn .hd2{font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(11px,1.22vw,20px);line-height:1.04;letter-spacing:-.02em}
+.jn .bd2{font-size:clamp(9px,.8vw,12px);line-height:1.38;opacity:.68}
+.jn .br{font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.1em;color:var(--clay-l);opacity:.9}
+.s.bone .jn .br{color:var(--clay)}
+.jn.key .pt{opacity:1;background:var(--lime);border-color:var(--lime)}
+.s.bone .jn.key .pt{background:var(--green);border-color:var(--green)}
+.jn.key .hd2{color:var(--lime)}.s.bone .jn.key .hd2{color:var(--green)}
+@media(max-width:900px){.jny{grid-template-columns:repeat(2,1fr)}.jn::after{display:none}}
+
+/* ══ ecossistema de benefícios ══ */
+.eco{position:relative;flex:1;min-height:0;display:grid;place-items:center}
+.eco svg{width:100%;height:100%;max-height:100%;display:block}
+
+/* ══ lightbox ══ */
+.lb{position:fixed;inset:0;z-index:500;background:#011b14;display:none;isolation:isolate;
+  align-items:center;justify-content:center;padding:clamp(28px,5vw,80px)}
+body.lbon .deck,body.lbon .bg,body.lbon .hdr,body.lbon .pro{visibility:hidden}
+.lb.open{display:flex;animation:lbin .26s ease}
+@keyframes lbin{from{opacity:0}to{opacity:1}}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;display:block;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9);animation:lbz .36s cubic-bezier(.16,.86,.26,1)}
+@keyframes lbz{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.lb .x,.lb .pz,.lb .nz{position:absolute;background:transparent;border:none;cursor:pointer;color:var(--bone);
+  display:grid;place-items:center;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(244,242,236,.45);transition:.2s}
+.lb .x{top:clamp(16px,2.2vw,34px);right:clamp(16px,2.2vw,34px);width:clamp(34px,3vw,46px);height:clamp(34px,3vw,46px);
+  font-family:var(--mono);font-size:clamp(13px,1.1vw,17px)}
+.lb .pz,.lb .nz{top:50%;transform:translateY(-50%);width:clamp(36px,3.2vw,50px);height:clamp(36px,3.2vw,50px)}
+.lb .pz{left:clamp(12px,1.6vw,26px)}.lb .nz{right:clamp(12px,1.6vw,26px)}
+.lb .pz svg,.lb .nz svg{width:40%;height:40%}
+.lb .x:hover,.lb .pz:hover,.lb .nz:hover{background:var(--lime);color:var(--lab-ink);box-shadow:none}
+.lb .cap2{position:absolute;bottom:clamp(14px,2vw,30px);left:0;right:0;text-align:center;
+  font-family:var(--mono);font-size:clamp(8.4px,.72vw,11px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,236,.6)}
+.zoomable{cursor:zoom-in}
+
+/* ══ institucional ══ */
+.inst{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(14px,2.2vw,44px);flex:1;min-height:0;align-content:center}
+@media(max-width:900px){.inst{grid-template-columns:1fr}}
+.inst .bl2{display:flex;flex-direction:column;gap:clamp(3px,.4vw,7px)}
+.inst .ttl{font-family:var(--mono);font-size:clamp(8px,.7vw,10.4px);letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-bottom:.4em}
+.inst .ln2{display:grid;grid-template-columns:clamp(68px,6.4vw,96px) 1fr;gap:clamp(7px,.9vw,14px);
+  font-size:clamp(9px,.8vw,12px);line-height:1.34;padding:.26em 0;border-bottom:1px solid currentColor;border-color:rgba(26,19,16,.1)}
+.s.deep .inst .ln2,.s:not(.bone) .inst .ln2{border-color:rgba(244,242,236,.12)}
+.inst .ln2 span:first-child{font-family:var(--mono);font-size:.84em;letter-spacing:.1em;text-transform:uppercase;opacity:.5}
+.inst .ln2 b{font-weight:600}
+.inst a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:.2s}
+.inst a:hover{color:var(--lime)}
+.s.bone .inst a:hover{color:var(--green)}
+.pend{font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.1em;opacity:.4;font-style:normal}
+
 /* ══ índice ══ */
 .menu{position:fixed;inset:0;background:var(--forest-d);z-index:300;display:none;
   padding:clamp(24px,4.6vw,72px) var(--pad);overflow:auto}
@@ -360,6 +529,7 @@ body.hot #dot{transform:scale(1.7)}
 
 /* ══ responsivo ══ */
 @media(max-width:900px){
+  .steps[style]{grid-template-columns:repeat(2,1fr)!important}
   .sp,.sp-a,.g2,.g3,.g4{grid-template-columns:1fr}
   .g4.keep{grid-template-columns:repeat(2,1fr)}
   .body{gap:20px}
@@ -377,8 +547,20 @@ body.hot #dot{transform:scale(1.7)}
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i><span class="grid"></span></div>
 <div class="pro" id="pro"></div>
+<header class="hdr">
+  <span class="lf"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"></span>
+  <span class="rt"><span class="ch" id="chap">Abertura</span><img class="nu" src="assets/nutrify-logo.png" alt="Nutrify Real Foods"></span>
+</header>
 <div id="cur"></div><div id="dot"></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="x" id="lbx" aria-label="Fechar">✕</button>
+  <button class="pz" id="lbp" aria-label="Imagem anterior"><svg><use href="#al"/></svg></button>
+  <img id="lbi" alt="">
+  <button class="nz" id="lbn" aria-label="Próxima imagem"><svg><use href="#ar"/></svg></button>
+  <span class="cap2" id="lbc"></span>
+</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m13.5 6 6 6-6 6"/></symbol>
 <symbol id="al" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5"/><path d="m10.5 6-6 6 6 6"/></symbol>
@@ -411,7 +593,28 @@ body.hot #dot{transform:scale(1.7)}
 <main class="deck" id="deck">
 
 <!-- 01 ─────────── CAPA ─────────── -->
-<section class="s deep on">
+<!-- ABERTURA EMOCIONAL -->
+<section class="s deep on" data-chap="Abertura">
+  <div class="meta"><span class="l">75 LAB × Nutrify</span><span class="r">Outubro 2026</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body">
+    <h2 class="mega sm"><span class="ln"><i>A categoria mais</i></span><span class="ln"><i>pesquisada do país</i></span><span class="ln"><i>é a menos</i></span><span class="ln"><i><em>explicada da loja.</em></i></span></h2>
+    <div class="sp" style="align-items:end;flex:none">
+      <p class="say">Suplemento se vende em busca, review e indicação. Na gôndola, o shopper fica sozinho com <b>uma parede de potes</b>.</p>
+      <div>
+        <span class="num mid"><span data-n="188">0</span><u>mi</u></span>
+        <p class="tag" style="margin-top:.4em">buscas pela categoria no Brasil em um ano</p>
+        <p class="src"><b>Fonte:</b> Social SA, Mercado de suplementos 2026</p>
+      </div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ABERTURA</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<section class="s deep" data-chap="Abertura">
   <div class="meta"><span class="l">75 LAB × Nutrify</span><span class="r">Proposta · Agosto 2026</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -425,11 +628,11 @@ body.hot #dot{transform:scale(1.7)}
         <h1 class="mega"><span class="ln"><i>Nutrify</i></span><span class="ln"><i><em>Lab</em></i></span></h1>
         <p class="say fu">Duas experiências de loja que transformam <b>interesse em compra</b>, com a equipe e a operação por nossa conta.</p>
         <div class="ctas">
-          <button class="cta" data-go="8">Ver a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="26">Ir ao investimento</button>
+          <button class="cta" data-go="15">Ver a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
+          <button class="cta gh" data-go="39">Ir ao investimento</button>
         </div>
       </div>
-      <div class="stack" style="gap:clamp(8px,1vw,16px)">
+      <div class="stack" style="gap:clamp(8px,1vw,16px);max-height:74vh;min-height:0">
         <div class="shot" style="aspect-ratio:16/10"><img src="assets/r-routine-01-abordagem.jpg" alt="Routine Lab montado no corredor da loja"></div>
         <div class="shot" style="aspect-ratio:16/10"><img src="assets/r-move-01-arena.jpg" alt="Move Lab em operação na loja"></div>
       </div>
@@ -437,12 +640,33 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">29</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">44</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 02 ─────────── 75 LAB ─────────── -->
-<section class="s bone">
+<!-- AGENDA -->
+<section class="s bone" data-chap="Agenda">
+  <div class="meta"><span class="l">O caminho de hoje</span><span class="r">Seis capítulos</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
+    <h2 class="mega xs"><span class="ln"><i>Do problema ao <em>primeiro piloto.</em></i></span></h2>
+    <div class="trail">
+      <div class="tr" data-go="4"><span class="no">01</span><span class="ti">O desafio que recebemos</span><span class="go"><svg><use href="#ar"/></svg></span></div>
+      <div class="tr" data-go="8"><span class="no">02</span><span class="ti">O contexto da categoria</span><span class="go"><svg><use href="#ar"/></svg></span></div>
+      <div class="tr" data-go="13"><span class="no">03</span><span class="ti">A tese</span><span class="go"><svg><use href="#ar"/></svg></span></div>
+      <div class="tr" data-go="15"><span class="no">04</span><span class="ti">A solução em dois formatos</span><span class="go"><svg><use href="#ar"/></svg></span></div>
+      <div class="tr" data-go="29"><span class="no">05</span><span class="ti">A operação e a medição</span><span class="go"><svg><use href="#ar"/></svg></span></div>
+      <div class="tr" data-go="39"><span class="no">06</span><span class="ti">O investimento</span><span class="go"><svg><use href="#ar"/></svg></span></div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">AGENDA</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<section class="s bone" data-chap="Abertura">
   <div class="meta"><span class="l">Quem assina</span><span class="r">75 LAB</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -459,28 +683,77 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 03 ─────────── O QUE PLUGAMOS ─────────── -->
 <!-- OBJETIVO DO PROJETO -->
-<section class="s bone">
+<!-- O QUE OUVIMOS -->
+<section class="s" data-chap="01 · O desafio">
+  <div class="meta"><span class="l">Leitura do briefing</span><span class="r">O que ouvimos na reunião</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
+    <span class="chapmark"><b>01</b> O desafio</span>
+    <h2 class="mega xs"><span class="ln"><i>Seis frases que <em>definem o projeto.</em></i></span></h2>
+    <div class="deck2">
+      <div class="quo"><span class="w">"Já temos agência de degustação e já tivemos de MPDV. <b>Falta o pedaço da ativação completa.</b>"</span><span class="r">A lacuna</span></div>
+      <div class="quo"><span class="w">"Eu te passo o direcionamento e o produto. <b>Vocês cuidam do resto.</b>"</span><span class="r">A carga operacional</span></div>
+      <div class="quo"><span class="w">"Não quero só interação. <b>Quero conversão.</b>"</span><span class="r">O resultado</span></div>
+      <div class="quo"><span class="w">"A experiência tem que fazer sentido com <b>o benefício daquele SKU.</b>"</span><span class="r">A conexão com o produto</span></div>
+      <div class="quo"><span class="w">"Preciso de relatório: pessoas, vendas, conversão. <b>No começo, até semanal.</b>"</span><span class="r">A medição</span></div>
+      <div class="quo"><span class="w">"<b>Piloto antes de escalar</b>, e clareza total de quanto custa."</span><span class="r">O risco</span></div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">01 · O DESAFIO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- APARENTE x REAL -->
+<section class="s bone" data-chap="01 · O desafio">
+  <div class="meta"><span class="l">Decupagem</span><span class="r">Problema aparente e problema real</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
+    <h2 class="mega xs"><span class="ln"><i>O pedido é ativação. <em>A dor é operação.</em></i></span></h2>
+    <div class="vs">
+      <div class="sd fu">
+        <span class="lb">O que parece</span>
+        <span class="bg2">Falta uma ideia de ativação</span>
+        <span class="ds">Buscar um formato novo, mais criativo, que chame atenção no corredor.</span>
+      </div>
+      <span class="ar2"><svg viewBox="0 0 24 24"><use href="#ar"/></svg></span>
+      <div class="sd on fu">
+        <span class="lb">O que é</span>
+        <span class="bg2">Falta quem assuma a execução inteira</span>
+        <span class="ds">Promotora, supervisor, logística, material, montagem, armazenagem e o dado no fim. Hoje isso volta para a mesa do time interno.</span>
+      </div>
+    </div>
+    <p class="say w fu">Ideia boa não falta. <b>Falta quem faça acontecer em 30 lojas, em três regiões, quatro vezes por ano.</b></p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">01 · O DESAFIO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<section class="s bone" data-chap="01 · O desafio">
   <div class="meta"><span class="l">Objetivo do projeto</span><span class="r">Ativações 2027</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
     <h2 class="mega sm"><span class="ln"><i>Um parceiro que</i></span><span class="ln"><i>assume a <em>ativação</em></i></span><span class="ln"><i><em>inteira.</em></i></span></h2>
     <p class="say w fu">Estruturar a 75 LAB como <b>braço estratégico e operacional</b> das ativações de Integral, Nutrify e Darkness, assumindo desde o desenvolvimento da experiência até a execução no PDV, logística, gestão da equipe e mensuração dos resultados, <b>com foco em conversão e geração de venda</b>.</p>
-    <div class="ctas"><button class="cta" data-go="4">Como isso funciona na prática <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="29">Como isso funciona na prática <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">OBJETIVO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- VOCÊ PASSA O DESAFIO -->
-<section class="s clay">
+<section class="s clay" data-chap="01 · O desafio">
   <div class="meta"><span class="l">O acordo</span><span class="r">O que muda para o seu time</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -489,66 +762,135 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">O ACORDO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- A DIVISÃO DO TRABALHO -->
-<section class="s">
-  <div class="meta"><span class="l">A divisão do trabalho</span><span class="r">Quem faz o quê</span></div>
+<!-- MERCADO -->
+<section class="s" data-chap="02 · O contexto">
+  <div class="meta"><span class="l">Contexto de mercado</span><span class="r">Categoria suplementos no Brasil</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(12px,1.8vw,30px)">
-    <h2 class="mega xs"><span class="ln"><i>Sua equipe decide. <em>A nossa executa.</em></i></span></h2>
-    <div class="g g2">
-      <div class="fu stack" style="gap:clamp(8px,1vw,16px)">
-        <span class="tag">Fica com a Nutrify</span>
-        <div class="rows thin" style="opacity:.62">
-          <div class="row"><span class="k">01</span><span class="v">Direcionamento</span></div>
-          <div class="row"><span class="k">02</span><span class="v">Produto e mix</span></div>
-          <div class="row"><span class="k">03</span><span class="v">Objetivo comercial</span></div>
-          <div class="row"><span class="k">04</span><span class="v">Estratégia de marca</span></div>
-        </div>
+    <span class="chapmark"><b>02</b> O contexto</span>
+    <h2 class="mega xs"><span class="ln"><i>A categoria cresce rápido. <em>O ponto de venda não acompanhou.</em></i></span></h2>
+    <div class="g g3">
+      <div class="fu stack" style="gap:.3em">
+        <span class="num mid" style="font-size:clamp(34px,5.4vw,84px)">R$ <span data-n="76">0</span><u>,6 bi</u></span>
+        <span class="tag">movimentados em 2025</span>
       </div>
-      <div class="fu stack" style="gap:clamp(8px,1vw,16px)">
-        <span class="tag" style="opacity:1;color:var(--lime)">Assume a 75 LAB</span>
-        <div class="rows thin">
-          <div class="row"><span class="k">01</span><span class="v"><em>Experiência e conteúdo</em></span></div>
-          <div class="row"><span class="k">02</span><span class="v"><em>Promotora e supervisor</em></span></div>
-          <div class="row"><span class="k">03</span><span class="v"><em>Materiais e montagem</em></span></div>
-          <div class="row"><span class="k">04</span><span class="v"><em>Logística e armazenagem</em></span></div>
-          <div class="row"><span class="k">05</span><span class="v"><em>Execução em loja</em></span></div>
-          <div class="row"><span class="k">06</span><span class="v"><em>Relatório e dados</em></span></div>
-        </div>
+      <div class="fu stack" style="gap:.3em">
+        <span class="num mid" style="font-size:clamp(34px,5.4vw,84px)">+<span data-n="15">0</span><u>%</u></span>
+        <span class="tag">de crescimento no ano</span>
+      </div>
+      <div class="fu stack" style="gap:.3em">
+        <span class="num mid" style="font-size:clamp(34px,5.4vw,84px)">R$ <span data-n="13">0</span><u>,8 bi</u></span>
+        <span class="tag">projetados para 2030</span>
       </div>
     </div>
+    <p class="src fu"><b>Fontes:</b> BRASNUTRI com dados Euromonitor · Future Market Insights (crescimento médio de 9,5% ao ano entre 2026 e 2036, Brasil é o 3º mercado que mais cresce no mundo)</p>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">A DIVISÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s">
-  <div class="meta"><span class="l">O que a 75 LAB pluga</span><span class="r">Hub de soluções</span></div>
+<!-- O CANAL -->
+<section class="s bone" data-chap="02 · O contexto">
+  <div class="meta"><span class="l">Onde o shopper compra</span><span class="r">Participação por canal</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Do evento</i></span><span class="ln"><i>à <em>gôndola.</em></i></span></h2>
-    <div class="chips">
-      <span class="chip">Eventos</span><span class="chip">Stand</span><span class="chip">Material de PDV</span>
-      <span class="chip">Promoção</span><span class="chip">Retail media</span><span class="chip">Incentivo</span>
-      <span class="chip on">Promotoria</span><span class="chip on">Experiências proprietárias</span>
+  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
+    <h2 class="mega xs"><span class="ln"><i>O supermercado tem <em>15% da categoria</em></i></span></h2>
+    <div class="sp-a">
+      <div><span class="num"><span data-n="15">0</span><u>%</u></span><p class="tag" style="margin-top:.4em">dos suplementos saem do varejo alimentar</p></div>
+      <div class="fun" style="width:100%">
+        <div class="frow"><span class="lb">Farmácia</span><span class="tr"><span class="fl grw" style="width:100%"></span></span><span class="vl">48%</span></div>
+        <div class="frow"><span class="lb">E-commerce</span><span class="tr"><span class="fl grw" style="width:50%;animation-delay:.45s"></span></span><span class="vl">24%</span></div>
+        <div class="frow"><span class="lb">Supermercado</span><span class="tr"><span class="fl grw" style="width:31%;animation-delay:.6s;background:linear-gradient(90deg,#8C342B,#C0EE4E)"></span></span><span class="vl">15%</span></div>
+        <div class="frow"><span class="lb">Especializada</span><span class="tr"><span class="fl grw" style="width:17%;animation-delay:.75s"></span></span><span class="vl">8%</span></div>
+      </div>
     </div>
-    <p class="say w fu">O cliente não compra uma entrega. <b>Acessa uma rede.</b> Neste projeto, entram juntas a experiência proprietária e a equipe que coloca ela de pé na loja.</p>
-    <div class="ctas"><button class="cta" data-go="6">O que trouxemos para a Nutrify <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <p class="say w fu">O produto já está na gôndola. <b>O que falta é alguém que traduza a categoria no único canal onde o shopper vai toda semana.</b></p>
+    <p class="src fu"><b>Fonte:</b> pesquisa IFEPEC, participação por canal de compra de suplementos</p>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- 04 ─────────── O DESAFIO ─────────── -->
-<section class="s clay">
+<!-- JORNADA DO SHOPPER -->
+<section class="s" data-chap="02 · O contexto">
+  <div class="meta"><span class="l">Jornada do shopper</span><span class="r">Onde a venda se perde</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
+    <h2 class="mega xs"><span class="ln"><i>A intenção chega na loja. <em>A decisão não.</em></i></span></h2>
+    <div class="jny">
+      <div class="jn"><span class="pt"></span><span class="st">Antes</span><span class="hd2">Quer cuidar da rotina</span><span class="bd2">Vê conteúdo, ouve indicação, decide que vai começar.</span></div>
+      <div class="jn"><span class="pt"></span><span class="st">Antes</span><span class="hd2">Pesquisa online</span><span class="bd2">Compara marca, preço e promessa fora da loja.</span></div>
+      <div class="jn key"><span class="pt"></span><span class="st">Na loja</span><span class="hd2">Chega no corredor</span><span class="bd2">Dezenas de potes, rótulos técnicos, nenhuma orientação.</span><span class="br">Barreira: não sei qual é o meu</span></div>
+      <div class="jn key"><span class="pt"></span><span class="st">Na loja</span><span class="hd2">Adia a decisão</span><span class="bd2">Leva o de sempre, ou simplesmente não leva.</span><span class="br">Barreira: na dúvida, não compra</span></div>
+      <div class="jn"><span class="pt"></span><span class="st">Depois</span><span class="hd2">Compra online</span><span class="bd2">Resolve em casa, fora do carrinho do supermercado.</span></div>
+    </div>
+    <p class="say w fu">O ponto de ruptura é curto e tem lugar certo: <b>os segundos em frente à gôndola.</b></p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- COMPETIDORES -->
+<section class="s bone" data-chap="02 · O contexto">
+  <div class="meta"><span class="l">Território competitivo</span><span class="r">Onde cada marca fala</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
+    <h2 class="mega xs"><span class="ln"><i>Todo mundo fala de produto. <em>Ninguém explica na loja.</em></i></span></h2>
+    <div class="mapbox">
+      <span class="ax h"></span><span class="ax v"></span>
+      <span class="axl" style="left:1.2%;top:48%">Performance</span>
+      <span class="axl" style="right:1.2%;top:48%;text-align:right">Rotina e saúde</span>
+      <span class="axl" style="left:50.8%;top:2%">Marca fala pelo atleta</span>
+      <span class="axl" style="left:50.8%;bottom:1.5%">Marca fala pelo rótulo</span>
+      <span class="dot" style="left:17%;top:19%">Max Titanium</span>
+      <span class="dot" style="left:27%;top:35%">Integralmédica</span>
+      <span class="dot" style="left:22%;top:72%">Growth</span>
+      <span class="dot" style="left:63%;top:70%">Dux</span>
+      <span class="dot" style="left:74%;top:30%">Essential Nutrition</span>
+      <span class="zone" style="left:56%;top:56%;width:38%;height:34%"></span>
+      <span class="zonel" style="left:56%;top:50.5%">Território livre: clean label explicado no varejo alimentar</span>
+      <span class="dot me" style="left:72%;top:78%">Nutrify</span>
+    </div>
+    <p class="src"><b>Leitura 75 LAB</b> a partir do posicionamento público das marcas · rankings de categoria 2026</p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- TENDÊNCIAS -->
+<section class="s" data-chap="02 · O contexto">
+  <div class="meta"><span class="l">Tendências aplicáveis</span><span class="r">O que já dá para usar agora</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
+    <h2 class="mega xs"><span class="ln"><i>Quatro movimentos que <em>cabem neste projeto.</em></i></span></h2>
+    <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">PHYGITAL</span><span class="t">Tela no corredor</span><span class="d">O conteúdo que existe online entra na loja, no tempo do shopper.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-leaf"/></svg></span><span class="n">PERSONALIZAÇÃO</span><span class="t">Recomendação por rotina</span><span class="d">Em vez de um folheto igual para todos, uma rota de produto por pessoa.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-gift"/></svg></span><span class="n">SAMPLING COM GATILHO</span><span class="t">Amostra que se conquista</span><span class="d">A amostra deixa de ser distribuída e passa a ser merecida.</span></div>
+      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">MENSURAÇÃO</span><span class="t">Ativação com dado</span><span class="d">Cada interação vira registro, e cada loja vira comparação.</span></div>
+    </div>
+    <p class="say w fu">Nenhuma delas depende de tecnologia que a Nutrify ainda não tenha. <b>Todas dependem de execução.</b></p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<section class="s clay" data-chap="03 · A tese">
   <div class="meta"><span class="l">A tese</span><span class="r">Categoria suplementos</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -557,12 +899,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 05 ─────────── O NÚMERO ─────────── -->
-<section class="s bone">
+<section class="s bone" data-chap="03 · A tese">
   <div class="meta"><span class="l">A oportunidade</span><span class="r">Comportamento de shopper</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -576,12 +918,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 06 ─────────── A SOLUÇÃO ─────────── -->
-<section class="s deep">
+<section class="s deep" data-chap="04 · A solução">
   <div class="meta"><span class="l">A proposta</span><span class="r">Uma plataforma · dois formatos</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -591,18 +933,18 @@ body.hot #dot{transform:scale(1.7)}
       <div class="row"><span class="k">Formato 02 · lojas maiores</span><span class="v">Move Lab <em>60 s</em></span></div>
     </div>
     <div class="ctas">
-      <button class="cta" data-go="9">Conhecer o Routine Lab <span class="ar"><svg><use href="#ar"/></svg></span></button>
-      <button class="cta gh" data-go="16">Conhecer o Move Lab</button>
+      <button class="cta" data-go="16">Conhecer o Routine Lab <span class="ar"><svg><use href="#ar"/></svg></span></button>
+      <button class="cta gh" data-go="23">Conhecer o Move Lab</button>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 07 ─────────── DIVISOR ROUTINE ─────────── -->
-<section class="s pic">
+<section class="s pic" data-chap="04 · Routine Lab">
   <div class="img"><img src="assets/r-routine-02-conversa.jpg" alt="Promotora conduzindo o Routine Lab com uma shopper"><div class="scrim"></div></div>
   <div class="cap">
     <span class="tag">Formato 01 · lojas menores</span>
@@ -612,12 +954,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 08 ─────────── 90 SEGUNDOS ─────────── -->
-<section class="s">
+<section class="s" data-chap="04 · Routine Lab">
   <div class="meta"><span class="l">Routine Lab</span><span class="r">Tempo de experiência</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -636,12 +978,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 09 ─────────── COMO FUNCIONA ─────────── -->
-<section class="s bone">
+<section class="s bone" data-chap="04 · Routine Lab">
   <div class="meta"><span class="l">Routine Lab em loja</span><span class="r">Estudo de ambientação</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(12px,1.6vw,26px)">
@@ -657,12 +999,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 13 ─────────── DIVISOR MOVE ─────────── -->
-<section class="s bone">
+<section class="s bone" data-chap="04 · Routine Lab">
   <div class="meta"><span class="l">Routine Lab</span><span class="r">Da abordagem à compra</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -676,12 +1018,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 10 ─────────── DEMO FUNCIONAL ─────────── -->
-<section class="s deep">
+<section class="s deep" data-chap="04 · Routine Lab">
   <div class="meta"><span class="l">Routine Lab · demonstração</span><span class="r">Funciona agora, nesta tela</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(12px,1.8vw,30px)">
@@ -731,12 +1073,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 11 ─────────── RENDER · ESTRUTURA ─────────── -->
-<section class="s bone">
+<section class="s bone" data-chap="04 · Routine Lab">
   <div class="meta"><span class="l">Routine Lab · render</span><span class="r">Estrutura em loja</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(10px,1.4vw,24px)">
@@ -803,12 +1145,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 12 ─────────── FICHA ROUTINE ─────────── -->
-<section class="s">
+<section class="s" data-chap="04 · Routine Lab">
   <div class="meta"><span class="l">Routine Lab</span><span class="r">O que roda por dia</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -821,16 +1163,16 @@ body.hot #dot{transform:scale(1.7)}
         <div class="row"><span class="k">Internet</span><span class="v">Roda offline</span></div>
       </div>
     </div>
-    <div class="ctas"><button class="cta" data-go="16">Ver o formato 02 <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="23">Ver o formato 02 <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">23</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- ─────────── GALERIA ROUTINE ─────────── -->
-<section class="s pic">
+<section class="s pic" data-chap="04 · Move Lab">
   <div class="img"><img src="assets/r-move-01-arena.jpg" alt="Move Lab em operação com público no corredor"><div class="scrim"></div></div>
   <div class="cap">
     <span class="tag">Formato 02 · lojas maiores</span>
@@ -840,12 +1182,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">24</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 14 ─────────── 60 SEGUNDOS ─────────── -->
-<section class="s deep">
+<section class="s deep" data-chap="04 · Move Lab">
   <div class="meta"><span class="l">Move Lab</span><span class="r">Tempo de experiência</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -859,12 +1201,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">25</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 15 ─────────── COMO FUNCIONA MOVE ─────────── -->
-<section class="s deep">
+<section class="s deep" data-chap="04 · Move Lab">
   <div class="meta"><span class="l">Move Lab em loja</span><span class="r">Estudo de ambientação</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(12px,1.6vw,26px)">
@@ -880,12 +1222,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">26</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 19 ─────────── A CONVERSÃO ─────────── -->
-<section class="s bone">
+<section class="s bone" data-chap="04 · Move Lab">
   <div class="meta"><span class="l">Move Lab</span><span class="r">Do desafio à compra</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -899,12 +1241,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">27</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 16 ─────────── SAMPLING ─────────── -->
-<section class="s deep">
+<section class="s deep" data-chap="04 · Move Lab">
   <div class="meta"><span class="l">Move Lab · a recompensa</span><span class="r">Sampling na hora</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -953,12 +1295,12 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">28</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 18 ─────────── FICHA MOVE ─────────── -->
-<section class="s">
+<section class="s" data-chap="04 · Move Lab">
   <div class="meta"><span class="l">Move Lab</span><span class="r">O que roda por dia</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -971,36 +1313,50 @@ body.hot #dot{transform:scale(1.7)}
         <div class="row"><span class="k">Higienização</span><span class="v">Entre cada uso</span></div>
       </div>
     </div>
-    <div class="ctas"><button class="cta" data-go="24">Como medimos o resultado <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="35">Como medimos o resultado <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">29</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- ─────────── GALERIA MOVE ─────────── -->
-<section class="s clay">
-  <div class="meta"><span class="l">A conversão</span><span class="r">Distância até a exposição</span></div>
+<section class="s" data-chap="05 · A operação">
+  <div class="meta"><span class="l">A divisão do trabalho</span><span class="r">Quem faz o quê</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num">0–3<u>m</u></span><p class="tag" style="margin-top:.6em">de distância da ação</p></div>
-      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega xs"><span class="ln"><i>Da ação até</i></span><span class="ln"><i>o <em>ponto natural.</em></i></span></h2>
-        <p class="say">A exposição Nutrify fica a <b>até 3 metros</b> da experiência, no ponto natural da categoria. Quanto menor a distância, mais fácil atribuir e converter.</p>
+  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
+    <h2 class="mega xs"><span class="ln"><i>Sua equipe decide. <em>A nossa executa.</em></i></span></h2>
+    <div class="g g2">
+      <div class="fu stack" style="gap:clamp(8px,1vw,16px)">
+        <span class="tag">Fica com a Nutrify</span>
+        <div class="rows thin" style="opacity:.62">
+          <div class="row"><span class="k">01</span><span class="v">Direcionamento</span></div>
+          <div class="row"><span class="k">02</span><span class="v">Produto e mix</span></div>
+          <div class="row"><span class="k">03</span><span class="v">Objetivo comercial</span></div>
+          <div class="row"><span class="k">04</span><span class="v">Estratégia de marca</span></div>
+        </div>
+      </div>
+      <div class="fu stack" style="gap:clamp(8px,1vw,16px)">
+        <span class="tag" style="opacity:1;color:var(--lime)">Assume a 75 LAB</span>
+        <div class="rows thin">
+          <div class="row"><span class="k">01</span><span class="v"><em>Experiência e conteúdo</em></span></div>
+          <div class="row"><span class="k">02</span><span class="v"><em>Promotora e supervisor</em></span></div>
+          <div class="row"><span class="k">03</span><span class="v"><em>Materiais e montagem</em></span></div>
+          <div class="row"><span class="k">04</span><span class="v"><em>Logística e armazenagem</em></span></div>
+          <div class="row"><span class="k">05</span><span class="v"><em>Execução em loja</em></span></div>
+          <div class="row"><span class="k">06</span><span class="v"><em>Relatório e dados</em></span></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">23</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">A DIVISÃO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">30</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- 20 ─────────── MENSURAÇÃO ─────────── -->
-<!-- A EQUIPE EM CAMPO -->
-<section class="s bone">
+<section class="s bone" data-chap="05 · A operação">
   <div class="meta"><span class="l">A operação</span><span class="r">Equipe e retaguarda</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -1015,11 +1371,121 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">24</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">31</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s bone">
+<section class="s clay" data-chap="05 · A operação">
+  <div class="meta"><span class="l">A conversão</span><span class="r">Distância até a exposição</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body">
+    <div class="sp-a">
+      <div><span class="num">0–3<u>m</u></span><p class="tag" style="margin-top:.6em">de distância da ação</p></div>
+      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
+        <h2 class="mega xs"><span class="ln"><i>Da ação até</i></span><span class="ln"><i>o <em>ponto natural.</em></i></span></h2>
+        <p class="say">A exposição Nutrify fica a <b>até 3 metros</b> da experiência, no ponto natural da categoria. Quanto menor a distância, mais fácil atribuir e converter.</p>
+      </div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">32</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 20 ─────────── MENSURAÇÃO ─────────── -->
+<!-- A EQUIPE EM CAMPO -->
+<!-- RASTREAMENTO · O PONTO CEGO -->
+<section class="s clay" data-chap="05 · A operação">
+  <div class="meta"><span class="l">Plano de rastreamento</span><span class="r">O ponto cego da ativação</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body">
+    <h2 class="mega sm"><span class="ln"><i>A ação acabou.</i></span><span class="ln"><i>E o material, <em>onde está?</em></i></span></h2>
+    <p class="say w fu">Totem, tablet, equipamento e display saem do centro de distribuição e somem do radar. <b>Sem prova de execução, a ativação vira relato.</b></p>
+    <div class="ctas"><button class="cta" data-go="33">Como resolvemos <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">33</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ONE SHOT -->
+<section class="s bone" data-chap="05 · A operação">
+  <div class="meta"><span class="l">Rastreamento · modalidade 01</span><span class="r">One Shot</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
+    <h2 class="mega xs"><span class="ln"><i>One Shot: <em>a prova de que montou.</em></i></span></h2>
+    <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">NA PEÇA</span><span class="t">QR impresso</span><span class="d">Cada totem e cada display sai de fábrica com um código próprio.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-stop"/></svg></span><span class="n">NA MONTAGEM</span><span class="t">Promotor registra</span><span class="d">Lê o QR, tira a foto da fachada e confirma a loja.</span></div>
+      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-target"/></svg></span><span class="n">NO SISTEMA</span><span class="t">GPS e horário</span><span class="d">Local, data e hora ficam carimbados no registro.</span></div>
+      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">NO PAINEL</span><span class="t">Evidência</span><span class="d">Positivação por loja, com foto, dentro do painel de instalações.</span></div>
+    </div>
+    <p class="say w fu">Leitura pontual: responde <b>montou, onde, quando e com que cara ficou</b>.</p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">34</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ON TIMING -->
+<section class="s deep" data-chap="05 · A operação">
+  <div class="meta"><span class="l">Rastreamento · modalidade 02</span><span class="r">On Timing</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
+    <h2 class="mega xs"><span class="ln"><i>On Timing: <em>o filme, não a foto.</em></i></span></h2>
+    <div class="frame" style="background:transparent">
+      <svg viewBox="0 0 1180 250" role="img" aria-label="Fluxo do rastreamento On Timing, da ativação até a decisão">
+        <defs><marker id="mk" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+          <path d="M0 0 L9 4.5 L0 9 z" fill="#C0EE4E"/></marker></defs>
+        <g fill="none" stroke="#05B590" stroke-width="2">
+          <circle cx="76" cy="72" r="34"/><circle cx="76" cy="72" r="34" class="i-ring" style="transform-origin:76px 72px"/>
+          <circle cx="260" cy="72" r="34"/><circle cx="444" cy="72" r="34"/><circle cx="628" cy="72" r="34"/>
+          <circle cx="812" cy="72" r="34"/><circle cx="996" cy="72" r="34"/>
+        </g>
+        <circle cx="1130" cy="72" r="36" fill="#C0EE4E"/>
+        <g stroke="#05B590" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="translate(76,72)"><rect x="-11" y="-13" width="22" height="26" rx="3"/><path d="M-5 -6h10M-5 0h10"/></g>
+          <g transform="translate(260,72)"><circle r="5"/><path class="i-ring" style="transform-origin:center" d="M-12 0a12 12 0 0 1 24 0a12 12 0 0 1-24 0"/><path d="M0 -13v-4M0 13v4"/></g>
+          <g transform="translate(444,72)"><path class="i-pulse" d="M-13 3a18 18 0 0 1 26 0"/><path class="i-pulse i-d1" d="M-7 8a10 10 0 0 1 14 0"/><circle cy="12" r="2" fill="#05B590"/></g>
+          <g transform="translate(628,72)"><rect x="-13" y="-10" width="26" height="20" rx="3"/><path d="M-7 14h14M0 10v4"/></g>
+          <g transform="translate(812,72)"><path d="M-12 10V2M-4 10V-6M4 10V-2M12 10V-10"/></g>
+          <g transform="translate(996,72)"><path class="i-pulse" d="M0-12a12 12 0 0 1 7 21v4h-14v-4a12 12 0 0 1 7-21Z"/><path d="M-4 17h8"/></g>
+        </g>
+        <g stroke="#0A0A08" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(1130,72)">
+          <path d="M-11 2 -3 10 11 -8"/></g>
+        <g stroke="#C0EE4E" stroke-width="2.4" fill="none" marker-end="url(#mk)" opacity=".9">
+          <path class="i-flow" d="M114 72h102"/><path class="i-flow i-d1" d="M298 72h102"/><path class="i-flow i-d2" d="M482 72h102"/>
+          <path class="i-flow i-d3" d="M666 72h102"/><path class="i-flow" d="M850 72h102"/><path class="i-flow i-d1" d="M1034 72h52"/>
+        </g>
+        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="13" fill="#F4F2EC" text-anchor="middle">
+          <text x="76" y="140">ATIVAÇÃO</text><text x="260" y="140">CAPTAÇÃO</text><text x="444" y="140">TRANSMISSÃO</text>
+          <text x="628" y="140">PLATAFORMA</text><text x="812" y="140">DADOS</text><text x="996" y="140">INSIGHTS</text>
+          <text x="1130" y="140" fill="#C0EE4E">DECISÃO</text>
+        </g>
+        <g font-family="Space Mono,monospace" font-size="10" fill="#7FA096" text-anchor="middle" letter-spacing="1">
+          <text x="76" y="162">totem e display</text><text x="260" y="162">tag e QR</text><text x="444" y="162">rede da loja</text>
+          <text x="628" y="162">Códice</text><text x="812" y="162">permanência</text><text x="996" y="162">alerta</text><text x="1130" y="162">ajuste na onda</text>
+        </g>
+      </svg>
+    </div>
+    <div class="g g4">
+      <div class="fu kv"><span class="k">Localização</span><span class="v">Contínua</span></div>
+      <div class="fu kv"><span class="k">Permanência</span><span class="v">Por loja</span></div>
+      <div class="fu kv"><span class="k">Movimentação</span><span class="v">Histórico</span></div>
+      <div class="fu kv"><span class="k">Alerta</span><span class="v">Peça parada</span></div>
+    </div>
+    <p class="src">Rastreamento operado na plataforma Códice, da própria 75 LAB. Escopo e tecnologia por peça são definidos no projeto técnico.</p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">35</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<section class="s bone" data-chap="05 · A operação">
   <div class="meta"><span class="l">Mensuração</span><span class="r">Três níveis</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -1033,12 +1499,75 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">25</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">36</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 21 ─────────── CRONOGRAMA ─────────── -->
-<section class="s">
+<!-- BENEFÍCIOS -->
+<section class="s" data-chap="05 · A operação">
+  <div class="meta"><span class="l">Benefícios</span><span class="r">Quem ganha o quê</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(8px,1.1vw,18px)">
+    <h2 class="mega xs"><span class="ln"><i>Uma ação. <em>Seis pessoas satisfeitas.</em></i></span></h2>
+    <div class="eco">
+      <svg viewBox="0 0 1240 330" role="img" aria-label="Ecossistema de benefícios do Nutrify Lab">
+        <defs><radialGradient id="ecg" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#C0EE4E" stop-opacity=".22"/><stop offset="1" stop-color="#C0EE4E" stop-opacity="0"/></radialGradient></defs>
+        <circle cx="620" cy="165" r="150" fill="url(#ecg)"/>
+        <g stroke="#05B590" stroke-width="1.6" fill="none" opacity=".5">
+          <path class="i-flow" d="M620 165 470 66"/><path class="i-flow i-d1" d="M620 165 470 165"/><path class="i-flow i-d2" d="M620 165 470 264"/>
+          <path class="i-flow i-d1" d="M620 165 770 66"/><path class="i-flow i-d2" d="M620 165 770 165"/><path class="i-flow i-d3" d="M620 165 770 264"/>
+        </g>
+        <circle cx="620" cy="165" r="56" fill="#C0EE4E"/>
+        <text x="620" y="160" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="16">NUTRIFY</text>
+        <text x="620" y="180" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="16">LAB</text>
+        <circle cx="620" cy="165" r="68" fill="none" stroke="#C0EE4E" stroke-width="1.6" class="i-ring" style="transform-origin:620px 165px"/>
+        <g fill="#05B590"><circle cx="470" cy="66" r="5"/><circle cx="470" cy="165" r="5"/><circle cx="470" cy="264" r="5"/>
+          <circle cx="770" cy="66" r="5"/><circle cx="770" cy="165" r="5"/><circle cx="770" cy="264" r="5"/></g>
+        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="118%" font-size="16" fill="#F4F2EC" text-anchor="end">
+          <text x="452" y="60">SHOPPER</text><text x="452" y="159">MARCA</text><text x="452" y="258">VAREJO</text></g>
+        <g font-family="Space Grotesk,sans-serif" font-size="13" fill="#A9C0B7" text-anchor="end">
+          <text x="452" y="82">Sai da loja sabendo o que levou</text>
+          <text x="452" y="181">Deixa de ser pote e vira recomendação</text>
+          <text x="452" y="280">Ganha fluxo e giro na categoria</text></g>
+        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="118%" font-size="16" fill="#F4F2EC" text-anchor="start">
+          <text x="788" y="60">OPERAÇÃO</text><text x="788" y="159">COMERCIAL</text><text x="788" y="258">DADOS</text></g>
+        <g font-family="Space Grotesk,sans-serif" font-size="13" fill="#A9C0B7" text-anchor="start">
+          <text x="788" y="82">Nada volta para o time interno</text>
+          <text x="788" y="181">Sell-out medido, não estimado</text>
+          <text x="788" y="280">Base de interesse por loja</text></g>
+      </svg>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">37</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- RESULTADOS ESPERADOS -->
+<section class="s bone" data-chap="05 · A operação">
+  <div class="meta"><span class="l">Resultados esperados</span><span class="r">Metas de piloto, não promessa</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
+    <h2 class="mega xs"><span class="ln"><i>O que vamos perseguir <em>na primeira onda.</em></i></span></h2>
+    <div class="rows">
+      <div class="row"><span class="k">Abordagem que vira participação</span><span class="v">25 a 35<em>%</em></span></div>
+      <div class="row"><span class="k">Quem começa e conclui a experiência</span><span class="v">acima de 85<em>%</em></span></div>
+      <div class="row"><span class="k">Conversão assistida na zona de compra</span><span class="v">12 a 20<em>%</em></span></div>
+      <div class="row"><span class="k">Disponibilidade do equipamento em campo</span><span class="v">acima de 98<em>%</em></span></div>
+      <div class="row"><span class="k">Positivação registrada com evidência</span><span class="v">100<em>%</em></span></div>
+    </div>
+    <p class="say w fu">Estes são <b>alvos de trabalho do piloto</b>, não resultado histórico. O número real sai das duas primeiras lojas e recalibra a onda seguinte.</p>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">38</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<section class="s" data-chap="06 · O fecho">
   <div class="meta"><span class="l">Cronograma</span><span class="r">Da aprovação à rede</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -1055,13 +1584,13 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">26</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">39</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- 22 ─────────── INVESTIMENTO ─────────── -->
 <!-- INVESTIMENTO -->
-<section class="s deep">
+<section class="s deep" data-chap="06 · O fecho">
   <div class="meta"><span class="l">Investimento</span><span class="r">Operação completa por loja e por dia</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(12px,1.8vw,30px)">
@@ -1086,16 +1615,16 @@ body.hot #dot{transform:scale(1.7)}
       <div class="row"><span class="k">Piloto · 2 lojas · 6 diárias</span><span class="v">R$ 6.053,06</span></div>
     </div>
     <p class="disc">Valores com fee, BV e impostos já aplicados. Não inclui mídia do varejista, descontos ou cashback, nem integrações de POS não dimensionadas.</p>
-    <div class="ctas"><button class="cta" data-go="28">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="ctas"><button class="cta" data-go="41">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">INVESTIMENTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">27</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">40</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
 <!-- TRÊS MARCAS -->
-<section class="s bone">
+<section class="s bone" data-chap="06 · O fecho">
   <div class="meta"><span class="l">Depois do piloto</span><span class="r">Ativações 360</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -1114,11 +1643,11 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ATIVAÇÕES 360</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">28</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">41</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s bone">
+<section class="s bone" data-chap="06 · O fecho">
   <div class="meta"><span class="l">Próximo passo</span><span class="r">75 LAB × Nutrify</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
@@ -1128,7 +1657,7 @@ body.hot #dot{transform:scale(1.7)}
       <div class="stack" style="gap:clamp(10px,1.3vw,20px);align-items:flex-start">
         <div class="ctas">
           <button class="cta" data-go="0">Rever a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="26">Ver o investimento</button>
+          <button class="cta gh" data-go="39">Ver o investimento</button>
         </div>
         <div style="display:flex;align-items:center;gap:clamp(12px,1.5vw,24px);margin-top:clamp(6px,.8vw,14px)">
           <img src="assets/75lab-wordmark-black.png" alt="75 LAB" style="height:clamp(15px,1.5vw,24px)">
@@ -1140,7 +1669,67 @@ body.hot #dot{transform:scale(1.7)}
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">29</b> / <span class="to">29</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">42</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ENCERRAMENTO ESTRATÉGICO -->
+<section class="s deep" data-chap="06 · O fecho">
+  <div class="meta"><span class="l">Encerramento</span><span class="r">De volta ao começo</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body">
+    <h2 class="mega sm"><span class="ln"><i>Continua sendo</i></span><span class="ln"><i>a categoria mais</i></span><span class="ln"><i>pesquisada do país.</i></span><span class="ln"><i><em>Agora com resposta na loja.</em></i></span></h2>
+    <div class="sp" style="align-items:end;flex:none">
+      <p class="say">Duas lojas, duas semanas e um número real. <b>Depois disso, a conversa deixa de ser sobre ideia e passa a ser sobre escala.</b></p>
+      <div class="ctas">
+        <button class="cta" data-go="39">Ver o investimento <span class="ar"><svg><use href="#ar"/></svg></span></button>
+        <button class="cta gh" data-go="0">Rever do começo</button>
+      </div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">06 · O FECHO</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">43</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- INSTITUCIONAL -->
+<section class="s bone" data-chap="06 · O fecho">
+  <div class="meta"><span class="l">75 LAB</span><span class="r">Aceleradora de trade marketing</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
+    <div style="display:flex;align-items:center;gap:clamp(14px,1.8vw,30px);flex-wrap:wrap" class="fu">
+      <img src="assets/75lab-wordmark-black.png" alt="75 LAB" style="height:clamp(20px,2.1vw,34px)">
+      <span style="width:1px;height:clamp(22px,2.4vw,40px);background:currentColor;opacity:.22"></span>
+      <img src="assets/nutrify-logo.png" alt="Nutrify Real Foods" style="height:clamp(40px,4.2vw,66px);border-radius:8px">
+    </div>
+    <div class="inst">
+      <div class="bl2">
+        <span class="ttl">A empresa</span>
+        <span class="ln2"><span>Razão social</span><b>75 LAB Estratégia, Design e Produção Ltda</b></span>
+        <span class="ln2"><span>CNPJ</span><b>55.470.982/0001-77</b></span>
+        <span class="ln2"><span>Endereço</span><b>Rua Jurubatuba, 1350, conjunto 913, Centro</b></span>
+        <span class="ln2"><span>Cidade</span><b>São Bernardo do Campo, SP, CEP 09725-000</b></span>
+        <span class="ln2"><span>Telefone</span><b>(11) 8864-8434</b></span>
+        <span class="ln2"><span>E-mail</span><b><a href="mailto:contato@75lab.com.br">contato@75lab.com.br</a></b></span>
+        <span class="ln2"><span>Site</span><b><a href="https://75lab.com.br" target="_blank" rel="noopener">75lab.com.br</a></b></span>
+        <span class="ln2"><span>Instagram</span><b><a href="https://instagram.com/setecincolab" target="_blank" rel="noopener">@setecincolab</a></b></span>
+      </div>
+      <div class="bl2">
+        <span class="ttl">Apresentação</span>
+        <span class="ln2"><span>Apresentador</span><b>Caique Becker</b></span>
+        <span class="ln2"><span>Cargo</span><b>Cofundador e Head de Trade</b></span>
+        <span class="ln2"><span>E-mail</span><b><a href="mailto:caique.becker@75lab.com.br">caique.becker@75lab.com.br</a></b></span>
+        <span class="ln2"><span>Cliente</span><b>Nutrify Real Foods · Grupo Integral</b></span>
+        <span class="ln2"><span>Projeto</span><b>Nutrify Lab, ativações 2027</b></span>
+        <span class="ln2"><span>Data</span><b>Outubro de 2026</b></span>
+        <p class="say" style="margin-top:clamp(10px,1.4vw,22px);font-size:clamp(12px,1.25vw,19px)"><b>Ideia boa é a que acontece.</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">75 LAB</span></div>
+    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">44</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -1156,12 +1745,19 @@ body.hot #dot{transform:scale(1.7)}
 
 <script>
 (function(){
-  var T=["Capa",
-    "75 LAB · ideia boa é a que acontece",
+  var T=["Abertura",
+    "Capa do projeto",
+    "Agenda",
+    "Quem é a 75 LAB",
+    "O que ouvimos",
+    "Problema aparente e real",
     "Objetivo do projeto",
     "Você passa o desafio",
-    "A divisão do trabalho",
-    "O que a 75 LAB pluga",
+    "Mercado da categoria",
+    "Onde o shopper compra",
+    "Jornada do shopper",
+    "Território competitivo",
+    "Tendências aplicáveis",
     "A tese",
     "A oportunidade",
     "NUTRIFY LAB",
@@ -1178,14 +1774,22 @@ body.hot #dot{transform:scale(1.7)}
     "Como funciona",
     "Sampling na hora",
     "Move Lab por dia",
-    "A conversão",
+    "A divisão do trabalho",
     "A equipe em campo",
+    "A conversão",
+    "O ponto cego",
+    "Rastreamento One Shot",
+    "Rastreamento On Timing",
     "Como medimos",
+    "Benefícios",
+    "Resultados esperados",
     "Cronograma",
     "Investimento",
     "Integral, Nutrify e Darkness",
-    "Próximo passo"];
-  var HD=[0,1,2,3,8,9,16,22,26,27,28];
+    "Próximo passo",
+    "Encerramento",
+    "75 LAB · institucional"];
+  var HD=[0,2,4,8,13,15,16,23,29,32,38,42,43];
   var sl=[].slice.call(document.querySelectorAll('.s')), i=0, n=sl.length;
   var menu=document.getElementById('menu'), ml=document.getElementById('mlist'), pro=document.getElementById('pro');
 
@@ -1220,6 +1824,8 @@ body.hot #dot{transform:scale(1.7)}
     sl[i].classList.remove('on'); i=k;
     sl[i].classList.add('on'); sl[i].scrollTop=0;
     replay(sl[i]); nums(sl[i]); runSeq(sl[i]);
+    var cp=document.getElementById('chap');
+    if(cp) cp.textContent = sl[i].getAttribute('data-chap') || '';
     if(window.__qzReset && !sl[i].querySelector('#qz')) window.__qzReset();
     document.querySelectorAll('.cu').forEach(function(e){e.textContent=String(i+1).padStart(2,'0')});
     pro.style.width=(i/(n-1)*100)+'%';
@@ -1232,12 +1838,17 @@ body.hot #dot{transform:scale(1.7)}
 
   document.addEventListener('keydown',function(e){
     if(menu.classList.contains('open')){ if(e.key==='Escape')menu.classList.remove('open'); return; }
+    if(window.__lbOpen&&window.__lbOpen())return;
     if(e.target&&e.target.closest&&e.target.closest('#qz'))return;
     if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(i+1)}
     if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(i-1)}
     if(e.key==='Home'){e.preventDefault();go(0)}
     if(e.key==='End'){e.preventDefault();go(n-1)}
     if(e.key==='m'||e.key==='M')menu.classList.add('open');
+    if(e.key==='ArrowDown'){e.preventDefault();go(i+1)}
+    if(e.key==='ArrowUp'){e.preventDefault();go(i-1)}
+    if(e.key==='n'||e.key==='N'){e.preventDefault();jumpChap(1)}
+    if(e.key==='p'||e.key==='P'){e.preventDefault();jumpChap(-1)}
   });
   var x0=null,y0=null;
   document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
@@ -1245,6 +1856,22 @@ body.hot #dot{transform:scale(1.7)}
     if(x0===null)return;
     var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
     if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)){dx<0?go(i+1):go(i-1)} x0=null;y0=null;
+  },{passive:true});
+
+  /* pular capítulo */
+  function jumpChap(d){
+    var c=sl[i].getAttribute('data-chap'), k=i;
+    while(k>=0&&k<n){ k+=d; if(k<0||k>=n)break; if(sl[k].getAttribute('data-chap')!==c){go(k);return} }
+    go(d>0?n-1:0);
+  }
+  /* roda do mouse avança a tela */
+  var wlock=0;
+  document.addEventListener('wheel',function(e){
+    if(menu.classList.contains('open')||(window.__lbOpen&&window.__lbOpen()))return;
+    if(e.target&&e.target.closest&&e.target.closest('#qz'))return;
+    var now=Date.now(); if(now-wlock<760)return;
+    if(Math.abs(e.deltaY)<18)return;
+    wlock=now; go(e.deltaY>0?i+1:i-1);
   },{passive:true});
 
   /* cursor */
@@ -1383,9 +2010,60 @@ body.hot #dot{transform:scale(1.7)}
     window.__qzReset=reset;
   })();
 
+  /* ══ lightbox das imagens ══ */
+  (function(){
+    var lb=document.getElementById('lb'), im=document.getElementById('lbi'),
+        cp=document.getElementById('lbc'), gal=[], cur=0;
+    if(!lb) return;
+    function collect(s){
+      return [].slice.call(s.querySelectorAll('.shot img, .pic .img img'));
+    }
+    function label(img){
+      var sh=img.closest('.shot'), c=sh&&sh.querySelector('.cp');
+      return (c?c.textContent:img.alt)||'';
+    }
+    function show(k){
+      if(!gal.length)return;
+      cur=(k+gal.length)%gal.length;
+      im.src=gal[cur].currentSrc||gal[cur].src;
+      im.alt=gal[cur].alt||'';
+      cp.textContent=label(gal[cur])+(gal.length>1?'  ·  '+(cur+1)+' de '+gal.length:'');
+    }
+    function open(img){
+      gal=collect(sl[i]); if(!gal.length) gal=[img];
+      show(gal.indexOf(img));
+      lb.classList.add('open'); document.body.classList.add('lbon');
+      document.getElementById('lbx').focus();
+    }
+    function close(){ lb.classList.remove('open'); document.body.classList.remove('lbon'); }
+    document.addEventListener('click',function(e){
+      var img=e.target.closest&&e.target.closest('.shot img, .pic .img img');
+      if(img){ e.stopPropagation(); open(img); }
+    });
+    [].forEach.call(document.querySelectorAll('.shot img, .pic .img img'),function(g){
+      g.classList.add('zoomable'); g.setAttribute('tabindex','0');
+      g.setAttribute('role','button');
+      g.setAttribute('aria-label','Ampliar imagem: '+(g.alt||'render'));
+      g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();open(g)} });
+    });
+    document.getElementById('lbx').onclick=close;
+    document.getElementById('lbp').onclick=function(e){e.stopPropagation();show(cur-1)};
+    document.getElementById('lbn').onclick=function(e){e.stopPropagation();show(cur+1)};
+    lb.addEventListener('click',function(e){ if(e.target===lb||e.target===im) close(); });
+    document.addEventListener('keydown',function(e){
+      if(!lb.classList.contains('open'))return;
+      if(e.key==='Escape'){e.preventDefault();close()}
+      if(e.key==='ArrowRight'){e.preventDefault();show(cur+1)}
+      if(e.key==='ArrowLeft'){e.preventDefault();show(cur-1)}
+    },true);
+    window.__lbOpen=function(){return lb.classList.contains('open')};
+  })();
+
   pro.style.width='0%';
   nums(sl[0]);
   runSeq(sl[0]);
+  var c0=document.getElementById('chap');
+  if(c0) c0.textContent=sl[0].getAttribute('data-chap')||'';
 })();
 </script>
 </body>
