@@ -46,8 +46,12 @@ body.hot #dot{transform:scale(1.7)}
 .deck{position:fixed;inset:0}
 .s{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--forest);color:var(--bone);
   padding:clamp(16px,2.6vw,34px) var(--pad) clamp(14px,2vw,26px);
-  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .34s ease,visibility .34s;
-  overflow:hidden auto;scrollbar-width:none}
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:scale(1.045) translateY(20px);filter:blur(12px);
+  transition:opacity .46s ease,transform .78s cubic-bezier(.16,.86,.26,1),filter .46s ease,visibility .46s;
+  overflow:hidden auto;scrollbar-width:none;will-change:transform,opacity,filter}
+.deck.rev .s{transform:scale(.962) translateY(-20px)}
+.s.on{transform:none;filter:none}
 .s::-webkit-scrollbar{width:0}
 .s.on{opacity:1;visibility:visible;pointer-events:auto;z-index:2}
 .s.bone{background:var(--bone);color:var(--ink)}
@@ -340,6 +344,18 @@ body.hot #dot{transform:scale(1.7)}
 .qcta.big{width:calc(100% - 16%);margin:0 8%}
 
 
+/* ══ cortina de transição ══ */
+.wipe{position:fixed;inset:0;z-index:180;pointer-events:none;overflow:hidden}
+.wipe i{position:absolute;inset:0;transform:translateX(-101%);will-change:transform}
+.wipe i:nth-child(1){background:var(--forest-d)}
+.wipe i:nth-child(2){background:var(--lime)}
+.wipe.go i{animation:sweep .72s cubic-bezier(.78,0,.22,1) forwards}
+.wipe.go i:nth-child(2){animation-delay:.07s}
+.wipe.go.back i{animation-name:sweepBack}
+@keyframes sweep{0%{transform:translateX(-101%)}48%{transform:translateX(0)}100%{transform:translateX(101%)}}
+@keyframes sweepBack{0%{transform:translateX(101%)}48%{transform:translateX(0)}100%{transform:translateX(-101%)}}
+@media (prefers-reduced-motion:reduce){.wipe{display:none}}
+
 /* ══ fundo vivo, discreto ══ */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.3;will-change:transform}
@@ -508,6 +524,237 @@ body.lbon .deck,body.lbon .bg,body.lbon .hdr,body.lbon .pro{visibility:hidden}
 .s.bone .inst a:hover{color:var(--green)}
 .pend{font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.1em;opacity:.4;font-style:normal}
 
+
+/* ══ 01 abertura ══ */
+.opn{display:grid;grid-template-columns:1.52fr .48fr;gap:clamp(16px,2.4vw,46px);align-items:center;flex:1;min-height:0}
+.opn-t{display:flex;flex-direction:column;gap:clamp(12px,1.6vw,26px)}
+.opn-n{display:flex;flex-direction:column;align-items:flex-start;gap:.25em;position:relative}
+.opn-n .ring{width:clamp(96px,10vw,160px);height:auto;margin-bottom:clamp(6px,.8vw,14px);color:var(--mint)}
+.rdraw{animation:rd 1.6s cubic-bezier(.3,.7,.3,1) .4s forwards;transform:rotate(-90deg);transform-origin:120px 120px}
+@keyframes rd{to{stroke-dashoffset:26}}
+@media(max-width:900px){.opn{grid-template-columns:1fr}}
+
+/* ══ 02 desafio ══ */
+.dsf{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(16px,2.4vw,46px);flex:1;min-height:0;align-items:center}
+.dsf-q{display:flex;flex-direction:column;gap:clamp(7px,.95vw,16px)}
+.dsf-v{display:flex;flex-direction:column;align-items:center;gap:clamp(5px,.7vw,11px)}
+.vcard{width:100%;display:flex;flex-direction:column;gap:.35em;padding:clamp(10px,1.3vw,21px);
+  border:1.5px solid currentColor;border-radius:clamp(5px,.6vw,10px);transition:.26s}
+.vcard .ic{width:clamp(22px,2.1vw,32px);height:clamp(22px,2.1vw,32px);margin-bottom:.2em}
+.vcard .ic svg{width:100%;height:100%;display:block}
+.vcard .lb{font-family:var(--mono);font-size:clamp(7.8px,.68vw,10px);letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.vcard .bg2{font-family:var(--disp);font-weight:900;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(14px,1.72vw,29px);line-height:1;letter-spacing:-.028em}
+.vcard .ds{font-size:clamp(9.6px,.85vw,13px);line-height:1.4;opacity:.72}
+.vcard.off{opacity:.5;border-style:dashed}
+.vcard.on{border-color:var(--green);background:rgba(0,108,82,.07)}
+.s.bone .vcard.on .bg2{color:var(--green)}
+.s.bone .vcard.on .ic{color:var(--green)}
+.vdown{width:clamp(18px,1.7vw,26px);color:var(--green);opacity:.75}
+.vdown svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.dsf{grid-template-columns:1fr}}
+
+/* ══ 03 contexto ══ */
+.ctx{display:grid;grid-template-columns:.78fr 1.06fr .92fr;gap:clamp(12px,1.8vw,34px);flex:1;min-height:0;align-items:stretch}
+.ctx-a{display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,1.4vw,24px)}
+.stat3{display:flex;flex-direction:column;gap:.18em}
+.stat3 .ic{width:clamp(20px,1.9vw,29px);height:clamp(20px,1.9vw,29px);color:var(--mint);margin-bottom:.2em}
+.stat3 .ic svg{width:100%;height:100%;display:block}
+.stat3 .nm{font-family:var(--disp);font-weight:900;font-stretch:125%;letter-spacing:-.04em;line-height:.9;
+  font-size:clamp(23px,2.7vw,45px);color:var(--lime)}
+.s.bone .stat3 .nm{color:var(--green)}
+.stat3 .nm i{font-style:normal;font-size:.46em;letter-spacing:0;font-stretch:100%}
+.stat3 .cp2{font-family:var(--mono);font-size:clamp(7.8px,.68vw,10.2px);letter-spacing:.14em;text-transform:uppercase;opacity:.52}
+.ctx-b,.ctx-c{display:flex;flex-direction:column;justify-content:center;gap:clamp(7px,.95vw,15px)}
+.frow .fl.hot{background:linear-gradient(90deg,var(--clay),var(--lime))}
+.frow .vl.big2{font-size:clamp(11px,1vw,15px);color:var(--lime)}
+.s.bone .frow .vl.big2{color:var(--green)}
+.mapbox.sm{min-height:clamp(132px,15vw,218px)}
+.mapbox.sm .dot{font-size:clamp(8.2px,.73vw,11px)}
+.mapbox.sm .dot.me{font-size:clamp(9.6px,.98vw,15px)}
+@media(max-width:1000px){.ctx{grid-template-columns:1fr}.ctx-a{flex-direction:row;justify-content:space-between}}
+
+/* ══ 04 reveal ══ */
+.rev{display:flex;flex-direction:column;gap:clamp(4px,.6vw,10px);flex:none}
+.twoup{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.4vw,26px);flex:1;min-height:0}
+.fcard{display:flex;flex-direction:column;gap:0;background:transparent;border:1px solid rgba(244,242,236,.18);
+  border-radius:clamp(5px,.6vw,10px);overflow:hidden;cursor:pointer;text-align:left;padding:0;
+  transition:border-color .28s,transform .34s cubic-bezier(.2,1.05,.3,1),box-shadow .3s;min-height:0}
+.fcard:hover{border-color:var(--lime);transform:translateY(-5px);box-shadow:0 22px 46px -26px rgba(0,0,0,.8)}
+.fcard .shot{flex:1;min-height:clamp(120px,19vh,260px);border-radius:0;border:none;display:block}
+.fcard .shot img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,.86,.26,1)}
+.fcard:hover .shot img{transform:scale(1.05)}
+.fcard .fc-b{display:flex;flex-direction:column;gap:.3em;padding:clamp(10px,1.2vw,20px);flex:none}
+.fc-n{font-family:var(--mono);font-size:clamp(7.8px,.68vw,10px);letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+.fc-t{font-family:var(--disp);font-weight:900;font-stretch:125%;text-transform:uppercase;
+  font-size:clamp(17px,2vw,34px);line-height:1;letter-spacing:-.03em;color:var(--lime)}
+.fc-d{font-size:clamp(9.6px,.85vw,13px);line-height:1.38;opacity:.78}
+.fc-k{display:flex;gap:.5em;align-items:baseline;flex-wrap:wrap;margin-top:.25em}
+.fc-k b{font-family:var(--disp);font-weight:900;font-stretch:118%;font-size:clamp(12px,1.18vw,19px);letter-spacing:-.02em}
+.fc-k i{font-style:normal;font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.6px);letter-spacing:.1em;
+  text-transform:uppercase;opacity:.5;margin-right:.7em}
+@media(max-width:900px){.twoup{grid-template-columns:1fr}}
+
+/* ══ 05 routine ══ */
+.rtn{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(14px,2.2vw,44px);flex:1;min-height:0;align-items:stretch}
+.rtn-a{display:flex;flex-direction:column;gap:clamp(8px,1.1vw,18px);min-height:0}
+.rtn-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2em;min-height:0}
+.rtn-b .tab{width:100%;max-width:clamp(190px,21vw,290px)}
+.rtn-img{flex:1;min-height:clamp(88px,13vh,170px);border-radius:clamp(4px,.5vw,8px)}
+.minirow{display:flex;gap:clamp(10px,1.5vw,32px);flex-wrap:wrap}
+.mi{display:flex;flex-direction:column;gap:.08em}
+.mi b{font-family:var(--disp);font-weight:900;font-stretch:118%;font-size:clamp(14px,1.5vw,25px);letter-spacing:-.025em;color:var(--lime)}
+.s.bone .mi b{color:var(--green)}
+.mi i{font-style:normal;font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.12em;text-transform:uppercase;opacity:.5}
+@media(max-width:1000px){.rtn{grid-template-columns:1fr}.rtn-img{display:none}}
+
+/* ══ 06 move ══ */
+.s.ink2{background:#141210}
+.s.ink2::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70vw 50vh at 78% 8%,rgba(5,181,144,.16),transparent 62%)}
+.s.ink2>*{position:relative;z-index:1}
+.mv{display:grid;grid-template-columns:.84fr 1.16fr;grid-template-rows:1fr auto;gap:clamp(12px,1.8vw,34px);flex:1;min-height:0}
+.mv-img{grid-row:span 2;border-radius:clamp(4px,.5vw,9px);min-height:0}
+.mv-a{display:flex;flex-direction:column;gap:clamp(8px,1.1vw,18px);justify-content:center;min-height:0}
+.mv-v{display:flex;flex-direction:column;gap:.3em}
+.mv-v svg{width:100%;max-width:clamp(250px,30vw,440px);height:auto;display:block;color:#141210}
+@media(max-width:1000px){.mv{grid-template-columns:1fr;grid-template-rows:auto}.mv-img{grid-row:auto;aspect-ratio:16/10}}
+
+/* ══ 07 divisão ══ */
+.splitx{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(12px,2vw,40px);align-items:center;flex:1;min-height:0}
+.sx-col{display:flex;flex-direction:column;gap:clamp(7px,.9vw,15px);padding:clamp(11px,1.4vw,24px);
+  border-radius:clamp(5px,.6vw,10px);border:1.5px solid currentColor;transition:.3s}
+.sx-col.off{opacity:.56;border-style:dashed}
+.sx-col.on{background:rgba(10,10,8,.18);border-color:var(--lime)}
+.sx-h{display:flex;align-items:center;gap:.55em;font-family:var(--disp);font-weight:900;font-stretch:118%;
+  text-transform:uppercase;font-size:clamp(11.6px,1.18vw,19px);letter-spacing:-.018em}
+.sx-h .ic{width:clamp(19px,1.8vw,27px);height:clamp(19px,1.8vw,27px);flex:none}
+.sx-h .ic svg{width:100%;height:100%;display:block}
+.sx-col.on .sx-h{color:var(--lime)}
+.sx-l{list-style:none;display:flex;flex-direction:column;gap:clamp(4px,.55vw,9px)}
+.sx-l li{display:flex;align-items:center;gap:.6em;font-size:clamp(10px,.9vw,13.8px);line-height:1.3}
+.sx-l .d2{width:clamp(5px,.5vw,8px);height:clamp(5px,.5vw,8px);border-radius:50%;background:currentColor;opacity:.5;flex:none}
+.sx-col.on .d2{opacity:1;background:var(--lime)}
+.sx-ar{width:clamp(24px,2.6vw,46px);color:var(--lime);opacity:.9}
+.sx-ar svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.splitx{grid-template-columns:1fr}.sx-ar{transform:rotate(90deg);justify-self:center}}
+
+/* ══ 08 operação ══ */
+.opx{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(14px,2.2vw,44px);flex:1;min-height:0;align-items:center}
+.opx-t{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(8px,1.1vw,18px)}
+.rolecard{display:flex;flex-direction:column;gap:.24em;padding:clamp(9px,1.15vw,19px);
+  border-radius:clamp(4px,.5vw,9px);border:1px solid currentColor;border-color:rgba(26,19,16,.16);transition:.26s}
+.rolecard:hover{border-color:var(--green);transform:translateY(-3px)}
+.rolecard .ic{width:clamp(21px,2vw,30px);height:clamp(21px,2vw,30px);color:var(--green);margin-bottom:.14em}
+.rolecard .ic svg{width:100%;height:100%;display:block}
+.rc-n{font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.18em;text-transform:uppercase;opacity:.5}
+.rc-t{font-family:var(--disp);font-weight:900;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(12.6px,1.3vw,21px);line-height:1;letter-spacing:-.022em}
+.rc-d{font-size:clamp(9.2px,.82vw,12.4px);line-height:1.36;opacity:.7}
+.rolecard.hot{background:var(--green);border-color:var(--green);color:var(--bone)}
+.rolecard.hot .ic{color:var(--lime)}.rolecard.hot .rc-d{opacity:.82}
+.opx-m{display:flex;flex-direction:column;align-items:center;gap:.5em}
+.opx-m svg{width:100%;max-width:clamp(180px,20vw,300px);height:auto;display:block}
+@media(max-width:1000px){.opx{grid-template-columns:1fr}.opx-m{display:none}}
+
+/* ══ 09 rastreamento ══ */
+.trk{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.5vw,28px);flex:none}
+.trk-c{display:flex;flex-direction:column;gap:.5em;padding:clamp(11px,1.4vw,22px);
+  border-radius:clamp(5px,.6vw,10px);border:1px solid rgba(244,242,236,.18);transition:.26s}
+.trk-c.hot{border-color:var(--lime);background:rgba(192,238,78,.06)}
+.trk-h{display:flex;align-items:baseline;gap:.5em;font-family:var(--disp)}
+.trk-h .ic{width:clamp(20px,1.9vw,28px);height:clamp(20px,1.9vw,28px);color:var(--mint);align-self:center;flex:none}
+.trk-h .ic svg{width:100%;height:100%;display:block}
+.trk-h b{font-weight:900;font-stretch:118%;text-transform:uppercase;font-size:clamp(13px,1.35vw,22px);letter-spacing:-.022em}
+.trk-h i{font-style:normal;font-family:var(--mono);font-size:clamp(7.8px,.68vw,10px);letter-spacing:.16em;text-transform:uppercase;opacity:.5}
+.trk-c.hot .trk-h b{color:var(--lime)}
+.trk-d{font-size:clamp(9.4px,.84vw,12.8px);line-height:1.4;opacity:.76}
+.flowbar{flex:none}
+.flowbar svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.trk{grid-template-columns:1fr}}
+
+/* ══ 10 mensuração ══ */
+.msr{display:grid;grid-template-columns:.78fr .98fr 1fr;gap:clamp(12px,1.8vw,34px);flex:1;min-height:0;align-items:center}
+.msr-f,.msr-n,.msr-k{display:flex;flex-direction:column;gap:clamp(6px,.85vw,14px);min-height:0}
+.msr-f svg{width:100%;height:auto;max-height:clamp(140px,20vw,230px);display:block}
+.lvl{display:grid;grid-template-columns:auto auto 1fr;gap:.55em;align-items:center;
+  padding:clamp(7px,.9vw,14px) clamp(8px,1vw,16px);border-radius:clamp(4px,.5vw,8px);
+  border:1px solid rgba(244,242,236,.16);transition:.26s}
+.lvl.hot{border-color:var(--lime);background:rgba(192,238,78,.07)}
+.lvl .lv-n{font-family:var(--mono);font-size:clamp(7.8px,.68vw,10px);letter-spacing:.14em;opacity:.5}
+.lvl .ic{width:clamp(17px,1.6vw,24px);height:clamp(17px,1.6vw,24px);color:var(--mint)}
+.lvl.hot .ic{color:var(--lime)}
+.lvl .ic svg{width:100%;height:100%;display:block}
+.lv-t{font-family:var(--disp);font-weight:800;font-stretch:112%;font-size:clamp(10.6px,.96vw,14.4px);letter-spacing:-.014em}
+.lv-d{grid-column:3;font-size:clamp(8.6px,.76vw,11.4px);opacity:.62;line-height:1.3}
+@media(max-width:1000px){.msr{grid-template-columns:1fr}.msr-f{display:none}}
+
+/* ══ 11 cronograma ══ */
+.gantt{display:flex;flex-direction:column;gap:clamp(6px,.8vw,13px);flex:1;min-height:0;justify-content:center}
+.gl{display:flex;justify-content:space-between;font-family:var(--mono);
+  font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.12em;opacity:.42;padding-bottom:.2em;border-bottom:1px solid currentColor}
+.gr{display:flex;flex-direction:column;gap:.22em}
+.gb{position:relative;display:flex;align-items:center;gap:.6em;height:clamp(24px,2.5vw,38px);border-radius:4px;
+  margin-left:var(--s);width:var(--w);min-width:fit-content;padding:0 clamp(8px,.9vw,15px);
+  transform-origin:left;animation:gw .8s cubic-bezier(.2,.85,.3,1) backwards}
+@keyframes gw{from{transform:scaleX(.02);opacity:0}to{transform:scaleX(1);opacity:1}}
+.gb b{font-family:var(--disp);font-weight:800;font-stretch:112%;font-size:clamp(9.6px,.88vw,13.4px);
+  letter-spacing:-.014em;white-space:nowrap}
+.gb.a{background:var(--sage);color:var(--ink);animation-delay:.2s}
+.gb.b{background:#9ED0BC;color:var(--ink);animation-delay:.32s}
+.gb.c{background:var(--mint);color:#04352B;animation-delay:.44s}
+.gb.d{background:#6FD08C;color:#0A2E12;animation-delay:.56s}
+.gb.e{background:var(--lime);color:var(--lab-ink);animation-delay:.68s}
+.gate{font-family:var(--mono);font-size:clamp(6.8px,.58vw,8.6px);letter-spacing:.14em;text-transform:uppercase;
+  background:var(--clay);color:var(--bone);padding:2px 6px;border-radius:9px;white-space:nowrap}
+.gt{font-family:var(--mono);font-size:clamp(7.6px,.66vw,9.8px);letter-spacing:.1em;opacity:.48;margin-left:var(--s,0)}
+.band{background:var(--clay);color:var(--bone);border-radius:clamp(4px,.5vw,9px);flex:none;
+  padding:clamp(9px,1.05vw,17px) clamp(12px,1.4vw,23px);display:flex;align-items:center;gap:clamp(9px,1.1vw,18px);flex-wrap:wrap}
+.band .ic{width:clamp(19px,1.8vw,27px);height:clamp(19px,1.8vw,27px);color:#F5D9CF;flex:none}
+.band .ic svg{width:100%;height:100%;display:block}
+.band .k{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(10px,.92vw,13.4px);color:#F5D9CF;white-space:nowrap}
+.band p{font-size:clamp(9.4px,.84vw,12.6px);line-height:1.4;flex:1 1 240px;opacity:.9}
+
+/* ══ 12 investimento ══ */
+.inv{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(16px,2.6vw,52px);flex:1;min-height:0;align-items:center}
+.inv-p{display:flex;flex-direction:column;gap:clamp(6px,.8vw,13px)}
+.inv-p .price .val small{font-size:.3em;letter-spacing:0}
+.incl{display:flex;flex-direction:column;gap:clamp(4px,.55vw,9px);margin-top:clamp(5px,.7vw,12px)}
+.ii{display:flex;align-items:center;gap:.6em;font-size:clamp(9.4px,.84vw,12.8px);opacity:.82}
+.ii .ic{width:clamp(16px,1.5vw,22px);height:clamp(16px,1.5vw,22px);color:var(--mint);flex:none}
+.ii .ic svg{width:100%;height:100%;display:block}
+.inv-s{display:flex;flex-direction:column;gap:clamp(7px,.9vw,14px)}
+.scen{display:grid;grid-template-columns:1fr auto;gap:.3em clamp(10px,1.2vw,20px);align-items:baseline;
+  padding:clamp(9px,1.15vw,18px) clamp(11px,1.3vw,21px);border-radius:clamp(4px,.5vw,9px);
+  border:1px solid rgba(244,242,236,.18);transition:.26s}
+.scen:hover{border-color:var(--mint);transform:translateX(4px)}
+.scen.hot{border-color:var(--lime);background:rgba(192,238,78,.07)}
+.sc-n{font-family:var(--disp);font-weight:900;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(12px,1.2vw,19px);letter-spacing:-.022em}
+.sc-d{grid-column:1;font-family:var(--mono);font-size:clamp(7.8px,.68vw,10px);letter-spacing:.12em;text-transform:uppercase;opacity:.5}
+.sc-v{grid-row:span 2;font-family:var(--disp);font-weight:900;font-stretch:112%;
+  font-size:clamp(14px,1.5vw,25px);letter-spacing:-.025em;align-self:center;white-space:nowrap}
+.scen.hot .sc-v,.scen.hot .sc-n{color:var(--lime)}
+@media(max-width:900px){.inv{grid-template-columns:1fr}}
+
+/* ══ 13 fecho ══ */
+.fch{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(16px,2.6vw,54px);flex:1;min-height:0;align-items:center}
+.fch-a{display:flex;flex-direction:column;gap:clamp(9px,1.2vw,19px)}
+.fch-b{display:flex;flex-direction:column;gap:clamp(7px,.9vw,14px);min-height:0}
+.logos{display:flex;align-items:center;gap:clamp(12px,1.6vw,26px)}
+.logos img{height:clamp(17px,1.8vw,29px);width:auto;display:block}
+.logos .nu2{height:clamp(34px,3.6vw,56px);border-radius:7px}
+.logos .sep2{width:1px;height:clamp(20px,2.2vw,36px);background:currentColor;opacity:.22}
+.instx{display:flex;flex-direction:column;gap:.1em}
+.instx .ln2{display:grid;grid-template-columns:clamp(60px,5.6vw,84px) 1fr;gap:clamp(6px,.8vw,12px);
+  font-size:clamp(8.4px,.74vw,11px);line-height:1.28;padding:.24em 0;border-bottom:1px solid currentColor;border-color:rgba(26,19,16,.11)}
+.instx .ln2 span:first-child{font-family:var(--mono);font-size:.84em;letter-spacing:.12em;text-transform:uppercase;opacity:.46}
+.instx b{font-weight:600}
+.instx a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none;transition:.2s}
+.instx a:hover{color:var(--green)}
+@media(max-width:900px){.fch{grid-template-columns:1fr}}
+
 /* ══ índice ══ */
 .menu{position:fixed;inset:0;background:var(--forest-d);z-index:300;display:none;
   padding:clamp(24px,4.6vw,72px) var(--pad);overflow:auto}
@@ -548,6 +795,7 @@ body.lbon .deck,body.lbon .bg,body.lbon .hdr,body.lbon .pro{visibility:hidden}
 </head>
 <body>
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i><span class="grid"></span></div>
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i></div>
 <div class="pro" id="pro"></div>
 <header class="hdr">
   <span class="lf"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"></span>
@@ -585,1151 +833,574 @@ body.lbon .deck,body.lbon .bg,body.lbon .hdr,body.lbon .pro{visibility:hidden}
   <g class="i-bob"><rect x="3.5" y="11.5" width="25" height="17" rx="2.5"/><path d="M2 11.5h28v5H2zM16 11.5V29"/>
   <path d="M16 11.5S13.4 4 9.6 4a3.6 3.6 0 0 0 0 7.5M16 11.5S18.6 4 22.4 4a3.6 3.6 0 0 1 0 7.5"/></g>
   <circle cx="16" cy="20" r="10" class="i-ring" opacity=".45"/></symbol>
+<symbol id="k-bulb" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path class="i-pulse" d="M16 3a10 10 0 0 1 6 18v4H10v-4A10 10 0 0 1 16 3Z"/><path d="M12 29h8M13 25h6"/></symbol>
+<symbol id="k-chart" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 4v24h24"/><rect x="9" y="16" width="4" height="8" class="grwY" style="transform-origin:bottom"/>
+  <rect x="16" y="11" width="4" height="13" class="grwY" style="transform-origin:bottom;animation-delay:.4s"/>
+  <rect x="23" y="6" width="4" height="18" class="grwY" style="transform-origin:bottom;animation-delay:.6s"/></symbol>
+<symbol id="k-up" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+  <path class="i-flow" d="M3 25 12 15l6 6L29 7"/><path d="M21 7h8v8"/></symbol>
+<symbol id="k-box" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M28 10.5 16 4 4 10.5v11L16 28l12-6.5Z"/><path class="i-blink" d="M4 10.5 16 17l12-6.5M16 28V17"/></symbol>
+<symbol id="k-truck" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2 8h15v14H2zM17 13h6l5 5v4h-11z"/><circle cx="9" cy="25" r="3" class="i-pulse"/><circle cx="23" cy="25" r="3" class="i-pulse i-d2"/></symbol>
+<symbol id="k-scan" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 10V6a2 2 0 0 1 2-2h4M22 4h4a2 2 0 0 1 2 2v4M28 22v4a2 2 0 0 1-2 2h-4M10 28H6a2 2 0 0 1-2-2v-4"/>
+  <path class="i-blink" d="M5 16h22"/></symbol>
+<symbol id="k-wifi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path class="i-pulse" d="M3 11a20 20 0 0 1 26 0"/><path class="i-pulse i-d1" d="M7.5 16.5a13.5 13.5 0 0 1 17 0"/>
+  <path class="i-pulse i-d2" d="M12 22a7 7 0 0 1 8 0"/><circle cx="16" cy="27" r="1.8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="k-alert" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M13.7 4.8 2.5 24a2.6 2.6 0 0 0 2.2 4h22.6a2.6 2.6 0 0 0 2.2-4L18.3 4.8a2.6 2.6 0 0 0-4.6 0Z"/>
+  <path class="i-blink" d="M16 12.5v5.6M16 23.4h.01"/></symbol>
 <symbol id="k-grid" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
   <rect x="3.5" y="3.5" width="11" height="11" rx="2"/><rect x="17.5" y="3.5" width="11" height="11" rx="2" class="i-pulse"/>
   <rect x="3.5" y="17.5" width="11" height="11" rx="2" class="i-pulse i-d2"/><rect x="17.5" y="17.5" width="11" height="11" rx="2"/></symbol>
 </defs></svg>
 
 <main class="deck" id="deck">
-
-<!-- 01 ─────────── CAPA ─────────── -->
-<!-- ABERTURA EMOCIONAL -->
+<!-- 01 ABERTURA -->
 <section class="s deep on" data-chap="Abertura">
-  <div class="meta"><span class="l">75 LAB × Nutrify</span><span class="r">Outubro 2026</span></div>
+  <div class="meta"><span class="l">75 LAB × Nutrify</span><span class="r">Proposta de ativações · 2027</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>A categoria mais</i></span><span class="ln"><i>pesquisada do país</i></span><span class="ln"><i>é a menos</i></span><span class="ln"><i><em>explicada da loja.</em></i></span></h2>
-    <div class="sp" style="align-items:end;flex:none">
-      <p class="say">Suplemento se vende em busca, review e indicação. Na gôndola, o shopper fica sozinho com <b>uma parede de potes</b>.</p>
-      <div>
+    <div class="opn">
+      <div class="opn-t">
+        <h2 class="mega xs"><span class="ln"><i>A categoria mais</i></span><span class="ln"><i>pesquisada do país</i></span><span class="ln"><i>é a menos</i></span><span class="ln"><i><em>explicada da loja.</em></i></span></h2>
+        <p class="say fu">Suplemento se vende em busca, review e indicação. Na gôndola, o shopper fica sozinho com <b>uma parede de potes</b>.</p>
+      </div>
+      <div class="opn-n fu">
+        <svg viewBox="0 0 240 240" class="ring" aria-hidden="true">
+          <circle cx="120" cy="120" r="104" fill="none" stroke="rgba(192,238,78,.16)" stroke-width="2"/>
+          <circle cx="120" cy="120" r="104" fill="none" stroke="var(--lime)" stroke-width="4" stroke-linecap="round"
+                  pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" class="rdraw"/>
+          <circle cx="120" cy="120" r="86" fill="rgba(5,181,144,.08)" class="i-pulse" style="transform-origin:120px 120px"/>
+          <g stroke="var(--mint)" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".9">
+            <circle cx="112" cy="112" r="26"/><path d="M131 131l22 22"/></g>
+        </svg>
         <span class="num mid"><span data-n="188">0</span><u>mi</u></span>
-        <p class="tag" style="margin-top:.4em">buscas pela categoria no Brasil em um ano</p>
-        <p class="src"><b>Fonte:</b> Social SA, Mercado de suplementos 2026</p>
+        <span class="tag">buscas pela categoria em um ano</span>
+        <span class="src"><b>Fonte:</b> Social SA, mercado de suplementos 2026</span>
       </div>
     </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ABERTURA</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">01</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s deep" data-chap="Abertura">
-  <div class="meta"><span class="l">75 LAB × Nutrify</span><span class="r">Proposta · Agosto 2026</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp">
-      <div class="stack" style="gap:clamp(16px,2.2vw,34px)">
-        <div class="fu" style="display:flex;align-items:center;gap:clamp(14px,1.8vw,30px)">
-          <img src="assets/75lab-wordmark-paper.png" alt="75 LAB" style="height:clamp(20px,2.2vw,36px)">
-          <span style="width:1px;height:clamp(22px,2.4vw,40px);background:currentColor;opacity:.3"></span>
-          <img src="assets/nutrify-logo.png" alt="Nutrify Real Foods" style="height:clamp(44px,4.6vw,74px);border-radius:9px">
-        </div>
-        <h1 class="mega"><span class="ln"><i>Nutrify</i></span><span class="ln"><i><em>Lab</em></i></span></h1>
-        <p class="say fu">Duas experiências de loja que transformam <b>interesse em compra</b>, com a equipe e a operação por nossa conta.</p>
-        <div class="ctas">
-          <button class="cta" data-go="15">Ver a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="39">Ir ao investimento</button>
-        </div>
-      </div>
-      <div class="stack" style="gap:clamp(8px,1vw,16px);max-height:74vh;min-height:0">
-        <div class="shot" style="aspect-ratio:16/10"><img src="assets/r-routine-01-abordagem.jpg" alt="Routine Lab montado no corredor da loja"></div>
-        <div class="shot" style="aspect-ratio:16/10"><img src="assets/r-move-01-arena.jpg" alt="Move Lab em operação na loja"></div>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">44</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 02 ─────────── 75 LAB ─────────── -->
-<!-- AGENDA -->
-<section class="s bone" data-chap="Agenda">
-  <div class="meta"><span class="l">O caminho de hoje</span><span class="r">Seis capítulos</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
-    <h2 class="mega xs"><span class="ln"><i>Do problema ao <em>primeiro piloto.</em></i></span></h2>
-    <div class="trail">
-      <div class="tr" data-go="4"><span class="no">01</span><span class="ti">O desafio que recebemos</span><span class="go"><svg><use href="#ar"/></svg></span></div>
-      <div class="tr" data-go="8"><span class="no">02</span><span class="ti">O contexto da categoria</span><span class="go"><svg><use href="#ar"/></svg></span></div>
-      <div class="tr" data-go="13"><span class="no">03</span><span class="ti">A tese</span><span class="go"><svg><use href="#ar"/></svg></span></div>
-      <div class="tr" data-go="15"><span class="no">04</span><span class="ti">A solução em dois formatos</span><span class="go"><svg><use href="#ar"/></svg></span></div>
-      <div class="tr" data-go="29"><span class="no">05</span><span class="ti">A operação e a medição</span><span class="go"><svg><use href="#ar"/></svg></span></div>
-      <div class="tr" data-go="39"><span class="no">06</span><span class="ti">O investimento</span><span class="go"><svg><use href="#ar"/></svg></span></div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">AGENDA</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<section class="s bone" data-chap="Abertura">
-  <div class="meta"><span class="l">Quem assina</span><span class="r">75 LAB</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega"><span class="ln"><i>Ideia boa</i></span><span class="ln"><i>é a que</i></span><span class="ln"><i><em>acontece.</em></i></span></h2>
-    <div class="sp">
-      <p class="say">A 75 LAB é uma <b>aceleradora de trade marketing</b>. Nascemos dos dois lados do balcão: o varejo e a indústria.</p>
-      <div class="rows">
-        <div class="row"><span class="k">Projetos aprovados</span><span class="v"><em><span data-n="95">0</span>%</em></span></div>
-        <div class="row"><span class="k">PDVs positivados</span><span class="v">15 mil+</span></div>
-        <div class="row"><span class="k">Custo de produção</span><span class="v">−<span data-n="25">0</span>%</span></div>
-        <div class="row"><span class="k">Anos no trade</span><span class="v">+<span data-n="15">0</span></span></div>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 03 ─────────── O QUE PLUGAMOS ─────────── -->
-<!-- OBJETIVO DO PROJETO -->
-<!-- O QUE OUVIMOS -->
-<section class="s" data-chap="01 · O desafio">
+<!-- 02 O DESAFIO -->
+<section class="s bone" data-chap="O desafio">
   <div class="meta"><span class="l">Leitura do briefing</span><span class="r">O que ouvimos na reunião</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(10px,1.4vw,22px)">
-    <span class="chapmark"><b>01</b> O desafio</span>
-    <h2 class="mega xs"><span class="ln"><i>Seis frases que <em>definem o projeto.</em></i></span></h2>
-    <div class="deck2">
-      <div class="quo"><span class="w">"Já temos agência de degustação e já tivemos de MPDV. <b>Falta o pedaço da ativação completa.</b>"</span><span class="r">A lacuna</span></div>
-      <div class="quo"><span class="w">"Eu te passo o direcionamento e o produto. <b>Vocês cuidam do resto.</b>"</span><span class="r">A carga operacional</span></div>
-      <div class="quo"><span class="w">"Não quero só interação. <b>Quero conversão.</b>"</span><span class="r">O resultado</span></div>
-      <div class="quo"><span class="w">"A experiência tem que fazer sentido com <b>o benefício daquele SKU.</b>"</span><span class="r">A conexão com o produto</span></div>
-      <div class="quo"><span class="w">"Preciso de relatório: pessoas, vendas, conversão. <b>No começo, até semanal.</b>"</span><span class="r">A medição</span></div>
-      <div class="quo"><span class="w">"<b>Piloto antes de escalar</b>, e clareza total de quanto custa."</span><span class="r">O risco</span></div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">01 · O DESAFIO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- APARENTE x REAL -->
-<section class="s bone" data-chap="01 · O desafio">
-  <div class="meta"><span class="l">Decupagem</span><span class="r">Problema aparente e problema real</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
     <h2 class="mega xs"><span class="ln"><i>O pedido é ativação. <em>A dor é operação.</em></i></span></h2>
-    <div class="vs">
-      <div class="sd fu">
-        <span class="lb">O que parece</span>
-        <span class="bg2">Falta uma ideia de ativação</span>
-        <span class="ds">Buscar um formato novo, mais criativo, que chame atenção no corredor.</span>
+    <div class="dsf">
+      <div class="dsf-q">
+        <div class="quo fu"><span class="w">"Já temos agência de degustação e já tivemos de MPDV. <b>Falta a ativação completa.</b>"</span><span class="r">A lacuna</span></div>
+        <div class="quo fu"><span class="w">"Eu passo o direcionamento e o produto. <b>Vocês cuidam do resto.</b>"</span><span class="r">A carga operacional</span></div>
+        <div class="quo fu"><span class="w">"Não quero só interação. <b>Quero conversão.</b>"</span><span class="r">O resultado</span></div>
+        <div class="quo fu"><span class="w">"<b>Piloto antes de escalar</b>, e clareza total de quanto custa."</span><span class="r">O risco</span></div>
       </div>
-      <span class="ar2"><svg viewBox="0 0 24 24"><use href="#ar"/></svg></span>
-      <div class="sd on fu">
-        <span class="lb">O que é</span>
-        <span class="bg2">Falta quem assuma a execução inteira</span>
-        <span class="ds">Promotora, supervisor, logística, material, montagem, armazenagem e o dado no fim. Hoje isso volta para a mesa do time interno.</span>
+      <div class="dsf-v">
+        <div class="vcard off fu">
+          <span class="ic"><svg><use href="#k-bulb"/></svg></span>
+          <span class="lb">O que parece</span>
+          <span class="bg2">Falta uma ideia</span>
+          <span class="ds">Buscar um formato novo que chame atenção no corredor.</span>
+        </div>
+        <span class="vdown" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="i-flow" d="M12 2v16" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="m6.6 14.4 5.4 5.4 5.4-5.4" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="vcard on fu">
+          <span class="ic"><svg><use href="#k-stop"/></svg></span>
+          <span class="lb">O que é</span>
+          <span class="bg2">Falta quem execute</span>
+          <span class="ds">Promotora, supervisor, logística, material, montagem e o dado no fim. Hoje tudo volta para a mesa do seu time.</span>
+        </div>
       </div>
     </div>
-    <p class="say w fu">Ideia boa não falta. <b>Falta quem faça acontecer em 30 lojas, em três regiões, quatro vezes por ano.</b></p>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">01 · O DESAFIO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">O DESAFIO</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">02</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s bone" data-chap="01 · O desafio">
-  <div class="meta"><span class="l">Objetivo do projeto</span><span class="r">Ativações 2027</span></div>
+<!-- 03 O CONTEXTO -->
+<section class="s" data-chap="O contexto">
+  <div class="meta"><span class="l">Contexto da categoria</span><span class="r">Mercado, canal e território</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Um parceiro que</i></span><span class="ln"><i>assume a <em>ativação</em></i></span><span class="ln"><i><em>inteira.</em></i></span></h2>
-    <p class="say w fu">Estruturar a 75 LAB como <b>braço estratégico e operacional</b> das ativações de Integral, Nutrify e Darkness, assumindo desde o desenvolvimento da experiência até a execução no PDV, logística, gestão da equipe e mensuração dos resultados, <b>com foco em conversão e geração de venda</b>.</p>
-    <div class="ctas"><button class="cta" data-go="29">Como isso funciona na prática <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+  <div class="body" style="gap:clamp(9px,1.2vw,18px)">
+    <h2 class="mega xs"><span class="ln"><i>A categoria corre. <em>O supermercado ficou para trás.</em></i></span></h2>
+    <div class="ctx">
+      <div class="ctx-a">
+        <div class="stat3 fu"><span class="ic"><svg><use href="#k-chart"/></svg></span>
+          <span class="nm">R$ <span data-n="76">0</span><i>,6 bi</i></span><span class="cp2">movimentados em 2025</span></div>
+        <div class="stat3 fu"><span class="ic"><svg><use href="#k-up"/></svg></span>
+          <span class="nm">+<span data-n="15">0</span><i>%</i></span><span class="cp2">crescimento no ano</span></div>
+        <div class="stat3 fu"><span class="ic"><svg><use href="#k-target"/></svg></span>
+          <span class="nm">R$ <span data-n="13">0</span><i>,8 bi</i></span><span class="cp2">projetados para 2030</span></div>
+      </div>
+      <div class="ctx-b fu">
+        <span class="tag">Onde o shopper compra suplemento</span>
+        <div class="fun">
+          <div class="frow"><span class="lb">Farmácia</span><span class="tr"><span class="fl grw" style="width:100%"></span></span><span class="vl">48%</span></div>
+          <div class="frow"><span class="lb">E-commerce</span><span class="tr"><span class="fl grw" style="width:50%;animation-delay:.42s"></span></span><span class="vl">24%</span></div>
+          <div class="frow"><span class="lb">Supermercado</span><span class="tr"><span class="fl grw hot" style="width:31%;animation-delay:.56s"></span></span><span class="vl big2">15%</span></div>
+          <div class="frow"><span class="lb">Especializada</span><span class="tr"><span class="fl grw" style="width:17%;animation-delay:.7s"></span></span><span class="vl">8%</span></div>
+        </div>
+        <span class="src"><b>Fontes:</b> BRASNUTRI com Euromonitor · IFEPEC · Future Market Insights</span>
+      </div>
+      <div class="ctx-c fu">
+        <span class="tag">Território livre</span>
+        <div class="mapbox sm">
+          <span class="ax h"></span><span class="ax v"></span>
+          <span class="axl" style="left:2%;top:46%">Performance</span>
+          <span class="axl" style="right:2%;top:46%">Rotina</span>
+          <span class="dot" style="left:20%;top:22%">Max Titanium</span>
+          <span class="dot" style="left:30%;top:40%">Integralmédica</span>
+          <span class="dot" style="left:21%;top:76%">Growth</span>
+          <span class="dot" style="left:62%;top:68%">Dux</span>
+          <span class="dot" style="left:72%;top:26%">Essential</span>
+          <span class="zone" style="left:54%;top:52%;width:42%;height:40%"></span>
+          <span class="dot me" style="left:73%;top:80%">Nutrify</span>
+        </div>
+        <span class="src">Clean label explicado dentro do varejo alimentar: ninguém ocupou</span>
+      </div>
+    </div>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">OBJETIVO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">O CONTEXTO</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">03</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- VOCÊ PASSA O DESAFIO -->
-<section class="s clay" data-chap="01 · O desafio">
-  <div class="meta"><span class="l">O acordo</span><span class="r">O que muda para o seu time</span></div>
+<!-- 04 NUTRIFY LAB -->
+<section class="s deep" data-chap="A solução">
+  <div class="meta"><span class="l">A proposta</span><span class="r">Uma plataforma · dois formatos</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega"><span class="ln"><i>Você passa</i></span><span class="ln"><i>o desafio.</i></span><span class="ln"><i>A gente <em>resolve</em></i></span><span class="ln"><i><em>tudo.</em></i></span></h2>
+  <div class="body" style="gap:clamp(10px,1.4vw,24px)">
+    <div class="rev">
+      <span class="chapmark"><b>01</b> Apresentamos a solução</span>
+      <h2 class="mega sm"><span class="ln"><i>Nutrify <em>Lab</em></i></span></h2>
+      <p class="say w" style="max-width:62ch">Duas experiências de loja que transformam <b>interesse em compra</b>, com a equipe e a operação por nossa conta.</p>
+    </div>
+    <div class="twoup">
+      <button class="fcard" data-go="4">
+        <span class="shot"><img src="assets/r-routine-01-abordagem.jpg" alt="Routine Lab montado no corredor da loja" loading="lazy"></span>
+        <span class="fc-b">
+          <span class="fc-n">Formato 01 · lojas menores</span>
+          <span class="fc-t">Routine Lab</span>
+          <span class="fc-d">Quatro perguntas no tablet viram uma rota de produto.</span>
+          <span class="fc-k"><b>90 s</b><i>por pessoa</i><b>160</b><i>por dia</i></span>
+        </span>
+      </button>
+      <button class="fcard" data-go="5">
+        <span class="shot"><img src="assets/r-move-01-arena.jpg" alt="Move Lab em operação com público no corredor" loading="lazy"></span>
+        <span class="fc-b">
+          <span class="fc-n">Formato 02 · lojas maiores</span>
+          <span class="fc-t">Move Lab</span>
+          <span class="fc-d">Um desafio físico que para o corredor e entrega amostra.</span>
+          <span class="fc-k"><b>60 s</b><i>de desafio</i><b>96</b><i>por dia</i></span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">04</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 05 ROUTINE LAB -->
+<section class="s" data-chap="Routine Lab">
+  <div class="meta"><span class="l">Formato 01 · lojas menores</span><span class="r">Routine Lab · experimente ao vivo</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.3vw,20px)">
+    <div class="rtn">
+      <div class="rtn-a">
+        <h2 class="mega sm"><span class="ln"><i>Routine</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
+        <p class="say">Quatro respostas de rotina viram <b>2 a 3 produtos do mix daquela loja</b>, e o promotor leva a pessoa até a gôndola.</p>
+        <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
+          <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-stop"/></svg></span><span class="n">01</span><span class="t">Parar</span></div>
+          <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">02</span><span class="t">Responder</span></div>
+          <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-leaf"/></svg></span><span class="n">03</span><span class="t">Descobrir</span></div>
+          <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-cart"/></svg></span><span class="n">04</span><span class="t">Comprar</span></div>
+        </div>
+        <div class="minirow">
+          <span class="mi"><b>90 s</b><i>por pessoa</i></span>
+          <span class="mi"><b>160</b><i>pessoas por dia</i></span>
+          <span class="mi"><b>1,4 m²</b><i>de área</i></span>
+          <span class="mi"><b>0</b><i>cadastro</i></span>
+        </div>
+        <div class="shot rtn-img"><img src="assets/r-routine-03-tablet.jpg" alt="Promotora e shopper usando o tablet do Routine Lab" loading="lazy"></div>
+      </div>
+      <div class="rtn-b">
+        <span class="tag" style="margin-bottom:.6em">Toque e teste agora</span>
+        <div class="tab">
+          <div class="qscr" id="qz">
+            <div class="qv home on" data-v="home">
+              <span class="lf"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M56 8c0 27-16.4 42-40 42"/><path class="i-bob" d="M56 8C28 8 12 22 12 42c0 3.8.8 7.4 2.2 10.8C20 37 34 27 56 22"/></svg></span>
+              <h4>Sua rotina tem um match</h4>
+              <p>4 perguntas · 90 segundos · sem cadastro</p>
+              <button class="qcta big" id="qstart">Começar</button>
+            </div>
+            <div class="qv" data-v="q">
+              <div class="qhd"><span class="st" id="qstep">01 / 04</span><span class="qbar"><i id="qfill"></i></span></div>
+              <div class="qbody"><h5 class="qt" id="qtitle"></h5><div class="qopts" id="qopts"></div></div>
+              <div class="qfoot"><button class="qback" id="qprev">Voltar</button></div>
+            </div>
+            <div class="qv" data-v="r">
+              <div class="rhd"><span class="sw"></span><span class="k">Seu momento Nutrify</span><span class="t" id="rname"></span></div>
+              <div class="rlist" id="rlist"></div>
+              <button class="qcta" id="rcta">Está na exposição ao lado</button>
+              <div class="qfoot" style="padding-top:5%"><button class="qback" id="qagain">Refazer</button></div>
+            </div>
+          </div>
+        </div>
+        <span class="disc">Imagens meramente ilustrativas, não são imagens finais</span>
+      </div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">05</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 06 MOVE LAB -->
+<section class="s ink2" data-chap="Move Lab">
+  <div class="meta"><span class="l">Formato 02 · lojas maiores</span><span class="r">Move Lab · desafio e amostra</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.3vw,20px)">
+    <div class="mv">
+      <div class="mv-img shot"><img src="assets/r-move-04-desafio.jpg" alt="Shopper encarando os alvos iluminados do Move Lab" loading="lazy"></div>
+      <div class="mv-a">
+        <h2 class="mega sm"><span class="ln"><i>Move</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
+        <p class="say">Sessenta segundos de desafio no corredor. <b>Quem cumpre leva a amostra na hora</b> e escolhe o território que combina com a rotina dele.</p>
+        <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
+          <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-target"/></svg></span><span class="n">01</span><span class="t">Desafiar</span></div>
+          <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-gift"/></svg></span><span class="n">02</span><span class="t">Ganhar</span></div>
+          <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">03</span><span class="t">Escolher</span></div>
+          <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-cart"/></svg></span><span class="n">04</span><span class="t">Comprar</span></div>
+        </div>
+        <div class="minirow">
+          <span class="mi"><b>60 s</b><i>de desafio</i></span>
+          <span class="mi"><b>96</b><i>pessoas por dia</i></span>
+          <span class="mi"><b>2,25 m²</b><i>de zona ativa</i></span>
+          <span class="mi"><b>1</b><i>amostra por pessoa</i></span>
+        </div>
+      </div>
+      <div class="mv-v">
+        <svg viewBox="0 0 420 180" role="img" aria-label="Voucher de amostra Nutrify liberado ao cumprir o desafio">
+          <rect x="4" y="6" width="412" height="160" rx="13" fill="#F4F2EC"/>
+          <path d="M4 19A13 13 0 0 1 17 6h136v160H17A13 13 0 0 1 4 153Z" fill="#006C52"/>
+          <line x1="160" y1="18" x2="160" y2="154" stroke="#8C342B" stroke-width="2" stroke-dasharray="6 7" opacity=".6"/>
+          <circle cx="160" cy="6" r="8" fill="currentColor"/><circle cx="160" cy="166" r="8" fill="currentColor"/>
+          <circle cx="78" cy="62" r="24" fill="none" stroke="#C0EE4E" stroke-width="2.6"/>
+          <path d="m68 62 7.6 7.6L92 53" stroke="#C0EE4E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="78" y="106" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="13">DESAFIO</text>
+          <text x="78" y="124" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="13">CUMPRIDO</text>
+          <text x="184" y="44" fill="#8C342B" font-family="Space Mono,monospace" font-size="10" letter-spacing="2.2">AMOSTRA LIBERADA</text>
+          <text x="184" y="76" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="25" letter-spacing="-.8">NUTRIFY</text>
+          <text x="184" y="100" fill="#006C52" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="15">SACHÊ ÚNICO</text>
+          <rect x="184" y="116" width="200" height="24" rx="12" fill="#C0EE4E"/>
+          <text x="284" y="132" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="10" letter-spacing=".6">RETIRE COM O PROMOTOR</text>
+        </svg>
+        <span class="disc">Imagens meramente ilustrativas, não são imagens finais</span>
+      </div>
+    </div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">06</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 07 A DIVISÃO DO TRABALHO -->
+<section class="s clay" data-chap="O acordo">
+  <div class="meta"><span class="l">O acordo</span><span class="r">Quem faz o quê</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
+    <h2 class="mega sm"><span class="ln"><i>Você passa o desafio.</i></span><span class="ln"><i>A gente <em>resolve tudo.</em></i></span></h2>
+    <div class="splitx">
+      <div class="sx-col off fu">
+        <span class="sx-h"><span class="ic"><svg><use href="#k-bulb"/></svg></span>Fica com a Nutrify</span>
+        <ul class="sx-l">
+          <li><span class="d2"></span>Direcionamento</li>
+          <li><span class="d2"></span>Produto e mix</li>
+          <li><span class="d2"></span>Objetivo comercial</li>
+          <li><span class="d2"></span>Estratégia de marca</li>
+        </ul>
+      </div>
+      <span class="sx-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="i-flow" d="M3 12h15" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="m14.4 6.6 5.4 5.4-5.4 5.4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="sx-col on fu">
+        <span class="sx-h"><span class="ic"><svg><use href="#k-stop"/></svg></span>Assume a 75 LAB</span>
+        <ul class="sx-l">
+          <li><span class="d2"></span>Experiência e conteúdo</li>
+          <li><span class="d2"></span>Promotora e supervisor</li>
+          <li><span class="d2"></span>Materiais e montagem</li>
+          <li><span class="d2"></span>Logística e armazenagem</li>
+          <li><span class="d2"></span>Execução em loja</li>
+          <li><span class="d2"></span>Relatório e dados</li>
+        </ul>
+      </div>
+    </div>
     <p class="say w fu">Não é uma lista de ideias de ativação. É <b>uma operação que sai da sua mesa</b> e volta como venda medida.</p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">O ACORDO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">07</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- A DIVISÃO DO TRABALHO -->
-<!-- MERCADO -->
-<section class="s" data-chap="02 · O contexto">
-  <div class="meta"><span class="l">Contexto de mercado</span><span class="r">Categoria suplementos no Brasil</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
-    <span class="chapmark"><b>02</b> O contexto</span>
-    <h2 class="mega xs"><span class="ln"><i>A categoria cresce rápido. <em>O ponto de venda não acompanhou.</em></i></span></h2>
-    <div class="g g3">
-      <div class="fu stack" style="gap:.3em">
-        <span class="num mid" style="font-size:clamp(34px,5.4vw,84px)">R$ <span data-n="76">0</span><u>,6 bi</u></span>
-        <span class="tag">movimentados em 2025</span>
-      </div>
-      <div class="fu stack" style="gap:.3em">
-        <span class="num mid" style="font-size:clamp(34px,5.4vw,84px)">+<span data-n="15">0</span><u>%</u></span>
-        <span class="tag">de crescimento no ano</span>
-      </div>
-      <div class="fu stack" style="gap:.3em">
-        <span class="num mid" style="font-size:clamp(34px,5.4vw,84px)">R$ <span data-n="13">0</span><u>,8 bi</u></span>
-        <span class="tag">projetados para 2030</span>
-      </div>
-    </div>
-    <p class="src fu"><b>Fontes:</b> BRASNUTRI com dados Euromonitor · Future Market Insights (crescimento médio de 9,5% ao ano entre 2026 e 2036, Brasil é o 3º mercado que mais cresce no mundo)</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- O CANAL -->
-<section class="s bone" data-chap="02 · O contexto">
-  <div class="meta"><span class="l">Onde o shopper compra</span><span class="r">Participação por canal</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
-    <h2 class="mega xs"><span class="ln"><i>O supermercado tem <em>15% da categoria</em></i></span></h2>
-    <div class="sp-a">
-      <div><span class="num"><span data-n="15">0</span><u>%</u></span><p class="tag" style="margin-top:.4em">dos suplementos saem do varejo alimentar</p></div>
-      <div class="fun" style="width:100%">
-        <div class="frow"><span class="lb">Farmácia</span><span class="tr"><span class="fl grw" style="width:100%"></span></span><span class="vl">48%</span></div>
-        <div class="frow"><span class="lb">E-commerce</span><span class="tr"><span class="fl grw" style="width:50%;animation-delay:.45s"></span></span><span class="vl">24%</span></div>
-        <div class="frow"><span class="lb">Supermercado</span><span class="tr"><span class="fl grw" style="width:31%;animation-delay:.6s;background:linear-gradient(90deg,#8C342B,#C0EE4E)"></span></span><span class="vl">15%</span></div>
-        <div class="frow"><span class="lb">Especializada</span><span class="tr"><span class="fl grw" style="width:17%;animation-delay:.75s"></span></span><span class="vl">8%</span></div>
-      </div>
-    </div>
-    <p class="say w fu">O produto já está na gôndola. <b>O que falta é alguém que traduza a categoria no único canal onde o shopper vai toda semana.</b></p>
-    <p class="src fu"><b>Fonte:</b> pesquisa IFEPEC, participação por canal de compra de suplementos</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- JORNADA DO SHOPPER -->
-<section class="s" data-chap="02 · O contexto">
-  <div class="meta"><span class="l">Jornada do shopper</span><span class="r">Onde a venda se perde</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
-    <h2 class="mega xs"><span class="ln"><i>A intenção chega na loja. <em>A decisão não.</em></i></span></h2>
-    <div class="jny">
-      <div class="jn"><span class="pt"></span><span class="st">Antes</span><span class="hd2">Quer cuidar da rotina</span><span class="bd2">Vê conteúdo, ouve indicação, decide que vai começar.</span></div>
-      <div class="jn"><span class="pt"></span><span class="st">Antes</span><span class="hd2">Pesquisa online</span><span class="bd2">Compara marca, preço e promessa fora da loja.</span></div>
-      <div class="jn key"><span class="pt"></span><span class="st">Na loja</span><span class="hd2">Chega no corredor</span><span class="bd2">Dezenas de potes, rótulos técnicos, nenhuma orientação.</span><span class="br">Barreira: não sei qual é o meu</span></div>
-      <div class="jn key"><span class="pt"></span><span class="st">Na loja</span><span class="hd2">Adia a decisão</span><span class="bd2">Leva o de sempre, ou simplesmente não leva.</span><span class="br">Barreira: na dúvida, não compra</span></div>
-      <div class="jn"><span class="pt"></span><span class="st">Depois</span><span class="hd2">Compra online</span><span class="bd2">Resolve em casa, fora do carrinho do supermercado.</span></div>
-    </div>
-    <p class="say w fu">O ponto de ruptura é curto e tem lugar certo: <b>os segundos em frente à gôndola.</b></p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- COMPETIDORES -->
-<section class="s bone" data-chap="02 · O contexto">
-  <div class="meta"><span class="l">Território competitivo</span><span class="r">Onde cada marca fala</span></div>
+<!-- 08 A OPERAÇÃO EM CAMPO -->
+<section class="s bone" data-chap="A operação">
+  <div class="meta"><span class="l">A operação em campo</span><span class="r">Equipe, retaguarda e logística</span></div>
   <div class="hair"></div><div class="bar"></div>
   <div class="body" style="gap:clamp(10px,1.4vw,22px)">
-    <h2 class="mega xs"><span class="ln"><i>Todo mundo fala de produto. <em>Ninguém explica na loja.</em></i></span></h2>
-    <div class="mapbox">
-      <span class="ax h"></span><span class="ax v"></span>
-      <span class="axl" style="left:1.2%;top:48%">Performance</span>
-      <span class="axl" style="right:1.2%;top:48%;text-align:right">Rotina e saúde</span>
-      <span class="axl" style="left:50.8%;top:2%">Marca fala pelo atleta</span>
-      <span class="axl" style="left:50.8%;bottom:1.5%">Marca fala pelo rótulo</span>
-      <span class="dot" style="left:17%;top:19%">Max Titanium</span>
-      <span class="dot" style="left:27%;top:35%">Integralmédica</span>
-      <span class="dot" style="left:22%;top:72%">Growth</span>
-      <span class="dot" style="left:63%;top:70%">Dux</span>
-      <span class="dot" style="left:74%;top:30%">Essential Nutrition</span>
-      <span class="zone" style="left:56%;top:56%;width:38%;height:34%"></span>
-      <span class="zonel" style="left:56%;top:50.5%">Território livre: clean label explicado no varejo alimentar</span>
-      <span class="dot me" style="left:72%;top:78%">Nutrify</span>
-    </div>
-    <p class="src"><b>Leitura 75 LAB</b> a partir do posicionamento público das marcas · rankings de categoria 2026</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- TENDÊNCIAS -->
-<section class="s" data-chap="02 · O contexto">
-  <div class="meta"><span class="l">Tendências aplicáveis</span><span class="r">O que já dá para usar agora</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
-    <h2 class="mega xs"><span class="ln"><i>Quatro movimentos que <em>cabem neste projeto.</em></i></span></h2>
-    <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">PHYGITAL</span><span class="t">Tela no corredor</span><span class="d">O conteúdo que existe online entra na loja, no tempo do shopper.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-leaf"/></svg></span><span class="n">PERSONALIZAÇÃO</span><span class="t">Recomendação por rotina</span><span class="d">Em vez de um folheto igual para todos, uma rota de produto por pessoa.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-gift"/></svg></span><span class="n">SAMPLING COM GATILHO</span><span class="t">Amostra que se conquista</span><span class="d">A amostra deixa de ser distribuída e passa a ser merecida.</span></div>
-      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">MENSURAÇÃO</span><span class="t">Ativação com dado</span><span class="d">Cada interação vira registro, e cada loja vira comparação.</span></div>
-    </div>
-    <p class="say w fu">Nenhuma delas depende de tecnologia que a Nutrify ainda não tenha. <b>Todas dependem de execução.</b></p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">02 · O CONTEXTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<section class="s clay" data-chap="03 · A tese">
-  <div class="meta"><span class="l">A tese</span><span class="r">Categoria suplementos</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Suplementos podem</i></span><span class="ln"><i>ser explicados</i></span><span class="ln"><i>diretamente no</i></span><span class="ln"><i><em>ponto de venda.</em></i></span></h2>
-    <p class="say w fu">Para encantar o shopper temos que ir além da exposição. Alguém precisa traduzir o portfólio <b>no tempo do supermercado</b>.</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">14</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 05 ─────────── O NÚMERO ─────────── -->
-<section class="s bone" data-chap="03 · A tese">
-  <div class="meta"><span class="l">A oportunidade</span><span class="r">Comportamento de shopper</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num"><span data-n="86">0</span><u>%</u></span></div>
-      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega xs"><span class="ln"><i>já mudaram</i></span><span class="ln"><i>algum <em>hábito.</em></i></span></h2>
-        <p class="say">Metade delas já procura fibras e vitaminas na compra da semana. A intenção existe. <b>Falta o contexto na hora da escolha.</b></p>
+    <h2 class="mega xs"><span class="ln"><i>A equipe já está <em>dentro do contrato.</em></i></span></h2>
+    <div class="opx">
+      <div class="opx-t">
+        <div class="rolecard fu"><span class="ic"><svg><use href="#k-stop"/></svg></span>
+          <span class="rc-n">Em loja</span><span class="rc-t">Promotor</span>
+          <span class="rc-d">Um por PDV, uniformizado e treinado antes de cada onda.</span></div>
+        <div class="rolecard fu"><span class="ic"><svg><use href="#k-grid"/></svg></span>
+          <span class="rc-n">Na região</span><span class="rc-t">Supervisor</span>
+          <span class="rc-d">Audita execução, estoque e evidências loja a loja.</span></div>
+        <div class="rolecard fu"><span class="ic"><svg><use href="#k-box"/></svg></span>
+          <span class="rc-n">Na retaguarda</span><span class="rc-t">Coordenação</span>
+          <span class="rc-d">Escala, logística, insumos, uniformes e armazenagem.</span></div>
+        <div class="rolecard hot fu"><span class="ic"><svg><use href="#k-tap"/></svg></span>
+          <span class="rc-n">No sistema</span><span class="rc-t">App e BI</span>
+          <span class="rc-d">Registro em campo, dashboard e relatório por loja.</span></div>
       </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">15</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 06 ─────────── A SOLUÇÃO ─────────── -->
-<section class="s deep" data-chap="04 · A solução">
-  <div class="meta"><span class="l">A proposta</span><span class="r">Uma plataforma · dois formatos</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega"><span class="ln pre"><i>Apresentamos a solução</i></span><span class="ln"><i>Nutrify</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
-    <div class="rows">
-      <div class="row"><span class="k">Formato 01 · lojas menores</span><span class="v">Routine Lab <em>90 s</em></span></div>
-      <div class="row"><span class="k">Formato 02 · lojas maiores</span><span class="v">Move Lab <em>60 s</em></span></div>
-    </div>
-    <div class="ctas">
-      <button class="cta" data-go="16">Conhecer o Routine Lab <span class="ar"><svg><use href="#ar"/></svg></span></button>
-      <button class="cta gh" data-go="23">Conhecer o Move Lab</button>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">16</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 07 ─────────── DIVISOR ROUTINE ─────────── -->
-<section class="s pic" data-chap="04 · Routine Lab">
-  <div class="img"><img src="assets/r-routine-02-conversa.jpg" alt="Promotora conduzindo o Routine Lab com uma shopper"><div class="scrim"></div></div>
-  <div class="cap">
-    <span class="tag">Formato 01 · lojas menores</span>
-    <h2 class="mega"><span class="ln"><i>Routine</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
-    <p class="say fu">Sua rotina tem um match Nutrify. <b>Descubra em 90 segundos.</b></p>
-    <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">17</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 08 ─────────── 90 SEGUNDOS ─────────── -->
-<section class="s" data-chap="04 · Routine Lab">
-  <div class="meta"><span class="l">Routine Lab</span><span class="r">Tempo de experiência</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num"><span data-n="90">0</span><u>seg</u></span></div>
-      <div class="stack" style="gap:clamp(12px,1.6vw,24px)">
-      <h2 class="mega xs"><span class="ln"><i>da abordagem</i></span><span class="ln"><i>ao <em>match.</em></i></span></h2>
-      <div class="rows thin">
-        <div class="row"><span class="k">Perguntas</span><span class="v"><em>4</em></span></div>
-        <div class="row"><span class="k">Cadastro</span><span class="v"><em>0</em></span></div>
-        <div class="row"><span class="k">Promotor</span><span class="v"><em>1</em></span></div>
-        <div class="row"><span class="k">Passos até o produto</span><span class="v"><em>8</em></span></div>
-      </div>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">18</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 09 ─────────── COMO FUNCIONA ─────────── -->
-<section class="s bone" data-chap="04 · Routine Lab">
-  <div class="meta"><span class="l">Routine Lab em loja</span><span class="r">Estudo de ambientação</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.6vw,26px)">
-    <div class="sp" style="align-items:end;flex:none">
-      <h2 class="mega xs"><span class="ln"><i>Ocupa o corredor</i></span><span class="ln"><i>sem <em>fechar a loja.</em></i></span></h2>
-      <p class="say">Totem cilíndrico, balcão de exposição e adesivo de piso. <b>Um promotor conduz tudo.</b></p>
-    </div>
-    <div class="gal a">
-      <div class="shot"><span class="cp">Abordagem no corredor</span><img src="assets/r-routine-01-abordagem.jpg" alt="Promotora abordando shopper ao lado do totem Routine Lab" loading="lazy"></div>
-      <div class="shot"><span class="cp">Quiz no tablet</span><img src="assets/r-routine-03-tablet.jpg" alt="Shopper respondendo o quiz no tablet" loading="lazy"></div>
-      <div class="shot"><span class="cp">Zona de conversão ao lado</span><img src="assets/r-routine-04-corredor.jpg" alt="Routine Lab montado junto à exposição de suplementos" loading="lazy"></div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">19</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 13 ─────────── DIVISOR MOVE ─────────── -->
-<section class="s bone" data-chap="04 · Routine Lab">
-  <div class="meta"><span class="l">Routine Lab</span><span class="r">Da abordagem à compra</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Quatro respostas.</i></span><span class="ln"><i>Uma <em>rota de produto.</em></i></span></h2>
-    <div class="steps g4 keep" data-seq>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-stop"/></svg></span><span class="n">PASSO 01</span><span class="t">Parar</span><span class="d">Totem, adesivo de piso e uma frase.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">PASSO 02</span><span class="t">Responder</span><span class="d">Quatro perguntas de rotina no tablet.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-leaf"/></svg></span><span class="n">PASSO 03</span><span class="t">Descobrir</span><span class="d">O momento Nutrify da pessoa, com 2 a 3 produtos.</span></div>
-      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-cart"/></svg></span><span class="n">PASSO 04</span><span class="t">Comprar</span><span class="d">Levada até a exposição, ao lado.</span></div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">20</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 10 ─────────── DEMO FUNCIONAL ─────────── -->
-<section class="s deep" data-chap="04 · Routine Lab">
-  <div class="meta"><span class="l">Routine Lab · demonstração</span><span class="r">Funciona agora, nesta tela</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
-    <div class="qwrap">
-      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega sm"><span class="ln"><i>Experimente</i></span><span class="ln"><i><em>agora.</em></i></span></h2>
-        <p class="say">É o mesmo fluxo que roda no tablet da loja. <b>Toque nas respostas</b> e chegue ao seu momento Nutrify.</p>
-        <div class="rows thin" style="max-width:32ch">
-          <div class="row"><span class="k">Perguntas</span><span class="v"><em>4</em></span></div>
-          <div class="row"><span class="k">Tempo médio</span><span class="v"><em>90 s</em></span></div>
-          <div class="row"><span class="k">Cadastro</span><span class="v"><em>0</em></span></div>
-        </div>
-        <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
-      </div>
-      <div class="tab">
-        <div class="qscr" id="qz">
-          <div class="qv home on" data-v="home">
-            <span class="lf"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M56 8c0 27-16.4 42-40 42"/><path class="i-bob" d="M56 8C28 8 12 22 12 42c0 3.8.8 7.4 2.2 10.8C20 37 34 27 56 22"/></svg></span>
-            <h4>Sua rotina tem um match</h4>
-            <p>4 perguntas · 90 segundos · sem cadastro</p>
-            <button class="qcta big" id="qstart">Começar</button>
-          </div>
-          <div class="qv" data-v="q">
-            <div class="qhd">
-              <span class="st" id="qstep">01 / 04</span>
-              <span class="qbar"><i id="qfill"></i></span>
-            </div>
-            <div class="qbody">
-              <h5 class="qt" id="qtitle"></h5>
-              <div class="qopts" id="qopts"></div>
-            </div>
-            <div class="qfoot"><button class="qback" id="qprev">Voltar</button></div>
-          </div>
-          <div class="qv" data-v="r">
-            <div class="rhd"><span class="sw"></span>
-              <span class="k">Seu momento Nutrify</span>
-              <span class="t" id="rname"></span>
-            </div>
-            <div class="rlist" id="rlist"></div>
-            <button class="qcta" id="rcta">Está na exposição ao lado</button>
-            <div class="qfoot" style="padding-top:5%"><button class="qback" id="qagain">Refazer</button></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">21</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 11 ─────────── RENDER · ESTRUTURA ─────────── -->
-<section class="s bone" data-chap="04 · Routine Lab">
-  <div class="meta"><span class="l">Routine Lab · render</span><span class="r">Estrutura em loja</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(10px,1.4vw,24px)">
-    <div class="sp">
-      <h2 class="mega sm"><span class="ln"><i>Cabe em</i></span><span class="ln"><i><em>1,4 m².</em></i></span></h2>
-      <div class="rows thin">
-        <div class="row"><span class="k">Área</span><span class="v">1,2 × 1,2 m</span></div>
-        <div class="row"><span class="k">Altura do totem</span><span class="v">2,0 m</span></div>
-        <div class="row"><span class="k">Montagem</span><span class="v">&lt; 20 min</span></div>
-        <div class="row"><span class="k">Transporte</span><span class="v">1 case</span></div>
-      </div>
-    </div>
-    <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
-    <div class="frame">
-      <svg viewBox="0 0 1080 330" role="img" aria-label="Elevação e planta baixa do Routine Lab">
-        <defs>
-          <linearGradient id="tG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#004E3B"/><stop offset=".44" stop-color="#00795C"/><stop offset="1" stop-color="#003528"/></linearGradient>
-          <linearGradient id="sG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05B590"/><stop offset="1" stop-color="#006C52"/></linearGradient>
-        </defs>
-        <rect width="1080" height="330" fill="#E4E0D5"/>
-        <line x1="540" y1="24" x2="540" y2="306" stroke="#1A1310" opacity=".16"/>
-        <text x="34" y="34" fill="#5E5349" font-family="Space Mono,monospace" font-size="11" letter-spacing="3">ELEVAÇÃO</text>
-        <text x="572" y="34" fill="#5E5349" font-family="Space Mono,monospace" font-size="11" letter-spacing="3">PLANTA</text>
-        <!-- elevação -->
-        <g>
-          <line x1="60" y1="272" x2="500" y2="272" stroke="#1A1310" opacity=".3"/>
-          <ellipse cx="284" cy="276" rx="132" ry="15" fill="none" stroke="#05B590" stroke-width="2.4" stroke-dasharray="9 7"/>
-          <path d="M330 272V96c0-21 17-38 38-38s38 17 38 38v176Z" fill="url(#tG)"/>
-          <g stroke="#F4F2EC" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".94">
-            <path d="M390 138c0 40-23 60-48 60"/><path d="M390 138c-40 0-63 20-63 47 0 5.4 1 10.4 2.7 15 5.6-15 22-26 60.3-32"/></g>
-          <text x="368" y="90" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="100%" font-size="11" letter-spacing=".2">NUTRIFY</text>
-          <path d="M330 226c25 10 51 10 76 0v46h-76Z" fill="#8C342B"/>
-          <g><rect x="190" y="150" width="86" height="112" rx="9" fill="#1A1310"/>
-             <rect x="197" y="157" width="72" height="98" rx="5" fill="url(#sG)"/>
-             <rect x="206" y="168" width="40" height="5" rx="2.5" fill="#F4F2EC" opacity=".9"/>
-             <rect x="206" y="182" width="54" height="14" rx="5" fill="#C0EE4E"/>
-             <rect x="206" y="202" width="54" height="14" rx="5" fill="#F4F2EC" opacity=".4"/>
-             <rect x="206" y="222" width="54" height="14" rx="5" fill="#F4F2EC" opacity=".4"/>
-             <rect x="228" y="262" width="10" height="10" fill="#3A3B38"/>
-             <ellipse cx="233" cy="272" rx="30" ry="6" fill="#3A3B38"/></g>
-          <g stroke="#8C342B" stroke-width="1.4" fill="none">
-            <path d="M448 58v214"/><path d="M443 63l5-5 5 5M443 267l5 5 5-5"/></g>
-          <text x="470" y="168" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="12">2,0 m</text>
-        </g>
-        <!-- planta -->
-        <g transform="translate(596,54)">
-          <rect x="10" y="10" width="212" height="212" fill="#EFF5F2" stroke="#05B590" stroke-width="1.8" stroke-dasharray="8 6"/>
-          <circle cx="116" cy="116" r="92" fill="#05B590" opacity=".09"/>
-          <circle cx="116" cy="116" r="92" fill="none" stroke="#05B590" stroke-width="1.6" opacity=".5"/>
-          <ellipse cx="188" cy="66" rx="24" ry="14" fill="#006C52"/>
-          <circle cx="66" cy="100" r="14" fill="#1A1310"/>
-          <circle cx="112" cy="60" r="12" fill="#8C342B"/>
-          <circle cx="100" cy="168" r="12" fill="#05B590"/>
-          <g stroke="#8C342B" stroke-width="1.3" fill="none"><path d="M10 -6h212M10 -10v8M222 -10v8"/></g>
-          <text x="116" y="-16" text-anchor="middle" fill="#8C342B" font-family="Space Mono,monospace" font-weight="700" font-size="12">1,2 m</text>
-          <rect x="286" y="18" width="120" height="196" fill="#F4F2EC" stroke="#CFC9BB"/>
-          <g fill="#CAE1D6"><rect x="294" y="30" width="104" height="30"/><rect x="294" y="68" width="104" height="30"/><rect x="294" y="106" width="104" height="30"/><rect x="294" y="144" width="104" height="30"/><rect x="294" y="182" width="104" height="24"/></g>
-          <rect x="286" y="18" width="120" height="16" fill="#006C52"/>
-          <text x="346" y="30" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="9.4" letter-spacing="1.2">EXPOSIÇÃO</text>
-          <g stroke="#8C342B" stroke-width="3.4" fill="none" stroke-linecap="round"><path d="M232 116h40"/><path d="m264 108 10 8-10 8"/></g>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">22</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 12 ─────────── FICHA ROUTINE ─────────── -->
-<section class="s" data-chap="04 · Routine Lab">
-  <div class="meta"><span class="l">Routine Lab</span><span class="r">O que roda por dia</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num mid"><span data-n="160">0</span></span><p class="tag" style="margin-top:8px">pessoas por dia, por loja</p></div>
-      <div class="rows thin">
-        <div class="row"><span class="k">Equipe</span><span class="v">1 promotor</span></div>
-        <div class="row"><span class="k">Tempo por pessoa</span><span class="v">2 a 3 min</span></div>
-        <div class="row"><span class="k">Energia</span><span class="v">1 ponto 127/220 V</span></div>
-        <div class="row"><span class="k">Internet</span><span class="v">Roda offline</span></div>
-      </div>
-    </div>
-    <div class="ctas"><button class="cta" data-go="23">Ver o formato 02 <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">ROUTINE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">23</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- ─────────── GALERIA ROUTINE ─────────── -->
-<section class="s pic" data-chap="04 · Move Lab">
-  <div class="img"><img src="assets/r-move-01-arena.jpg" alt="Move Lab em operação com público no corredor"><div class="scrim"></div></div>
-  <div class="cap">
-    <span class="tag">Formato 02 · lojas maiores</span>
-    <h2 class="mega"><span class="ln"><i>Move</i></span><span class="ln"><i><em>Lab</em></i></span></h2>
-    <p class="say fu">60 segundos. Um desafio. <b>Cumpriu, leva a amostra.</b></p>
-    <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">24</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 14 ─────────── 60 SEGUNDOS ─────────── -->
-<section class="s deep" data-chap="04 · Move Lab">
-  <div class="meta"><span class="l">Move Lab</span><span class="r">Tempo de experiência</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num"><span data-n="60">0</span><u>seg</u></span></div>
-      <div class="stack" style="gap:clamp(12px,1.6vw,24px)">
-        <h2 class="mega xs"><span class="ln"><i>e uma</i></span><span class="ln"><i><em>plateia.</em></i></span></h2>
-        <p class="say">Quem está na fila entende a dinâmica antes de ser abordado. <b>A abordagem fica mais fácil a cada rodada.</b></p>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">25</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 15 ─────────── COMO FUNCIONA MOVE ─────────── -->
-<section class="s deep" data-chap="04 · Move Lab">
-  <div class="meta"><span class="l">Move Lab em loja</span><span class="r">Estudo de ambientação</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.6vw,26px)">
-    <div class="sp" style="align-items:end;flex:none">
-      <h2 class="mega xs"><span class="ln"><i>Quem passa</i></span><span class="ln"><i><em>para para ver.</em></i></span></h2>
-      <p class="say">Totem, tapete de zona ativa e a prateleira de amostras a poucos passos. <b>A plateia se forma sozinha.</b></p>
-    </div>
-    <div class="gal a">
-      <div class="shot"><span class="cp">Desafio em andamento</span><img src="assets/r-move-04-desafio.jpg" alt="Shopper golpeando os alvos iluminados do Move Lab" loading="lazy"></div>
-      <div class="shot"><span class="cp">Prateleira de amostras</span><img src="assets/r-move-03-prateleira.jpg" alt="Prateleira de amostras Nutrify ao lado do Move Lab" loading="lazy"></div>
-      <div class="shot"><span class="cp">Equipe em campo</span><img src="assets/r-move-02-equipe.jpg" alt="Promotora conduzindo o equipamento do Move Lab" loading="lazy"></div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">26</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 19 ─────────── A CONVERSÃO ─────────── -->
-<section class="s bone" data-chap="04 · Move Lab">
-  <div class="meta"><span class="l">Move Lab</span><span class="r">Do desafio à compra</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Movimento vira</i></span><span class="ln"><i><em>atenção pública.</em></i></span></h2>
-    <div class="steps g4 keep" data-seq>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-target"/></svg></span><span class="n">PASSO 01</span><span class="t">Desafiar</span><span class="d">Alvos iluminados, 30 a 45 segundos de jogo.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-gift"/></svg></span><span class="n">PASSO 02</span><span class="t">Ganhar</span><span class="d">Cumpriu o desafio, leva uma amostra Nutrify na hora.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">PASSO 03</span><span class="t">Escolher</span><span class="d">A pessoa escolhe o território que combina com ela.</span></div>
-      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-cart"/></svg></span><span class="n">PASSO 04</span><span class="t">Comprar</span><span class="d">Levada até a exposição, ao lado.</span></div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">27</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 16 ─────────── SAMPLING ─────────── -->
-<section class="s deep" data-chap="04 · Move Lab">
-  <div class="meta"><span class="l">Move Lab · a recompensa</span><span class="r">Sampling na hora</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp">
-      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega sm"><span class="ln"><i>Cumpriu o desafio,</i></span><span class="ln"><i><em>leva a amostra.</em></i></span></h2>
-        <p class="say">A amostra entra na mão da pessoa <b>enquanto a experiência ainda está acontecendo</b>. Da amostra até a gôndola são poucos passos.</p>
-        <p class="disc">Imagens meramente ilustrativas, não são imagens finais</p>
-      </div>
-      <div class="frame" style="background:transparent">
-        <svg viewBox="0 0 520 340" role="img" aria-label="Voucher de amostra Nutrify entregue ao cumprir o desafio">
-          <defs>
-            <linearGradient id="vG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#006C52"/><stop offset="1" stop-color="#00402F"/></linearGradient>
-          </defs>
-          <g transform="translate(0,26)">
-            <rect x="14" y="14" width="492" height="184" rx="16" fill="#0A0A08" opacity=".35"/>
-            <rect x="8" y="8" width="492" height="184" rx="16" fill="#F4F2EC"/>
-            <path d="M8 24a16 16 0 0 1 16-16h158v184H24A16 16 0 0 1 8 176Z" fill="url(#vG)"/>
-            <path d="M182 8h20v184h-20Z" fill="#8C342B" opacity=".14"/>
-            <line x1="192" y1="20" x2="192" y2="180" stroke="#8C342B" stroke-width="2" stroke-dasharray="7 8" opacity=".55"/>
-            <circle cx="192" cy="8" r="9" fill="#00402F"/><circle cx="192" cy="192" r="9" fill="#00402F"/>
-            <circle cx="95" cy="78" r="30" fill="none" stroke="#C0EE4E" stroke-width="3"/>
-            <path d="m82 78 9.5 9.5L110 68" stroke="#C0EE4E" stroke-width="4.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="95" y="130" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="15" letter-spacing="-.2">DESAFIO</text>
-            <text x="95" y="150" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="15" letter-spacing="-.2">CUMPRIDO</text>
-            <text x="222" y="48" fill="#8C342B" font-family="Space Mono,monospace" font-size="11" letter-spacing="2.6">AMOSTRA LIBERADA</text>
-            <text x="222" y="88" fill="#1A1310" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="30" letter-spacing="-1">NUTRIFY</text>
-            <text x="222" y="118" fill="#006C52" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="19" letter-spacing="-.4">100% CREATINE</text>
-            <text x="222" y="142" fill="#5E5349" font-family="Space Grotesk,sans-serif" font-size="13">Sachê de porção única</text>
-            <rect x="222" y="156" width="200" height="26" rx="13" fill="#C0EE4E"/>
-            <text x="322" y="174" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="11" letter-spacing=".6">RETIRE COM O PROMOTOR</text>
+      <div class="opx-m fu">
+        <svg viewBox="0 0 300 250" role="img" aria-label="Três frentes regionais conectadas à coordenação central">
+          <circle cx="150" cy="125" r="112" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-dasharray="4 6"/>
+          <g stroke="#05B590" stroke-width="2" fill="none" stroke-linecap="round">
+            <path class="i-flow" d="M150 125 86 58"/><path class="i-flow i-d1" d="M150 125 232 86"/><path class="i-flow i-d2" d="M150 125 118 212"/>
           </g>
-          <g transform="translate(384,232)">
-            <path d="M0 14h96l-6 84a10 10 0 0 1-10 9H16a10 10 0 0 1-10-9Z" fill="#006C52"/>
-            <path d="M0 14h96l-6 84a10 10 0 0 1-10 9H16a10 10 0 0 1-10-9Z" fill="#00402F" opacity=".35"/>
-            <path d="M0 0h96v14H0Z" fill="#8C342B"/>
-            <path d="M0 4h96M0 9h96" stroke="#F4F2EC" stroke-width="1" opacity=".35"/>
-            <text x="48" y="56" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="900" font-stretch="118%" font-size="12" letter-spacing=".4">NUTRIFY</text>
-            <text x="48" y="74" text-anchor="middle" fill="#C0EE4E" font-family="Space Mono,monospace" font-size="8.4" letter-spacing="1.4">AMOSTRA</text>
-          </g>
-          <text x="24" y="286" fill="#7FA096" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.2">SACHÊ DE PORÇÃO ÚNICA</text>
-          <text x="24" y="306" fill="#7FA096" font-family="Space Mono,monospace" font-size="9.6" letter-spacing="2.2">MIX APROVADO PELA NUTRIFY</text>
+          <g><circle cx="86" cy="58" r="30" fill="#006C52"/>
+             <text x="86" y="56" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="800" font-size="12">KIT A</text>
+             <text x="86" y="70" text-anchor="middle" fill="#7FC9B4" font-family="Space Mono,monospace" font-size="7.4" letter-spacing=".6">SUDESTE</text></g>
+          <g><circle cx="232" cy="86" r="30" fill="#8C342B"/>
+             <text x="232" y="84" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="800" font-size="12">KIT B</text>
+             <text x="232" y="98" text-anchor="middle" fill="#EFC9BE" font-family="Space Mono,monospace" font-size="7.4" letter-spacing=".6">NORDESTE</text></g>
+          <g><circle cx="118" cy="212" r="30" fill="#947053"/>
+             <text x="118" y="210" text-anchor="middle" fill="#F4F2EC" font-family="Archivo,sans-serif" font-weight="800" font-size="12">KIT C</text>
+             <text x="118" y="224" text-anchor="middle" fill="#EADDCF" font-family="Space Mono,monospace" font-size="7" letter-spacing=".4">C. OESTE</text></g>
+          <circle cx="150" cy="125" r="40" fill="#1A1310"/>
+          <circle cx="150" cy="125" r="48" fill="none" stroke="#C0EE4E" stroke-width="1.6" class="i-ring" style="transform-origin:150px 125px"/>
+          <text x="150" y="122" text-anchor="middle" fill="#C0EE4E" font-family="Archivo,sans-serif" font-weight="900" font-size="15">HQ</text>
+          <text x="150" y="137" text-anchor="middle" fill="#8FA79E" font-family="Space Mono,monospace" font-size="7.2" letter-spacing="1">PMO 75 LAB</text>
         </svg>
+        <span class="tag" style="text-align:center">Três frentes regionais, uma coordenação central</span>
       </div>
     </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">28</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 18 ─────────── FICHA MOVE ─────────── -->
-<section class="s" data-chap="04 · Move Lab">
-  <div class="meta"><span class="l">Move Lab</span><span class="r">O que roda por dia</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num mid"><span data-n="96">0</span></span><p class="tag" style="margin-top:8px">pessoas por dia, por loja</p></div>
-      <div class="rows thin">
-        <div class="row"><span class="k">Equipe</span><span class="v">1 promotor</span></div>
-        <div class="row"><span class="k">Tempo por pessoa</span><span class="v">5 a 6 min</span></div>
-        <div class="row"><span class="k">Área</span><span class="v">1,5 × 1,5 m</span></div>
-        <div class="row"><span class="k">Higienização</span><span class="v">Entre cada uso</span></div>
-      </div>
-    </div>
-    <div class="ctas"><button class="cta" data-go="35">Como medimos o resultado <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MOVE LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">29</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- ─────────── GALERIA MOVE ─────────── -->
-<section class="s" data-chap="05 · A operação">
-  <div class="meta"><span class="l">A divisão do trabalho</span><span class="r">Quem faz o quê</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
-    <h2 class="mega xs"><span class="ln"><i>Sua equipe decide. <em>A nossa executa.</em></i></span></h2>
-    <div class="g g2">
-      <div class="fu stack" style="gap:clamp(8px,1vw,16px)">
-        <span class="tag">Fica com a Nutrify</span>
-        <div class="rows thin" style="opacity:.62">
-          <div class="row"><span class="k">01</span><span class="v">Direcionamento</span></div>
-          <div class="row"><span class="k">02</span><span class="v">Produto e mix</span></div>
-          <div class="row"><span class="k">03</span><span class="v">Objetivo comercial</span></div>
-          <div class="row"><span class="k">04</span><span class="v">Estratégia de marca</span></div>
-        </div>
-      </div>
-      <div class="fu stack" style="gap:clamp(8px,1vw,16px)">
-        <span class="tag" style="opacity:1;color:var(--lime)">Assume a 75 LAB</span>
-        <div class="rows thin">
-          <div class="row"><span class="k">01</span><span class="v"><em>Experiência e conteúdo</em></span></div>
-          <div class="row"><span class="k">02</span><span class="v"><em>Promotora e supervisor</em></span></div>
-          <div class="row"><span class="k">03</span><span class="v"><em>Materiais e montagem</em></span></div>
-          <div class="row"><span class="k">04</span><span class="v"><em>Logística e armazenagem</em></span></div>
-          <div class="row"><span class="k">05</span><span class="v"><em>Execução em loja</em></span></div>
-          <div class="row"><span class="k">06</span><span class="v"><em>Relatório e dados</em></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">A DIVISÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">30</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<section class="s bone" data-chap="05 · A operação">
-  <div class="meta"><span class="l">A operação</span><span class="r">Equipe e retaguarda</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>A equipe já está</i></span><span class="ln"><i><em>no contrato.</em></i></span></h2>
-    <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-stop"/></svg></span><span class="n">EM LOJA</span><span class="t">Promotor</span><span class="d">Um por PDV, uniformizado e treinado antes de cada onda.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">NA REGIÃO</span><span class="t">Supervisor</span><span class="d">Audita execução, estoque e evidências loja a loja.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-gift"/></svg></span><span class="n">NA RETAGUARDA</span><span class="t">Coordenação</span><span class="d">Escala, logística, insumos, uniformes e armazenagem.</span></div>
-      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">NO SISTEMA</span><span class="t">App e BI</span><span class="d">Registro em campo, dashboard e relatório por loja.</span></div>
-    </div>
-    <p class="say w fu">Refeição, deslocamento, insumos e licença de app entram no mesmo pacote. <b>Você não abre um segundo orçamento para colocar gente na rua.</b></p>
+    <p class="say w fu">Refeição, deslocamento, insumos, uniforme e licença de app entram no mesmo pacote. <b>Você não abre um segundo orçamento para colocar gente na rua.</b></p>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">31</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">08</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s clay" data-chap="05 · A operação">
-  <div class="meta"><span class="l">A conversão</span><span class="r">Distância até a exposição</span></div>
+<!-- 09 RASTREAMENTO -->
+<section class="s deep" data-chap="Rastreamento">
+  <div class="meta"><span class="l">Plano de rastreamento 75 LAB</span><span class="r">Prova de execução</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num">0–3<u>m</u></span><p class="tag" style="margin-top:.6em">de distância da ação</p></div>
-      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <h2 class="mega xs"><span class="ln"><i>Da ação até</i></span><span class="ln"><i>o <em>ponto natural.</em></i></span></h2>
-        <p class="say">A exposição Nutrify fica a <b>até 3 metros</b> da experiência, no ponto natural da categoria. Quanto menor a distância, mais fácil atribuir e converter.</p>
+  <div class="body" style="gap:clamp(9px,1.2vw,18px)">
+    <h2 class="mega xs"><span class="ln"><i>A ação acabou. <em>E o material, onde está?</em></i></span></h2>
+    <div class="trk">
+      <div class="trk-c fu">
+        <span class="trk-h"><span class="ic"><svg><use href="#k-scan"/></svg></span><b>One Shot</b><i>a foto</i></span>
+        <p class="trk-d">QR impresso na peça. Na montagem o promotor lê o código, fotografa a fachada e o sistema carimba loja, GPS e horário.</p>
+        <div class="chips"><span class="chip">positivação</span><span class="chip">foto</span><span class="chip">GPS</span><span class="chip">horário</span></div>
+      </div>
+      <div class="trk-c hot fu">
+        <span class="trk-h"><span class="ic"><svg><use href="#k-wifi"/></svg></span><b>On Timing</b><i>o filme</i></span>
+        <p class="trk-d">Tag ativa na peça. Localização, permanência e movimentação acompanhadas durante toda a onda, com alerta quando algo para.</p>
+        <div class="chips"><span class="chip on">permanência</span><span class="chip on">movimentação</span><span class="chip on">alerta</span><span class="chip">inclui One Shot</span></div>
       </div>
     </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">32</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 20 ─────────── MENSURAÇÃO ─────────── -->
-<!-- A EQUIPE EM CAMPO -->
-<!-- RASTREAMENTO · O PONTO CEGO -->
-<section class="s clay" data-chap="05 · A operação">
-  <div class="meta"><span class="l">Plano de rastreamento</span><span class="r">O ponto cego da ativação</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>A ação acabou.</i></span><span class="ln"><i>E o material, <em>onde está?</em></i></span></h2>
-    <p class="say w fu">Totem, tablet, equipamento e display saem do centro de distribuição e somem do radar. <b>Sem prova de execução, a ativação vira relato.</b></p>
-    <div class="ctas"><button class="cta" data-go="33">Como resolvemos <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">33</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- ONE SHOT -->
-<section class="s bone" data-chap="05 · A operação">
-  <div class="meta"><span class="l">Rastreamento · modalidade 01</span><span class="r">One Shot</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
-    <h2 class="mega xs"><span class="ln"><i>One Shot: <em>a prova de que montou.</em></i></span></h2>
-    <div class="steps" style="grid-template-columns:repeat(4,1fr)" data-seq>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="n">NA PEÇA</span><span class="t">QR impresso</span><span class="d">Cada totem e cada display sai de fábrica com um código próprio.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-stop"/></svg></span><span class="n">NA MONTAGEM</span><span class="t">Promotor registra</span><span class="d">Lê o QR, tira a foto da fachada e confirma a loja.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-target"/></svg></span><span class="n">NO SISTEMA</span><span class="t">GPS e horário</span><span class="d">Local, data e hora ficam carimbados no registro.</span></div>
-      <div class="step hi"><span class="bl"><i></i></span><span class="ic"><svg><use href="#k-grid"/></svg></span><span class="n">NO PAINEL</span><span class="t">Evidência</span><span class="d">Positivação por loja, com foto, dentro do painel de instalações.</span></div>
-    </div>
-    <p class="say w fu">Leitura pontual: responde <b>montou, onde, quando e com que cara ficou</b>.</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">34</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- ON TIMING -->
-<section class="s deep" data-chap="05 · A operação">
-  <div class="meta"><span class="l">Rastreamento · modalidade 02</span><span class="r">On Timing</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(10px,1.4vw,22px)">
-    <h2 class="mega xs"><span class="ln"><i>On Timing: <em>o filme, não a foto.</em></i></span></h2>
-    <div class="frame" style="background:transparent">
-      <svg viewBox="0 0 1180 250" role="img" aria-label="Fluxo do rastreamento On Timing, da ativação até a decisão">
-        <defs><marker id="mk" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-          <path d="M0 0 L9 4.5 L0 9 z" fill="#C0EE4E"/></marker></defs>
+    <div class="flowbar fu">
+      <svg viewBox="0 0 1180 112" role="img" aria-label="Fluxo do rastreamento, da ativação até a decisão">
+        <defs><marker id="mk2" markerWidth="8" markerHeight="8" refX="6.4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#C0EE4E"/></marker></defs>
         <g fill="none" stroke="#05B590" stroke-width="2">
-          <circle cx="76" cy="72" r="34"/><circle cx="76" cy="72" r="34" class="i-ring" style="transform-origin:76px 72px"/>
-          <circle cx="260" cy="72" r="34"/><circle cx="444" cy="72" r="34"/><circle cx="628" cy="72" r="34"/>
-          <circle cx="812" cy="72" r="34"/><circle cx="996" cy="72" r="34"/>
-        </g>
-        <circle cx="1130" cy="72" r="36" fill="#C0EE4E"/>
-        <g stroke="#05B590" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <g transform="translate(76,72)"><rect x="-11" y="-13" width="22" height="26" rx="3"/><path d="M-5 -6h10M-5 0h10"/></g>
-          <g transform="translate(260,72)"><circle r="5"/><path class="i-ring" style="transform-origin:center" d="M-12 0a12 12 0 0 1 24 0a12 12 0 0 1-24 0"/><path d="M0 -13v-4M0 13v4"/></g>
-          <g transform="translate(444,72)"><path class="i-pulse" d="M-13 3a18 18 0 0 1 26 0"/><path class="i-pulse i-d1" d="M-7 8a10 10 0 0 1 14 0"/><circle cy="12" r="2" fill="#05B590"/></g>
-          <g transform="translate(628,72)"><rect x="-13" y="-10" width="26" height="20" rx="3"/><path d="M-7 14h14M0 10v4"/></g>
-          <g transform="translate(812,72)"><path d="M-12 10V2M-4 10V-6M4 10V-2M12 10V-10"/></g>
-          <g transform="translate(996,72)"><path class="i-pulse" d="M0-12a12 12 0 0 1 7 21v4h-14v-4a12 12 0 0 1 7-21Z"/><path d="M-4 17h8"/></g>
-        </g>
-        <g stroke="#0A0A08" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(1130,72)">
-          <path d="M-11 2 -3 10 11 -8"/></g>
-        <g stroke="#C0EE4E" stroke-width="2.4" fill="none" marker-end="url(#mk)" opacity=".9">
-          <path class="i-flow" d="M114 72h102"/><path class="i-flow i-d1" d="M298 72h102"/><path class="i-flow i-d2" d="M482 72h102"/>
-          <path class="i-flow i-d3" d="M666 72h102"/><path class="i-flow" d="M850 72h102"/><path class="i-flow i-d1" d="M1034 72h52"/>
-        </g>
-        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="13" fill="#F4F2EC" text-anchor="middle">
-          <text x="76" y="140">ATIVAÇÃO</text><text x="260" y="140">CAPTAÇÃO</text><text x="444" y="140">TRANSMISSÃO</text>
-          <text x="628" y="140">PLATAFORMA</text><text x="812" y="140">DADOS</text><text x="996" y="140">INSIGHTS</text>
-          <text x="1130" y="140" fill="#C0EE4E">DECISÃO</text>
-        </g>
-        <g font-family="Space Mono,monospace" font-size="10" fill="#7FA096" text-anchor="middle" letter-spacing="1">
-          <text x="76" y="162">totem e display</text><text x="260" y="162">tag e QR</text><text x="444" y="162">rede da loja</text>
-          <text x="628" y="162">Códice</text><text x="812" y="162">permanência</text><text x="996" y="162">alerta</text><text x="1130" y="162">ajuste na onda</text>
-        </g>
+          <circle cx="62" cy="40" r="27"/><circle cx="62" cy="40" r="27" class="i-ring" style="transform-origin:62px 40px"/>
+          <circle cx="248" cy="40" r="27"/><circle cx="434" cy="40" r="27"/><circle cx="620" cy="40" r="27"/>
+          <circle cx="806" cy="40" r="27"/><circle cx="992" cy="40" r="27"/></g>
+        <circle cx="1130" cy="40" r="29" fill="#C0EE4E"/>
+        <g stroke="#05B590" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="translate(62,40)"><rect x="-8.5" y="-10" width="17" height="20" rx="2.6"/><path d="M-4 -4h8M-4 1h8"/></g>
+          <g transform="translate(248,40)"><circle r="4"/><path class="i-ring" style="transform-origin:center" d="M-9.5 0a9.5 9.5 0 0 1 19 0a9.5 9.5 0 0 1-19 0"/></g>
+          <g transform="translate(434,40)"><path class="i-pulse" d="M-10 2.5a14 14 0 0 1 20 0"/><path class="i-pulse i-d1" d="M-5.4 6.5a7.6 7.6 0 0 1 10.8 0"/><circle cy="10" r="1.7" fill="#05B590"/></g>
+          <g transform="translate(620,40)"><rect x="-10" y="-8" width="20" height="16" rx="2.4"/><path d="M-5 11h10M0 8v3"/></g>
+          <g transform="translate(806,40)"><path d="M-9 8V2M-3 8V-5M3 8V-1M9 8V-8"/></g>
+          <g transform="translate(992,40)"><path class="i-pulse" d="M0-9.5a9.5 9.5 0 0 1 5.5 16.6v3h-11v-3A9.5 9.5 0 0 1 0-9.5Z"/><path d="M-3 13h6"/></g></g>
+        <g stroke="#0A0A08" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(1130,40)"><path d="M-9 1.5 -2.5 8 9 -6.5"/></g>
+        <g stroke="#C0EE4E" stroke-width="2.2" fill="none" marker-end="url(#mk2)" opacity=".9">
+          <path class="i-flow" d="M93 40h110"/><path class="i-flow i-d1" d="M279 40h110"/><path class="i-flow i-d2" d="M465 40h110"/>
+          <path class="i-flow i-d3" d="M651 40h110"/><path class="i-flow" d="M837 40h110"/><path class="i-flow i-d1" d="M1023 40h58"/></g>
+        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="112%" font-size="12" fill="#F4F2EC" text-anchor="middle">
+          <text x="62" y="92">ATIVAÇÃO</text><text x="248" y="92">CAPTAÇÃO</text><text x="434" y="92">TRANSMISSÃO</text>
+          <text x="620" y="92">PLATAFORMA</text><text x="806" y="92">DADOS</text><text x="992" y="92">INSIGHTS</text>
+          <text x="1130" y="92" fill="#C0EE4E">DECISÃO</text></g>
       </svg>
     </div>
-    <div class="g g4">
-      <div class="fu kv"><span class="k">Localização</span><span class="v">Contínua</span></div>
-      <div class="fu kv"><span class="k">Permanência</span><span class="v">Por loja</span></div>
-      <div class="fu kv"><span class="k">Movimentação</span><span class="v">Histórico</span></div>
-      <div class="fu kv"><span class="k">Alerta</span><span class="v">Peça parada</span></div>
-    </div>
-    <p class="src">Rastreamento operado na plataforma Códice, da própria 75 LAB. Escopo e tecnologia por peça são definidos no projeto técnico.</p>
+    <p class="src">Rastreamento operado na plataforma Códice, da própria 75 LAB. Tecnologia por peça definida no projeto técnico.</p>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">35</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">RASTREAMENTO</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">09</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<section class="s bone" data-chap="05 · A operação">
-  <div class="meta"><span class="l">Mensuração</span><span class="r">Três níveis</span></div>
+<!-- 10 MENSURAÇÃO -->
+<section class="s" data-chap="Mensuração">
+  <div class="meta"><span class="l">Mensuração</span><span class="r">Funil, níveis e metas de piloto</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Você vai saber</i></span><span class="ln"><i><em>quanto vendeu.</em></i></span></h2>
-    <div class="steps" style="grid-template-columns:repeat(3,1fr)" data-seq>
-      <div class="step hi"><span class="bl"><i></i></span><span class="n">SE HÁ POS</span><span class="t">Cupom</span><span class="d">Conversão direta, item a item, por loja e por hora.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="n">SE NÃO HÁ</span><span class="t">QR + nota</span><span class="d">A pessoa registra a nota e o sistema confirma a compra.</span></div>
-      <div class="step"><span class="bl"><i></i></span><span class="n">SEMPRE</span><span class="t">Estoque</span><span class="d">Contagem de início, reposição e fim de operação.</span></div>
-    </div>
-    <p class="say w fu">Um funil único compara <b>formatos, redes, lojas e dias</b>, do nacional até a hora da compra.</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">36</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 21 ─────────── CRONOGRAMA ─────────── -->
-<!-- BENEFÍCIOS -->
-<section class="s" data-chap="05 · A operação">
-  <div class="meta"><span class="l">Benefícios</span><span class="r">Quem ganha o quê</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(8px,1.1vw,18px)">
-    <h2 class="mega xs"><span class="ln"><i>Uma ação. <em>Seis pessoas satisfeitas.</em></i></span></h2>
-    <div class="eco">
-      <svg viewBox="0 0 1240 330" role="img" aria-label="Ecossistema de benefícios do Nutrify Lab">
-        <defs><radialGradient id="ecg" cx=".5" cy=".5" r=".5">
-          <stop offset="0" stop-color="#C0EE4E" stop-opacity=".22"/><stop offset="1" stop-color="#C0EE4E" stop-opacity="0"/></radialGradient></defs>
-        <circle cx="620" cy="165" r="150" fill="url(#ecg)"/>
-        <g stroke="#05B590" stroke-width="1.6" fill="none" opacity=".5">
-          <path class="i-flow" d="M620 165 470 66"/><path class="i-flow i-d1" d="M620 165 470 165"/><path class="i-flow i-d2" d="M620 165 470 264"/>
-          <path class="i-flow i-d1" d="M620 165 770 66"/><path class="i-flow i-d2" d="M620 165 770 165"/><path class="i-flow i-d3" d="M620 165 770 264"/>
-        </g>
-        <circle cx="620" cy="165" r="56" fill="#C0EE4E"/>
-        <text x="620" y="160" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="16">NUTRIFY</text>
-        <text x="620" y="180" text-anchor="middle" fill="#0A0A08" font-family="Archivo,sans-serif" font-weight="900" font-stretch="125%" font-size="16">LAB</text>
-        <circle cx="620" cy="165" r="68" fill="none" stroke="#C0EE4E" stroke-width="1.6" class="i-ring" style="transform-origin:620px 165px"/>
-        <g fill="#05B590"><circle cx="470" cy="66" r="5"/><circle cx="470" cy="165" r="5"/><circle cx="470" cy="264" r="5"/>
-          <circle cx="770" cy="66" r="5"/><circle cx="770" cy="165" r="5"/><circle cx="770" cy="264" r="5"/></g>
-        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="118%" font-size="16" fill="#F4F2EC" text-anchor="end">
-          <text x="452" y="60">SHOPPER</text><text x="452" y="159">MARCA</text><text x="452" y="258">VAREJO</text></g>
-        <g font-family="Space Grotesk,sans-serif" font-size="13" fill="#A9C0B7" text-anchor="end">
-          <text x="452" y="82">Sai da loja sabendo o que levou</text>
-          <text x="452" y="181">Deixa de ser pote e vira recomendação</text>
-          <text x="452" y="280">Ganha fluxo e giro na categoria</text></g>
-        <g font-family="Archivo,sans-serif" font-weight="800" font-stretch="118%" font-size="16" fill="#F4F2EC" text-anchor="start">
-          <text x="788" y="60">OPERAÇÃO</text><text x="788" y="159">COMERCIAL</text><text x="788" y="258">DADOS</text></g>
-        <g font-family="Space Grotesk,sans-serif" font-size="13" fill="#A9C0B7" text-anchor="start">
-          <text x="788" y="82">Nada volta para o time interno</text>
-          <text x="788" y="181">Sell-out medido, não estimado</text>
-          <text x="788" y="280">Base de interesse por loja</text></g>
-      </svg>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">37</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- RESULTADOS ESPERADOS -->
-<section class="s bone" data-chap="05 · A operação">
-  <div class="meta"><span class="l">Resultados esperados</span><span class="r">Metas de piloto, não promessa</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
-    <h2 class="mega xs"><span class="ln"><i>O que vamos perseguir <em>na primeira onda.</em></i></span></h2>
-    <div class="rows">
-      <div class="row"><span class="k">Abordagem que vira participação</span><span class="v">25 a 35<em>%</em></span></div>
-      <div class="row"><span class="k">Quem começa e conclui a experiência</span><span class="v">acima de 85<em>%</em></span></div>
-      <div class="row"><span class="k">Conversão assistida na zona de compra</span><span class="v">12 a 20<em>%</em></span></div>
-      <div class="row"><span class="k">Disponibilidade do equipamento em campo</span><span class="v">acima de 98<em>%</em></span></div>
-      <div class="row"><span class="k">Positivação registrada com evidência</span><span class="v">100<em>%</em></span></div>
-    </div>
-    <p class="say w fu">Estes são <b>alvos de trabalho do piloto</b>, não resultado histórico. O número real sai das duas primeiras lojas e recalibra a onda seguinte.</p>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">05 · A OPERAÇÃO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">38</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<section class="s" data-chap="06 · O fecho">
-  <div class="meta"><span class="l">Cronograma</span><span class="r">Da aprovação à rede</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <div><span class="num mid"><span data-n="16">0</span></span><p class="tag" style="margin-top:8px">semanas até a escala</p></div>
-      <div class="rows thin">
-        <div class="row"><span class="k">Semanas 1–5</span><span class="v">Imersão, design e sistema</span></div>
-        <div class="row"><span class="k">Semana 6</span><span class="v">Produção</span></div>
-        <div class="row"><span class="k">Semana 7</span><span class="v"><em>Piloto · 2 lojas</em></span></div>
-        <div class="row"><span class="k">Semanas 8–10</span><span class="v">Onda 1 · 8 lojas</span></div>
-        <div class="row"><span class="k">Semanas 11–16</span><span class="v"><em>Escala · 20 lojas</em></span></div>
+  <div class="body" style="gap:clamp(9px,1.2vw,18px)">
+    <h2 class="mega xs"><span class="ln"><i>Você vai saber <em>quanto vendeu.</em></i></span></h2>
+    <div class="msr">
+      <div class="msr-f fu">
+        <span class="tag">Um funil único por loja e por dia</span>
+        <svg viewBox="0 0 300 210" role="img" aria-label="Funil de conversão da ativação">
+          <g font-family="Space Mono,monospace" font-size="9" letter-spacing="1" fill="currentColor">
+            <g opacity=".92"><path d="M10 6h280l-18 30H28Z" fill="#006C52"/><text x="150" y="26" text-anchor="middle" fill="#F4F2EC" font-size="10">FLUXO DA LOJA</text></g>
+            <g opacity=".92"><path d="M30 42h240l-16 30H46Z" fill="#048067"/><text x="150" y="62" text-anchor="middle" fill="#F4F2EC" font-size="10">ABORDADOS</text></g>
+            <g opacity=".92"><path d="M48 78h204l-15 30H63Z" fill="#05947A"/><text x="150" y="98" text-anchor="middle" fill="#F4F2EC" font-size="10">PARTICIPARAM</text></g>
+            <g opacity=".92"><path d="M65 114h170l-14 30H79Z" fill="#05B590"/><text x="150" y="134" text-anchor="middle" fill="#04352B" font-size="10">CONCLUÍRAM</text></g>
+            <g opacity=".92"><path d="M81 150h138l-13 30H94Z" fill="#8AD86A"/><text x="150" y="170" text-anchor="middle" fill="#0A2E12" font-size="10">DIRECIONADOS</text></g>
+            <g><path d="M96 186h108l-10 22h-88Z" fill="#C0EE4E"/><text x="150" y="202" text-anchor="middle" fill="#0A0A08" font-size="10" font-weight="700">COMPRARAM</text></g>
+          </g>
+        </svg>
       </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">39</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- 22 ─────────── INVESTIMENTO ─────────── -->
-<!-- INVESTIMENTO -->
-<section class="s deep" data-chap="06 · O fecho">
-  <div class="meta"><span class="l">Investimento</span><span class="r">Operação completa por loja e por dia</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,30px)">
-    <div class="sp-a">
-      <div>
-        <div class="price"><span class="cur">R$</span><span class="val">1.008<small style="font-size:.3em;letter-spacing:0">,84</small></span></div>
-        <p class="tag" style="margin-top:.5em">por loja / por dia de ativação</p>
+      <div class="msr-n fu">
+        <span class="tag">Três níveis, conforme o varejista permitir</span>
+        <div class="lvl hot"><span class="lv-n">01</span><span class="ic"><svg><use href="#k-scan"/></svg></span><span class="lv-t">POS e cupom</span><span class="lv-d">Conversão direta, item a item</span></div>
+        <div class="lvl"><span class="lv-n">02</span><span class="ic"><svg><use href="#k-tap"/></svg></span><span class="lv-t">QR e nota</span><span class="lv-d">Validação assistida pelo shopper</span></div>
+        <div class="lvl"><span class="lv-n">03</span><span class="ic"><svg><use href="#k-box"/></svg></span><span class="lv-t">Estoque</span><span class="lv-d">Início, reposição e fim de operação</span></div>
       </div>
-      <div class="stack" style="gap:clamp(10px,1.3vw,20px)">
-        <h2 class="mega xs"><span class="ln"><i>Um número.</i></span><span class="ln"><i><em>Tudo dentro.</em></i></span></h2>
+      <div class="msr-k fu">
+        <span class="tag">Metas do piloto, não resultado histórico</span>
         <div class="rows thin">
-          <div class="row"><span class="k">Promotor, supervisor e coordenação</span><span class="v"><em>incluso</em></span></div>
-          <div class="row"><span class="k">Uniforme, insumos e higienização</span><span class="v"><em>incluso</em></span></div>
-          <div class="row"><span class="k">Refeição e deslocamento</span><span class="v"><em>incluso</em></span></div>
-          <div class="row"><span class="k">App de campo, BI e dashboard</span><span class="v"><em>incluso</em></span></div>
-          <div class="row"><span class="k">Experiência, materiais e montagem</span><span class="v"><em>incluso</em></span></div>
+          <div class="row"><span class="k">Abordagem vira participação</span><span class="v">25 a 35<em>%</em></span></div>
+          <div class="row"><span class="k">Começa e conclui</span><span class="v">acima de 85<em>%</em></span></div>
+          <div class="row"><span class="k">Conversão assistida</span><span class="v">12 a 20<em>%</em></span></div>
+          <div class="row"><span class="k">Disponibilidade em campo</span><span class="v">acima de 98<em>%</em></span></div>
         </div>
       </div>
     </div>
-    <div class="rows thin">
-      <div class="row"><span class="k">Projeto completo · 30 lojas · 96 diárias</span><span class="v"><em>R$ 96.848,89</em></span></div>
-      <div class="row"><span class="k">Piloto · 2 lojas · 6 diárias</span><span class="v">R$ 6.053,06</span></div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">MENSURAÇÃO</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">10</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 11 CRONOGRAMA -->
+<section class="s bone" data-chap="Cronograma">
+  <div class="meta"><span class="l">Cronograma</span><span class="r">Da aprovação à rede</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(12px,1.7vw,28px)">
+    <div class="sp" style="align-items:end;flex:none">
+      <h2 class="mega xs"><span class="ln"><i>Dezesseis semanas, <em>com gate em cada fase.</em></i></span></h2>
+      <p class="say">Nada passa para a fase seguinte sem número aprovado. <b>O piloto decide a onda 1, e a onda 1 decide a escala.</b></p>
     </div>
-    <p class="disc">Valores com fee, BV e impostos já aplicados. Não inclui mídia do varejista, descontos ou cashback, nem integrações de POS não dimensionadas.</p>
-    <div class="ctas"><button class="cta" data-go="41">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+    <div class="gantt">
+      <div class="gl"><span class="gw">S1</span><span class="gw">S4</span><span class="gw">S6</span><span class="gw">S7</span><span class="gw">S10</span><span class="gw">S16</span></div>
+      <div class="gr fu"><span class="gb a" style="--s:0%;--w:31%"><b>Imersão, design e sistema</b></span>
+        <span class="gt">S1 a S5 · mix, conteúdo aprovado e tecnologia</span></div>
+      <div class="gr fu"><span class="gb b" style="--s:31%;--w:7%"><b>Produção</b></span>
+        <span class="gt">S6 · kits, equipamentos e logística</span></div>
+      <div class="gr fu"><span class="gb c" style="--s:38%;--w:7%"><b>Piloto</b><span class="gate">gate</span></span>
+        <span class="gt">S7 · 2 lojas em operação real</span></div>
+      <div class="gr fu"><span class="gb d" style="--s:45%;--w:19%"><b>Onda 1</b><span class="gate">gate</span></span>
+        <span class="gt">S8 a S10 · 8 lojas, recalibragem por perfil</span></div>
+      <div class="gr fu"><span class="gb e" style="--s:64%;--w:36%"><b>Escala</b></span>
+        <span class="gt">S11 a S16 · 20 lojas e relatório consolidado</span></div>
+    </div>
+    <div class="band fu"><span class="ic"><svg><use href="#k-alert"/></svg></span><span class="k">Dependências</span>
+      <p>lojas e plantas · mix e estoque · conteúdo regulatório · integração promocional · calendário do varejista</p></div>
+  </div>
+  <div class="fo">
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">CRONOGRAMA</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">11</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 12 INVESTIMENTO -->
+<section class="s deep" data-chap="Investimento">
+  <div class="meta"><span class="l">Investimento</span><span class="r">Operação completa por loja e por dia</span></div>
+  <div class="hair"></div><div class="bar"></div>
+  <div class="body" style="gap:clamp(10px,1.4vw,24px)">
+    <div class="inv">
+      <div class="inv-p fu">
+        <span class="chapmark"><b>R$</b> por loja, por dia</span>
+        <div class="price"><span class="cur">R$</span><span class="val">1.008<small>,84</small></span></div>
+        <span class="tag">tudo incluso, sem segundo orçamento</span>
+        <div class="incl">
+          <span class="ii"><span class="ic"><svg><use href="#k-stop"/></svg></span>Promotor, supervisor e coordenação</span>
+          <span class="ii"><span class="ic"><svg><use href="#k-box"/></svg></span>Uniforme, insumos e higienização</span>
+          <span class="ii"><span class="ic"><svg><use href="#k-truck"/></svg></span>Refeição e deslocamento</span>
+          <span class="ii"><span class="ic"><svg><use href="#k-tap"/></svg></span>App de campo, BI e dashboard</span>
+          <span class="ii"><span class="ic"><svg><use href="#k-leaf"/></svg></span>Experiência, materiais e montagem</span>
+        </div>
+      </div>
+      <div class="inv-s">
+        <div class="scen fu"><span class="sc-n">Piloto</span><span class="sc-d">2 lojas · 6 diárias</span><span class="sc-v">R$ 6.053,06</span></div>
+        <div class="scen fu"><span class="sc-n">Onda 1</span><span class="sc-d">8 lojas · 20 diárias</span><span class="sc-v">R$ 20.176,85</span></div>
+        <div class="scen hot fu"><span class="sc-n">Rede completa</span><span class="sc-d">30 lojas · 96 diárias</span><span class="sc-v">R$ 96.848,89</span></div>
+        <p class="disc">Valores com fee, BV e impostos já aplicados. Não inclui mídia do varejista, descontos ou cashback, nem integração de POS não dimensionada.</p>
+        <div class="ctas"><button class="cta" data-go="12">Começar pelo piloto <span class="ar"><svg><use href="#ar"/></svg></span></button></div>
+      </div>
+    </div>
   </div>
   <div class="fo">
     <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">INVESTIMENTO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">40</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">12</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
-<!-- TRÊS MARCAS -->
-<section class="s bone" data-chap="06 · O fecho">
-  <div class="meta"><span class="l">Depois do piloto</span><span class="r">Ativações 360</span></div>
+<!-- 13 FECHO E INSTITUCIONAL -->
+<section class="s bone" data-chap="Próximo passo">
+  <div class="meta"><span class="l">Próximo passo</span><span class="r">75 LAB · aceleradora de trade marketing</span></div>
   <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <div class="sp-a">
-      <h2 class="mega sm"><span class="ln"><i>Integral.</i></span><span class="ln"><i>Nutrify.</i></span><span class="ln"><i><em>Darkness.</em></i></span></h2>
-      <div class="stack" style="gap:clamp(12px,1.6vw,26px)">
-        <p class="say">Um só parceiro de ativação para as três marcas, com planejamento e execução centralizados. <b>Uma marca por trimestre, nas quatro ondas do ano.</b></p>
-        <div class="rows thin">
-          <div class="row"><span class="k">Ondas por ano</span><span class="v"><em>4</em></span></div>
-          <div class="row"><span class="k">Marcas atendidas</span><span class="v"><em>3</em></span></div>
-          <div class="row"><span class="k">Lojas por onda</span><span class="v">30</span></div>
-          <div class="row"><span class="k">Regiões</span><span class="v">SE · NE · CO</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">ATIVAÇÕES 360</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">41</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<section class="s bone" data-chap="06 · O fecho">
-  <div class="meta"><span class="l">Próximo passo</span><span class="r">75 LAB × Nutrify</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega"><span class="ln"><i>Duas lojas.</i></span><span class="ln"><i>Duas semanas.</i></span><span class="ln"><i><em>Um número real.</em></i></span></h2>
-    <div class="sp">
-      <p class="say">Começamos pelo piloto, medimos tudo e escalamos <b>pelo que converter</b>. Escolha as lojas. O resto é com a gente.</p>
-      <div class="stack" style="gap:clamp(10px,1.3vw,20px);align-items:flex-start">
+  <div class="body" style="gap:clamp(10px,1.4vw,24px)">
+    <div class="fch">
+      <div class="fch-a">
+        <h2 class="mega xs"><span class="ln"><i>Duas lojas.</i></span><span class="ln"><i>Duas semanas.</i></span><span class="ln"><i><em>Um número real.</em></i></span></h2>
+        <p class="say">Depois disso, a conversa deixa de ser sobre ideia e passa a ser sobre escala. <b>Integral, Nutrify e Darkness no mesmo parceiro</b>, uma marca por trimestre, nas quatro ondas do ano.</p>
         <div class="ctas">
-          <button class="cta" data-go="0">Rever a proposta <span class="ar"><svg><use href="#ar"/></svg></span></button>
-          <button class="cta gh" data-go="39">Ver o investimento</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:clamp(12px,1.5vw,24px);margin-top:clamp(6px,.8vw,14px)">
-          <img src="assets/75lab-wordmark-black.png" alt="75 LAB" style="height:clamp(15px,1.5vw,24px)">
-          <span style="width:1px;height:clamp(20px,2vw,32px);background:currentColor;opacity:.25"></span>
-          <img src="assets/nutrify-logo.png" alt="Nutrify Real Foods" style="height:clamp(34px,3.4vw,54px);border-radius:8px">
+          <button class="cta" data-go="11">Ver o investimento <span class="ar"><svg><use href="#ar"/></svg></span></button>
+          <button class="cta gh" data-go="0">Rever do começo</button>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">NUTRIFY LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">42</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- ENCERRAMENTO ESTRATÉGICO -->
-<section class="s deep" data-chap="06 · O fecho">
-  <div class="meta"><span class="l">Encerramento</span><span class="r">De volta ao começo</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body">
-    <h2 class="mega sm"><span class="ln"><i>Continua sendo</i></span><span class="ln"><i>a categoria mais</i></span><span class="ln"><i>pesquisada do país.</i></span><span class="ln"><i><em>Agora com resposta na loja.</em></i></span></h2>
-    <div class="sp" style="align-items:end;flex:none">
-      <p class="say">Duas lojas, duas semanas e um número real. <b>Depois disso, a conversa deixa de ser sobre ideia e passa a ser sobre escala.</b></p>
-      <div class="ctas">
-        <button class="cta" data-go="39">Ver o investimento <span class="ar"><svg><use href="#ar"/></svg></span></button>
-        <button class="cta gh" data-go="0">Rever do começo</button>
+      <div class="fch-b fu">
+        <div class="logos">
+          <img src="assets/75lab-wordmark-black.png" alt="75 LAB">
+          <span class="sep2"></span>
+          <img class="nu2" src="assets/nutrify-logo.png" alt="Nutrify Real Foods">
+        </div>
+        <div class="instx">
+          <span class="ln2"><span>Razão social</span><b>75 LAB Estratégia, Design e Produção Ltda</b></span>
+          <span class="ln2"><span>CNPJ</span><b>55.470.982/0001-77</b></span>
+          <span class="ln2"><span>Endereço</span><b>Rua Jurubatuba, 1350, conj. 913, Centro, São Bernardo do Campo, SP</b></span>
+          <span class="ln2"><span>Contato</span><b>(11) 8864-8434 · <a href="mailto:contato@75lab.com.br">contato@75lab.com.br</a></b></span>
+          <span class="ln2"><span>Site</span><b><a href="https://75lab.com.br" target="_blank" rel="noopener">75lab.com.br</a> · <a href="https://instagram.com/setecincolab" target="_blank" rel="noopener">@setecincolab</a></b></span>
+          <span class="ln2"><span>Apresenta</span><b>Caique Becker · Cofundador e Head de Trade</b></span>
+        </div>
+        <p class="say" style="font-size:clamp(12px,1.2vw,18px)"><b>Ideia boa é a que acontece.</b></p>
       </div>
     </div>
   </div>
   <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-paper.png" alt="75 LAB"><span class="x">×</span><span class="n">06 · O FECHO</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">43</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
-  </div>
-</section>
-
-<!-- INSTITUCIONAL -->
-<section class="s bone" data-chap="06 · O fecho">
-  <div class="meta"><span class="l">75 LAB</span><span class="r">Aceleradora de trade marketing</span></div>
-  <div class="hair"></div><div class="bar"></div>
-  <div class="body" style="gap:clamp(12px,1.8vw,28px)">
-    <div style="display:flex;align-items:center;gap:clamp(14px,1.8vw,30px);flex-wrap:wrap" class="fu">
-      <img src="assets/75lab-wordmark-black.png" alt="75 LAB" style="height:clamp(20px,2.1vw,34px)">
-      <span style="width:1px;height:clamp(22px,2.4vw,40px);background:currentColor;opacity:.22"></span>
-      <img src="assets/nutrify-logo.png" alt="Nutrify Real Foods" style="height:clamp(40px,4.2vw,66px);border-radius:8px">
-    </div>
-    <div class="inst">
-      <div class="bl2">
-        <span class="ttl">A empresa</span>
-        <span class="ln2"><span>Razão social</span><b>75 LAB Estratégia, Design e Produção Ltda</b></span>
-        <span class="ln2"><span>CNPJ</span><b>55.470.982/0001-77</b></span>
-        <span class="ln2"><span>Endereço</span><b>Rua Jurubatuba, 1350, conjunto 913, Centro</b></span>
-        <span class="ln2"><span>Cidade</span><b>São Bernardo do Campo, SP, CEP 09725-000</b></span>
-        <span class="ln2"><span>Telefone</span><b>(11) 8864-8434</b></span>
-        <span class="ln2"><span>E-mail</span><b><a href="mailto:contato@75lab.com.br">contato@75lab.com.br</a></b></span>
-        <span class="ln2"><span>Site</span><b><a href="https://75lab.com.br" target="_blank" rel="noopener">75lab.com.br</a></b></span>
-        <span class="ln2"><span>Instagram</span><b><a href="https://instagram.com/setecincolab" target="_blank" rel="noopener">@setecincolab</a></b></span>
-      </div>
-      <div class="bl2">
-        <span class="ttl">Apresentação</span>
-        <span class="ln2"><span>Apresentador</span><b>Caique Becker</b></span>
-        <span class="ln2"><span>Cargo</span><b>Cofundador e Head de Trade</b></span>
-        <span class="ln2"><span>E-mail</span><b><a href="mailto:caique.becker@75lab.com.br">caique.becker@75lab.com.br</a></b></span>
-        <span class="ln2"><span>Cliente</span><b>Nutrify Real Foods · Grupo Integral</b></span>
-        <span class="ln2"><span>Projeto</span><b>Nutrify Lab, ativações 2027</b></span>
-        <span class="ln2"><span>Data</span><b>Outubro de 2026</b></span>
-        <p class="say" style="margin-top:clamp(10px,1.4vw,22px);font-size:clamp(12px,1.25vw,19px)"><b>Ideia boa é a que acontece.</b></p>
-      </div>
-    </div>
-  </div>
-  <div class="fo">
-    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">75 LAB</span></div>
-    <div class="nav"><button class="nb pv"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">44</b> / <span class="to">44</span></span><button class="nb nx"><svg><use href="#ar"/></svg></button></div>
+    <div class="bd"><img src="assets/75lab-wordmark-black.png" alt="75 LAB"><span class="x">×</span><span class="n">75 LAB × NUTRIFY</span></div>
+    <div class="nav"><button class="nb pv" aria-label="Anterior"><svg><use href="#al"/></svg></button><span class="pg"><b class="cu">13</b> / <span class="to">13</span></span><button class="nb nx" aria-label="Próximo"><svg><use href="#ar"/></svg></button></div>
   </div>
 </section>
 
@@ -1746,50 +1417,19 @@ body.lbon .deck,body.lbon .bg,body.lbon .hdr,body.lbon .pro{visibility:hidden}
 <script>
 (function(){
   var T=["Abertura",
-    "Capa do projeto",
-    "Agenda",
-    "Quem é a 75 LAB",
-    "O que ouvimos",
-    "Problema aparente e real",
-    "Objetivo do projeto",
-    "Você passa o desafio",
-    "Mercado da categoria",
-    "Onde o shopper compra",
-    "Jornada do shopper",
-    "Território competitivo",
-    "Tendências aplicáveis",
-    "A tese",
-    "A oportunidade",
+    "O desafio",
+    "O contexto",
     "NUTRIFY LAB",
     "Routine Lab",
-    "90 segundos",
-    "Routine Lab em loja",
-    "Como funciona",
-    "Demonstração ao vivo",
-    "A estrutura em loja",
-    "Routine Lab por dia",
     "Move Lab",
-    "60 segundos",
-    "Move Lab em loja",
-    "Como funciona",
-    "Sampling na hora",
-    "Move Lab por dia",
-    "A divisão do trabalho",
-    "A equipe em campo",
-    "A conversão",
-    "O ponto cego",
-    "Rastreamento One Shot",
-    "Rastreamento On Timing",
-    "Como medimos",
-    "Benefícios",
-    "Resultados esperados",
+    "O acordo",
+    "A operação em campo",
+    "Rastreamento",
+    "Mensuração",
     "Cronograma",
     "Investimento",
-    "Integral, Nutrify e Darkness",
-    "Próximo passo",
-    "Encerramento",
-    "75 LAB · institucional"];
-  var HD=[0,2,4,8,13,15,16,23,29,32,38,42,43];
+    "Próximo passo"];
+  var HD=[0,1,3,6,8,11,12];
   var sl=[].slice.call(document.querySelectorAll('.s')), i=0, n=sl.length;
   var menu=document.getElementById('menu'), ml=document.getElementById('mlist'), pro=document.getElementById('pro');
 
@@ -1819,8 +1459,20 @@ body.lbon .deck,body.lbon .bg,body.lbon .hdr,body.lbon .pro{visibility:hidden}
       var a=e.style.animation; e.style.animation='none'; void e.offsetWidth; e.style.animation=a||'';
     });
   }
+  var wp=document.getElementById('wipe'), wTo=null;
+  function sweep(back){
+    if(!wp)return;
+    wp.classList.remove('go','back');
+    void wp.offsetWidth;
+    if(back) wp.classList.add('back');
+    wp.classList.add('go');
+    clearTimeout(wTo);
+    wTo=setTimeout(function(){wp.classList.remove('go','back')},820);
+  }
   function go(k){
     if(k<0||k>=n||k===i)return;
+    deck.classList.toggle('rev',k<i);
+    sweep(k<i);
     sl[i].classList.remove('on'); i=k;
     sl[i].classList.add('on'); sl[i].scrollTop=0;
     replay(sl[i]); nums(sl[i]); runSeq(sl[i]);

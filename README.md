@@ -1,23 +1,30 @@
 # NUTRIFY LAB · 75 LAB × Nutrify
 
-Apresentação comercial em HTML, **44 telas**, uma ideia por tela, com arco narrativo completo.
+Apresentação comercial em HTML, **13 telas**, cada uma com composição própria.
 
 **Objetivo do projeto:** estruturar a 75 LAB como braço estratégico e operacional das ativações
 de Integral, Nutrify e Darkness, assumindo desde o desenvolvimento da experiência até a execução
 no PDV, logística, gestão da equipe e mensuração dos resultados, com foco em conversão e venda.
 
-## Estrutura narrativa
-| Capítulo | Telas | O que entrega |
+## As 13 telas
+| # | Tela | Composição |
 |---|---|---|
-| Abertura | 01 a 04 | Manifesto, capa, agenda visual e quem assina |
-| 01 · O desafio | 05 a 08 | Decupagem do briefing, problema aparente x real, objetivo, o acordo |
-| 02 · O contexto | 09 a 13 | Mercado, canal, jornada do shopper, mapa competitivo, tendências |
-| 03 · A tese | 14 a 15 | O insight e a oportunidade |
-| 04 · A solução | 16 a 29 | Reveal do Nutrify Lab, Routine Lab e Move Lab |
-| 05 · A operação | 30 a 38 | Divisão do trabalho, equipe, conversão, rastreamento, medição, benefícios, resultados |
-| 06 · O fecho | 39 a 44 | Cronograma, investimento, 360, próximo passo, encerramento, institucional |
+| 01 | Abertura | Manifesto com anel de busca e contador de 188 milhões |
+| 02 | O desafio | Quatro falas da reunião contra o par aparente e real |
+| 03 | O contexto | Três indicadores, barras por canal e mapa de posicionamento |
+| 04 | NUTRIFY LAB | Reveal com dois cartões de formato clicáveis |
+| 05 | Routine Lab | Passos animados, números e a demo funcional no tablet |
+| 06 | Move Lab | Foto em sangria, passos e o voucher de amostra |
+| 07 | O acordo | Duas colunas enfrentadas com seta central |
+| 08 | A operação | Quatro papéis e o diagrama das três frentes regionais |
+| 09 | Rastreamento | One Shot contra On Timing e o fluxo até a decisão |
+| 10 | Mensuração | Funil, três níveis e as metas do piloto |
+| 11 | Cronograma | Gantt com gates nas fases de decisão |
+| 12 | Investimento | Preço, o que está incluso e três cenários |
+| 13 | Próximo passo | Fecho com os dados institucionais |
 
 ## Experiência
+- Transição cinematográfica: cortina dupla varrendo a tela mais escala e desfoque, com direção invertida ao voltar
 - Cabeçalho fixo com as duas marcas e o capítulo corrente
 - Cursor customizado em dois tons, desligado em toque
 - Fundo vivo com blobs e grade em deriva lenta
